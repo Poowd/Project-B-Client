@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 export default function Page() {
   const [pets, setPets] = useState([]);
   const [search, setSearch] = useState("");
+  const [secret, setSecret] = useState(null);
 
   const getList = async () => {
     try {
@@ -34,7 +35,12 @@ export default function Page() {
   };
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const secretValue = window.localStorage.getItem("do_not_spread");
+      setSecret(secretValue);
+    }
     getList();
+    window.localStorage.setItem("do_not_spread", "");
   }, []);
 
   return (
@@ -51,15 +57,17 @@ export default function Page() {
       }
       buttons={
         <>
-          <FormModal
-            button={
-              <div className="border-0 py-2 px-5 text-sm rounded-full bg-red-400 hover:bg-red-500 shadow-sm text-white">
-                Add Pet
-              </div>
-            }
-          >
-            <AddPet fetchOnFinish={() => getList()}></AddPet>
-          </FormModal>
+          {secret && secret === "foodguy05" && (
+            <FormModal
+              button={
+                <div className="border-0 py-2 px-5 text-sm rounded-full bg-red-400 hover:bg-red-500 shadow-sm text-white">
+                  Add Pet
+                </div>
+              }
+            >
+              <AddPet fetchOnFinish={() => getList()}></AddPet>
+            </FormModal>
+          )}
         </>
       }
     >
