@@ -38,9 +38,10 @@ export default function Page() {
     if (typeof window !== "undefined") {
       const secretValue = window.localStorage.getItem("do_not_spread");
       setSecret(secretValue);
+    } else {
+      window.localStorage.setItem("do_not_spread", "");
     }
     getList();
-    window.localStorage.setItem("do_not_spread", "");
   }, []);
 
   return (
