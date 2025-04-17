@@ -85,25 +85,27 @@ export default function Page() {
               lore={pet.Lore}
               buttons={
                 <>
-                  <FormModal
-                    button={
-                      <div className="py-2 px-4 border border-neutral-300 rounded-full text-xs text-neutral-800 flex justify-center items-center hover:bg-neutral-100 hover:cursor-pointer">
-                        Edited
-                      </div>
-                    }
-                  >
-                    <EditPet
-                      fetchOnFinish={() => getList()}
-                      entry={{
-                        ID: pet.ID,
-                        Image: pet.Image,
-                        Name: pet.Name,
-                        Type: pet.Type,
-                        Title: pet.Title,
-                        Lore: pet.Lore,
-                      }}
-                    ></EditPet>
-                  </FormModal>
+                  {secret && secret === "foodguy05" && (
+                    <FormModal
+                      button={
+                        <div className="py-2 px-4 border border-neutral-300 rounded-full text-xs text-neutral-800 flex justify-center items-center hover:bg-neutral-100 hover:cursor-pointer">
+                          Edited
+                        </div>
+                      }
+                    >
+                      <EditPet
+                        fetchOnFinish={() => getList()}
+                        entry={{
+                          ID: pet.ID,
+                          Image: pet.Image,
+                          Name: pet.Name,
+                          Type: pet.Type,
+                          Title: pet.Title,
+                          Lore: pet.Lore,
+                        }}
+                      ></EditPet>
+                    </FormModal>
+                  )}
                 </>
               }
             >
