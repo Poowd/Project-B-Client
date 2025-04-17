@@ -1,9 +1,8 @@
 "use client";
-import { v4 as uuidv4 } from "uuid";
+
 import { useClose } from "@headlessui/react";
 import { useEffect, useState, useTransition } from "react";
 import LabeledFileInput from "./input/LabeledFileInput";
-import { createClient } from "@supabase/supabase-js";
 import LabeledInput from "./input/LabeledInput";
 import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
 import PetForms from "@/components/package/PetForms";

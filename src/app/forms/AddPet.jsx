@@ -1,17 +1,11 @@
 "use client";
-import { v4 as uuidv4 } from "uuid";
+
 import { useClose } from "@headlessui/react";
 import { useEffect, useState, useTransition } from "react";
 import LabeledFileInput from "./input/LabeledFileInput";
-import { createClient } from "@supabase/supabase-js";
 import LabeledInput from "./input/LabeledInput";
 import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
 import PetForms from "@/components/package/PetForms";
-
-const supabase = createClient(
-  "https://jxqnhgenpsqzghroiiuy.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp4cW5oZ2VucHNxemdocm9paXV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTY5ODM0NSwiZXhwIjoyMDU1Mjc0MzQ1fQ.QILMuzRIVJDp2NSDqjhuru2Y2CFJ_zGMOdvZo9K8E60"
-);
 
 export default function AddPet({ fetchOnFinish }) {
   const close = useClose();
