@@ -3,17 +3,207 @@
     {
       "ID": 1,
       "Name": "Shiffee",
-      "Image": "/images/shiffee.jpg"
+      "Title": "A Friendly Companion",
+      "Type": "Standard",
+      "Lore": "Once upon a time in a tranquil valley, there lived a gentle sheep named Shiffee. Known for its soft, fluffy wool and friendly nature, Shiffee preferred to quietly observe the beauty of nature while playing with butterflies.\n\nOne sunny morning, Shiffee found a frightened rabbit named Benny, who had lost its way. \"Hello there, little friend,\" Shiffee said softly. Benny explained his predicament, and Shiffee offered to help. \"Don’t worry, I’ll guide you back. Just follow me!\"\n\nAs they journeyed through the meadow, Shiffee shared enchanting stories about the wise old owl and playful foxes. Benny felt comforted and his fear began to fade. Eventually, they reached Benny's cozy burrow.\n\n\"Thank you so much, Shiffee! I couldn’t have done it without you!\" Benny exclaimed. Shiffee smiled and reminded him, \"You’re never alone in the meadow.\"\n\nFrom that day on, Shiffee became known as the Friendly Companion of the valley, teaching everyone that even the smallest among us can make a big difference through kindness and compassion.",
+      "Image": "shiffee.png",
+      "Traits": [
+        {
+          "Trait": "Meek",
+          "Level": "1",
+          "Description": "Removes the ability to Trample Farmlands."
+        }
+      ],
+      "Skills": [
+        {
+          "Skill": "Tumieayks",
+          "Level": "25",
+          "Description": "Replenish hunger while mining."
+        }
+      ]
     },
     {
       "ID": 2,
       "Name": "Spiwit",
-      "Image": "/images/spiwit.jpg"
+      "Title": "A Translucent Friend",
+      "Type": "Standard",
+      "Lore": "In a fog-draped village by an ancient forest lived a ghost girl named Spiwit. Often feared by the villagers as a harbinger of misfortune, Spiwit was actually a lonely spirit yearning for connection after a tragic accident had taken her life.\n\nOne stormy night, a curious boy named Leo ventured into the forest with a lantern, drawn by tales of the ghost. When he encountered Spiwit near an ancient oak, he bravely asked, \"Who are you?\"\n\n\"I am Spiwit,\" she replied sadly. \"No one wishes to befriend a ghost.\"\n\n\"I’m not afraid of you. I want to be your friend,\" Leo declared, surprising her. They began to talk, forming a bond through shared stories.\n\nAs weeks passed, Leo regularly visited Spiwit, exploring the enchanted forest together. The villagers noticed the change; the once-feared woods became vibrant with laughter and wonder. \n\nSpiwit transformed from a figure of fear into a cherished friend, teaching the villagers that she was to be embraced, not feared. Her story became one of love and friendship, reminding everyone that true connections can shine brightly, even in the darkest places.",
+      "Image": "spiwit.png"
     },
     {
       "ID": 3,
       "Name": "Dwargon",
-      "Image": "/images/dwargon.jpg"
+      "Title": "Long Lost Beast of Realms",
+      "Type": "Standard",
+      "Lore": "In a fog-draped village by an ancient forest lived a ghost girl named Spiwit. Often feared by the villagers as a harbinger of misfortune, Spiwit was actually a lonely spirit yearning for connection after a tragic accident had taken her life.\n\nOne stormy night, a curious boy named Leo ventured into the forest with a lantern, drawn by tales of the ghost. When he encountered Spiwit near an ancient oak, he bravely asked, \"Who are you?\"\n\n\"I am Spiwit,\" she replied sadly. \"No one wishes to befriend a ghost.\"\n\n\"I’m not afraid of you. I want to be your friend,\" Leo declared, surprising her. They began to talk, forming a bond through shared stories.\n\nAs weeks passed, Leo regularly visited Spiwit, exploring the enchanted forest together. The villagers noticed the change; the once-feared woods became vibrant with laughter and wonder. \n\nSpiwit transformed from a figure of fear into a cherished friend, teaching the villagers that she was to be embraced, not feared. Her story became one of love and friendship, reminding everyone that true connections can shine brightly, even in the darkest places.",
+      "Image": "dwargon.png"
+    },
+    {
+      "ID": 4,
+      "Name": "Skwash",
+      "Title": "A Nightly Smiles",
+      "Type": "Standard",
+      "Lore": "In a bustling village, as autumn arrived, there lived a mischievous Halloween pumpkin named Skwash. Unlike ordinary pumpkins, Skwash sparkled with a naughty spirit and loved playing tricks on the villagers.\n\nThis year, Skwash aimed to make the annual Halloween festival unforgettable. As the festivities began, he quietly rolled into the village square, where children were laughing and playing in costumes. He leaped onto a hay wagon, sending hay flying everywhere, which sparked a playful hay fight among the villagers. \n\nSkwash’s biggest prank came during the Best Costume contest. He rolled onto the stage, startling the announcer, and mimicked his voice, declaring, \"The winner is… the pumpkin with the biggest grin!\" The crowd erupted in laughter, embracing their beloved pumpkin’s antics.\n\nAs dawn approached, Skwash returned to his patch, tired but joyful. From then on, he was known as A Nightly Smiles, a beloved symbol of joy and mischief, teaching everyone that a little naughtiness can create unforgettable memories.",
+      "Image": "skwash.png"
+    },
+    {
+      "ID": 5,
+      "Name": "Scropt",
+      "Title": "A Creature from Waste",
+      "Type": "Standard",
+      "Lore": "In a forgotten corner of the world, there lived a raccoon named Scropt, known as A Creature from Wastes. Small and scrappy with bright eyes and a striped tail, Scropt thrived in the overgrown ruins of a once-bustling town.\n\nOne day, while scavenging an old playground, Scropt overheard animals in distress. A heavy storm had flooded their homes, leaving rabbits, birds, and deer worried and unsure of how to escape. Seeing their plight, Scropt confidently called out, \"Don’t worry, friends! I can help!\"\n\nDespite a bumpy journey, Scropt navigated skillfully, and they eventually reached higher ground. The animals cheered, grateful for his cleverness that saved them from the flood. \"Thank you, Scropt! You truly are a hero!\" they exclaimed.\n\nFrom that day on, Scropt became a wise and resourceful leader, teaching his peers to find value in overlooked things and to work together in times of need. As the seasons passed, his legend grew, symbolizing hope and ingenuity, reminding everyone that creativity and teamwork could overcome any challenge.",
+      "Image": "scropt.png"
+    },
+    {
+      "ID": 6,
+      "Name": "Payr",
+      "Title": "A Light that Perishs",
+      "Type": "Standard",
+      "Lore": "In the realm of Embervale, where fire and ash danced in eternal twilight, lived Payr, a creature of pure flame. Known as A Light that Perishes, Payr embodied the fiery essence of life and destruction. With flickering flames that shimmered like molten gold, it illuminated the dark corners of the world, attracting both wonder and fear. Payr’s fiery trait granted it the power to ignite hope in the hearts of the weary. It would descend upon villages, warming homes and lighting the way for lost travelers. Yet, its flames were also a reminder of the fleeting nature of life, for every spark bore the weight of its eventual extinguishment.\n\nOne fateful night, a great storm swept through Embervale, threatening to snuff out Payr’s light. As the winds howled, Payr summoned its strength, igniting a blaze that pushed back the darkness. \n\nIn a brilliant burst, it illuminated the night, guiding the villagers to safety. But in doing so, Payr used its last flicker of energy.\n\nAs dawn broke, the villagers mourned the loss of their radiant guardian. Yet, they vowed to carry its light in their hearts, knowing that even the briefest flame could leave a lasting legacy.",
+      "Image": "payr.png"
+    },
+    {
+      "ID": 7,
+      "Name": "Metagon",
+      "Title": "Long Lost Scrap Dragon",
+      "Type": "Mechanical",
+      "Lore": "Lore Soon!",
+      "Image": "metagon.png"
+    },
+    {
+      "ID": 8,
+      "Name": "Shipingvesel",
+      "Title": "Mass-Fishing Vesselor",
+      "Type": "Mechanical",
+      "Lore": "Lore Soon!",
+      "Image": "shippingvesel.png"
+    },
+    {
+      "ID": 9,
+      "Name": "Dispensaur",
+      "Title": "Mechanical Companion",
+      "Type": "Mechanical",
+      "Lore": "Lore Soon!",
+      "Image": "dispensaur.png"
+    },
+    {
+      "ID": 10,
+      "Name": "Pyrdrogo",
+      "Title": "Radiant Dragon of Skies",
+      "Type": "Elemental",
+      "Lore": "Lore Soon!",
+      "Image": "pyrdrogo.png"
+    },
+    {
+      "ID": 11,
+      "Name": "Gravitacia",
+      "Title": "Earthen's Pull",
+      "Type": "Elemental",
+      "Lore": "Lore Soon!",
+      "Image": "gravitacia.png"
+    },
+    {
+      "ID": 12,
+      "Name": "Bord",
+      "Title": "Seeker of Skies",
+      "Type": "Elemental",
+      "Lore": "Lore Soon!",
+      "Image": "bord.png"
+    },
+    {
+      "ID": 13,
+      "Name": "Icepayr",
+      "Title": "Hot n' Colde Elemental Spirit",
+      "Type": "Elemental",
+      "Lore": "Lore Soon!",
+      "Image": "icepayr.png"
+    },
+    {
+      "ID": 14,
+      "Name": "Otterme",
+      "Title": "My Otter-Half Wingman",
+      "Type": "Genteel",
+      "Lore": "Lore Soon!",
+      "Image": "otterme.png"
+    },
+    {
+      "ID": 15,
+      "Name": "Otteryou",
+      "Title": "Your Otter-Half Wingman",
+      "Type": "Genteel",
+      "Lore": "Lore Soon!",
+      "Image": "otteryou.png"
+    },
+    {
+      "ID": 16,
+      "Name": "Necronight",
+      "Title": "The Undead Knight of Night",
+      "Type": "Highbreed",
+      "Lore": "Lore Soon!",
+      "Image": "necronight.png"
+    },
+    {
+      "ID": 17,
+      "Name": "Arcopes",
+      "Title": "Archetype's Mimic",
+      "Type": "Highbreed",
+      "Lore": "In a vibrant meadow filled with blooming flowers, there lived a unique creature named Arcopes, a grass bush type with the ability to blend seamlessly into his surroundings. Driven by a motivated spirit, Arcopes had a dream: to inspire all the meadow's creatures to reach their full potential.\n\nOne sunny morning, Arcopes noticed young rabbits struggling to hop over a log. Seizing the moment, he transformed into a rabbit shape, hopping over the log with ease. \"Look, little ones! You can do it too!\" he encouraged. Inspired, the rabbits gathered their courage and succeeded, their laughter filling the air.\n\nAs days turned into weeks, Arcopes continued to motivate the meadow's inhabitants, embodying the cleverness of a fox and the teamwork of ants. His transformations reminded everyone of their strengths.\n\nWord of Arcopes’ abilities spread, and soon creatures from afar sought his guidance, finding inspiration in his energetic spirit. He became known as The Archetype’s Mimic, teaching the creatures to tap into their strengths by seeing themselves reflected in others.",
+      "Image": "arcopes.png"
+    },
+    {
+      "ID": 18,
+      "Name": "Armoram",
+      "Title": "Protector of Rams",
+      "Type": "Highbreed",
+      "Lore": "In the rugged mountains, where the air was crisp and the grass grew thick, lived a magnificent creature known as Armoram, the Protector of Rams. With a sturdy body covered in a thick, protective shell and majestic curved horns, Armoram embodied courageous leadership, guiding the mountain community of rams and sheep.\n\nOne fateful evening, a fierce storm rolled through the mountains, bringing thunder and dark clouds. The flock huddled together in fear as a lightning strike sent rocks tumbling toward their grazing area. As the storm raged on, Armoram stood firm against the howling winds, shielding his flock with his broad body. He kept watch over them, ensuring they felt safe and secure. \n\nWhen dawn broke, the storm subsided, revealing a fresh landscape bathed in sunlight. The rams and sheep emerged, filled with admiration for Armoram's bravery that had kept them safe through the night.\n\nFrom that day on, Armoram became a legend among the mountain creatures, celebrated not just for his formidable appearance but for his courageous heart. Armoram continued to lead and protect his kin, nurturing a community that thrived on courage, unity, and resilience.",
+      "Image": "armoram.png"
+    },
+    {
+      "ID": 19,
+      "Name": "Scarkrow",
+      "Title": "Field Lurking Abyss",
+      "Type": "Highbreed",
+      "Lore": "In the heart of a golden wheat field, there stood an enigmatic figure known as Scarkrow, the Field Lurking Abyss. Crafted from weathered wood and tattered burlap, his form was adorned with mismatched clothing, and his hollow eyes glowed faintly in the twilight.\n\nOne evening, a young girl named Elara ventured into the field, her heart filled with wonder. She asked, \"Are you truly as mysterious as they say?\" To her surprise, Scarkrow's eyes sparkled as he replied, \"Mystery is but a veil hiding the wonders of the world. What is it you seek?\" With a swift motion, he extended an arm, and the field transformed, revealing a hidden realm where whispers of the past danced like fireflies. \n\nAs dawn approached, the magic began to fade, and Elara realized it was time to return home. \"Thank you, Scarkrow,\" she said, her heart full of gratitude. He replied, \"Remember, dear child, mystery is an invitation to explore, to question, and to dream.\" \n\nFrom that day forward, villagers spoke of Scarkrow not just as a scarecrow but as a wise protector, knowing that he would always reveal the magic hidden within the Field Lurking Abyss.",
+      "Image": "scarkrow.png"
+    },
+    {
+      "ID": 20,
+      "Name": "Centiseptic",
+      "Title": "Unwanted Insect Fairy",
+      "Type": "Fairy",
+      "Lore": "Lore Soon!",
+      "Image": "centiseptic.png"
+    },
+    {
+      "ID": 21,
+      "Name": "Oreglow",
+      "Title": "Living Stone in the Depths",
+      "Type": "Fairy",
+      "Lore": "Lore Soon!",
+      "Image": "oreglow.png"
+    },
+    {
+      "ID": 22,
+      "Name": "Deptghlow",
+      "Title": "Living Stone in the Further Depths",
+      "Type": "Fairy",
+      "Lore": "Lore Soon!",
+      "Image": "deptghlow.png"
+    },
+    {
+      "ID": 23,
+      "Name": "Voxollotl",
+      "Title": "Diving Volleyball Playoxolt",
+      "Type": "Genteel",
+      "Lore": "Lore Soon!",
+      "Image": "voxollotl.png"
+    },
+    {
+      "ID": 24,
+      "Name": "Dwargon",
+      "Title": "Long Lost Beast of Realms",
+      "Type": "Standard",
+      "Lore": "Lore Soon!"
     }
   ]
 }

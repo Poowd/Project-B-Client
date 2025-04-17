@@ -4,29 +4,6 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [pets, setPets] = useState([]);
 
-  const updateAnother = async () => {
-    try {
-      const response = await fetch(`./api/update-test`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Updated: pets,
-        }),
-      });
-
-      // Parse the response content
-      const petsFetched = await response.json();
-
-      console.log(petsFetched.data.pets);
-
-      return setPets(petsFetched.data.pets);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     const getList = async () => {
       try {
@@ -40,6 +17,7 @@ export default function Home() {
         // Parse the response content
         const petsFetched = await response.json();
         console.log(petsFetched.data.pets);
+
         return setPets(petsFetched.data.pets);
       } catch (error) {
         console.log(error);
@@ -50,25 +28,29 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="w-full h-screen flex flex-col justify-center items-center bg-neutral-50">
-      <div className="text-2xl font-bold">
-        Welcome to the Home Page {pets[0]?.name}!
-      </div>
-      <div>
-        {pets?.map((pet) => (
-          <div key={pet.id} className="text-lg font-semibold">
-            {pet.name}
-          </div>
-        ))}
-      </div>
-      <button
-        onClick={() => {
-          updateAnother();
-        }}
-        className="border rounded"
-      >
-        Change Spiwit to Dwargo
-      </button>
+    <main>
+      <header className="w-full h-fit flex items-center gap-2">
+        <main className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <section className="h-40 border border-neutral-300 rounded p-5 text-center flex flex-col justify-center gap-3">
+            <h3 className="text-lg">Cubiods</h3>
+            <h1 className="text-4xl font-bold text-cyan-600">{pets.length}</h1>
+          </section>
+          <section className="h-40 border border-neutral-300 rounded p-5 text-center flex flex-col justify-center gap-3">
+            <h3 className="text-lg">Build Competitions</h3>
+            <h1 className="text-4xl font-bold text-cyan-600">0</h1>
+          </section>
+          <section className="h-40 border border-neutral-300 rounded p-5 text-center flex flex-col justify-center gap-3">
+            <h3 className="text-lg">Parkours</h3>
+            <h1 className="text-4xl font-bold text-cyan-600">0</h1>
+          </section>
+          <section className="h-40 border border-neutral-300 rounded p-5 text-center flex flex-col justify-center gap-3">
+            <h3 className="text-lg">Areas</h3>
+            <h1 className="text-4xl font-bold text-cyan-600">0</h1>
+          </section>
+        </main>
+      </header>
+
+      <section className="w-full mb-5 grid grid-cols-3 lg:grid-cols-7 gap-3"></section>
     </main>
   );
 }

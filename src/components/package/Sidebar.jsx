@@ -43,7 +43,7 @@ export default function Sidebar({ children }) {
       <section className="flex flex-col gap-2">
         <button
           onClick={() => router.push("/")}
-          className="w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start ps-5 items-center"
+          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${sidebarStatus ? "ps-5" : "ps-2.5"}`}
         >
           <span>
             <AiOutlineHome />
@@ -51,8 +51,8 @@ export default function Sidebar({ children }) {
           {sidebarStatus && <span className="ms-1">Home</span>}
         </button>
         <button
-          onClick={() => router.push("/pages/pets")}
-          className="w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start ps-5 items-center"
+          onClick={() => router.push("/pages/cubiods")}
+          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${sidebarStatus ? "ps-5" : "ps-2.5"}`}
         >
           <span>
             <PiDog />
