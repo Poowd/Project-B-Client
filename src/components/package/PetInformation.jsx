@@ -5,6 +5,8 @@ import PetInfo from "../single/modal/PetInfo";
 import PetTraitDetails from "./PetTraitDetails";
 import PetSkillDetails from "./PetSkillDetails";
 import { AiOutlineLoading } from "react-icons/ai";
+import Image from "next/image";
+import { pets } from "@/app/data";
 
 export default function PetInformation({ pet }) {
   return (
@@ -14,11 +16,11 @@ export default function PetInformation({ pet }) {
           <main className="h-full w-full flex flex-col gap-2">
             <section className="flex-1 outline-0 rounded aspect-square flex justify-center items-center ">
               <figure className="p-2">
-                <img
-                  src={pet.Image}
-                  alt={"..."}
-                  className="h-full aspect-square object-contain object-center rounded"
-                ></img>
+                <Image
+                  src={pets[0].Image}
+                  alt={pet.Name}
+                  className={"w-full aspect-square rounded"}
+                ></Image>
               </figure>
             </section>
             <section className="flex-none">{pet.Name}</section>

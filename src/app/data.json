@@ -3,17 +3,17 @@
     {
       "ID": 1,
       "Name": "Shiffee",
-      "Image": "../pages/assets/petImages/shiffee.jpg"
+      "Image": "/images/shiffee.jpg"
     },
     {
       "ID": 2,
       "Name": "Spiwit",
-      "Image": "../pages/assets/petImages/spiwit.jpg"
+      "Image": "/images/spiwit.jpg"
     },
     {
       "ID": 3,
       "Name": "Dwargon",
-      "Image": "../pages/assets/petImages/dwargon.jpg"
+      "Image": "/images/dwargon.jpg"
     }
   ]
 }
