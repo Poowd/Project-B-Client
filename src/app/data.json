@@ -1,0 +1,19 @@
+{
+  "pets": [
+    {
+      "ID": 1,
+      "Name": "Shiffee",
+      "Image": "../pages/assets/petImages/shiffee.jpg"
+    },
+    {
+      "ID": 2,
+      "Name": "Spiwit",
+      "Image": "../pages/assets/petImages/spiwit.jpg"
+    },
+    {
+      "ID": 3,
+      "Name": "Dwargon",
+      "Image": "../pages/assets/petImages/dwargon.jpg"
+    }
+  ]
+}
