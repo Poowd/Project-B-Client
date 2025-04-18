@@ -8,7 +8,7 @@ import PetSkillDetails from "@/components/package/PetSkillDetails";
 import PetTraitDetails from "@/components/package/PetTraitDetails";
 import CubiodsContent from "@/components/pages/CubiodsContent";
 import FormModal from "@/components/single/modal/FormModal";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function Page() {
   const [pets, setPets] = useState([]);
@@ -37,9 +37,11 @@ export default function Page() {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const secretValue = window.localStorage.getItem("do_not_spread");
+      if (secretValue === null) {
+        window.localStorage.setItem("do_not_spread", "");
+      }
       setSecret(secretValue);
     } else {
-      window.localStorage.setItem("do_not_spread", "");
     }
     getList();
   }, []);
@@ -72,48 +74,50 @@ export default function Page() {
         </>
       }
     >
-      {pets?.map(
-        (pet) =>
-          (pet.Name.toLowerCase().includes(search.toLowerCase()) ||
-            search == null) && (
-            <PetInformation
-              key={pet.ID}
-              image={pet.Image}
-              name={pet.Name}
-              type={pet.Type}
-              title={pet.Title}
-              lore={pet.Lore}
-              buttons={
-                <>
-                  {secret && secret === "foodguy05" && (
-                    <FormModal
-                      button={
-                        <div className="py-2 px-4 border border-neutral-300 rounded-full text-xs text-neutral-800 flex justify-center items-center hover:bg-neutral-100 hover:cursor-pointer">
-                          Edited
-                        </div>
-                      }
-                    >
-                      <EditPet
-                        fetchOnFinish={() => getList()}
-                        entry={{
-                          ID: pet.ID,
-                          Image: pet.Image,
-                          Name: pet.Name,
-                          Type: pet.Type,
-                          Title: pet.Title,
-                          Lore: pet.Lore,
-                        }}
-                      ></EditPet>
-                    </FormModal>
-                  )}
-                </>
-              }
-            >
-              <PetTraitDetails traits={pet.Traits}></PetTraitDetails>
-              <PetSkillDetails skills={pet.Skills}></PetSkillDetails>
-            </PetInformation>
-          )
-      )}
+      <Suspense fallback={<p>Loading pets...</p>}>
+        {pets?.map(
+          (pet) =>
+            (pet.Name.toLowerCase().includes(search.toLowerCase()) ||
+              search == null) && (
+              <PetInformation
+                key={pet.ID}
+                image={pet.Image}
+                name={pet.Name}
+                type={pet.Type}
+                title={pet.Title}
+                lore={pet.Lore}
+                buttons={
+                  <>
+                    {secret && secret === "foodguy05" && (
+                      <FormModal
+                        button={
+                          <div className="py-2 px-4 border border-neutral-300 rounded-full text-xs text-neutral-800 flex justify-center items-center hover:bg-neutral-100 hover:cursor-pointer">
+                            Edited
+                          </div>
+                        }
+                      >
+                        <EditPet
+                          fetchOnFinish={() => getList()}
+                          entry={{
+                            ID: pet.ID,
+                            Image: pet.Image,
+                            Name: pet.Name,
+                            Type: pet.Type,
+                            Title: pet.Title,
+                            Lore: pet.Lore,
+                          }}
+                        ></EditPet>
+                      </FormModal>
+                    )}
+                  </>
+                }
+              >
+                <PetTraitDetails traits={pet.Traits}></PetTraitDetails>
+                <PetSkillDetails skills={pet.Skills}></PetSkillDetails>
+              </PetInformation>
+            )
+        )}
+      </Suspense>
     </CubiodsContent>
   );
 }
