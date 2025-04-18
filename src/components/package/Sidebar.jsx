@@ -13,7 +13,7 @@ export default function Sidebar({ children }) {
 
   const Sidebar = (open) => {
     if (open) {
-      return "w-72";
+      return "w-20 lg:w-72";
     }
     return "w-20";
   };
@@ -22,11 +22,13 @@ export default function Sidebar({ children }) {
     <main className={`${Sidebar(sidebarStatus)} p-5`}>
       <section className="flex justify-between items-center mb-3">
         {sidebarStatus && (
-          <div className="text-sm w-full">Hello, Guardian!</div>
+          <div className="hidden lg:block text-sm w-0 lg:w-full">
+            Hello, Guardian!
+          </div>
         )}
         <div
           className={`w-full flex ${
-            sidebarStatus ? "justify-end" : "justify-center"
+            sidebarStatus ? "justify-center lg:justify-end" : "justify-center"
           }`}
         >
           <button
@@ -43,21 +45,31 @@ export default function Sidebar({ children }) {
       <section className="flex flex-col gap-2">
         <button
           onClick={() => router.push("/")}
-          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${sidebarStatus ? "ps-5" : "ps-2.5"}`}
+          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
+            sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
+          }`}
         >
-          <span>
+          <span className="mx-auto lg:mx-0 text-xl">
             <AiOutlineHome />
           </span>
-          {sidebarStatus && <span className="ms-1">Home</span>}
+          {sidebarStatus && (
+            <span className="w-0 lg:w-fit hidden lg:block ms-1">Home</span>
+          )}
         </button>
         <button
           onClick={() => router.push("/pages/cubiods")}
-          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${sidebarStatus ? "ps-5" : "ps-2.5"}`}
+          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
+            sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
+          }`}
         >
-          <span>
+          <span className="mx-auto lg:mx-0 text-xl">
             <PiDog />
           </span>
-          {sidebarStatus && <span className="ms-1">Pets: Cubiods</span>}
+          {sidebarStatus && (
+            <span className="w-0 lg:w-fit hidden lg:block ms-1">
+              Pets: Cubiods
+            </span>
+          )}
         </button>
       </section>
     </main>

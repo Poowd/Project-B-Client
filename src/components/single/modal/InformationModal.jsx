@@ -15,11 +15,13 @@ export default function InformationModal({ button, buttons, children }) {
         open={isOpen}
         onClose={() => setIsOpen(false)}
         className={
-          "fixed top-0 left-0 h-screen w-screen flex justify-center items-center backdrop-blur-sm p-5 z-100 bg-black/50"
+          "fixed top-0 left-0 h-screen w-screen flex justify-center items-center backdrop-blur-sm z-100 bg-black/50"
         }
       >
-        <DialogPanel className={"h-full lg:h-10/12 w-full lg:w-3/5 ounded p-5"}>
-          <main className="w-full h-full flex flex-col gap-3 pe-3 lg:pe-0">
+        <DialogPanel
+          className={"h-full lg:h-10/12 w-full lg:w-3/5 rounded p-5"}
+        >
+          <main className="w-full h-full flex flex-col gap-3 lg:pe-0">
             <section className="flex-none flex justify-end gap-3">
               <div className="border border-neutral-300 p-2 rounded-full flex gap-2 bg-white">
                 {buttons}
