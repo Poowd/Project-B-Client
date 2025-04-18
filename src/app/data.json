@@ -28,7 +28,21 @@
       "Title": "A Translucent Friend",
       "Type": "Standard",
       "Lore": "In a fog-draped village by an ancient forest lived a ghost girl named Spiwit. Often feared by the villagers as a harbinger of misfortune, Spiwit was actually a lonely spirit yearning for connection after a tragic accident had taken her life.\n\nOne stormy night, a curious boy named Leo ventured into the forest with a lantern, drawn by tales of the ghost. When he encountered Spiwit near an ancient oak, he bravely asked, \"Who are you?\"\n\n\"I am Spiwit,\" she replied sadly. \"No one wishes to befriend a ghost.\"\n\n\"I’m not afraid of you. I want to be your friend,\" Leo declared, surprising her. They began to talk, forming a bond through shared stories.\n\nAs weeks passed, Leo regularly visited Spiwit, exploring the enchanted forest together. The villagers noticed the change; the once-feared woods became vibrant with laughter and wonder. \n\nSpiwit transformed from a figure of fear into a cherished friend, teaching the villagers that she was to be embraced, not feared. Her story became one of love and friendship, reminding everyone that true connections can shine brightly, even in the darkest places.",
-      "Image": "spiwit.png"
+      "Image": "spiwit.png",
+      "Traits": [
+        {
+          "Trait": "Ghastly",
+          "Level": "1",
+          "Description": ""
+        }
+      ],
+      "Skills": [
+        {
+          "Skill": "Yodonsime",
+          "Level": "25",
+          "Description": "Replenish hunger while mining."
+        }
+      ]
     },
     {
       "ID": 3,
