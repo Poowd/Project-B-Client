@@ -68,8 +68,10 @@ export default function Page() {
     <main className="flex flex-col gap-5">
       {/* [ABOUT] Description and Introduction of the Table */}
       <header>
-        <h1 className="text-4xl text-red-400">Cubiods</h1>
-        <p className="w-1/2 text-neutral-500">Description about the table</p>
+        <h1 className="text-4xl text-cyan-600">Cubiods</h1>
+        <p className="w-1/2 text-neutral-500">
+          This contains the list of available pets along with their lores!
+        </p>
       </header>
 
       {/* [ABOUT] Functionalities like Adding of Entries */}
@@ -93,30 +95,27 @@ export default function Page() {
         <main>
           <header className="mb-3">
             <section className="flex p-3 bg-neutral-100 border border-neutral-300 rounded text-sm">
-              <div className="flex-none overflow-hidden text-nowrap text-clip w-1/12">
+              <div className="flex-none overflow-hidden truncate px-2 w-1/12">
                 ID
               </div>
-              <div className="flex-none overflow-hidden text-nowrap text-clip w-2/12">
+              <div className="flex-none overflow-hidden truncate px-2 w-2/12">
                 Name
               </div>
-              <div className="flex-none overflow-hidden text-nowrap text-clip w-2/12">
+              <div className="flex-none overflow-hidden truncate px-2 w-2/12">
                 Title
               </div>
-              <div className="flex-none overflow-hidden text-nowrap text-clip w-2/12">
+              <div className="flex-none overflow-hidden truncate px-2 w-2/12">
                 Type
               </div>
-              <div className="flex-none overflow-hidden text-nowrap text-clip w-3/12">
-                Lore
-              </div>
-              <div className="flex-none overflow-hidden text-nowrap text-clip w-1/12">
+              <div className="flex-none overflow-hidden truncate px-2 w-4/12">
                 Image
               </div>
-              <div className="flex-none overflow-hidden text-nowrap text-clip w-1/12 text-end">
+              <div className="flex-none overflow-hidden truncate px-2 w-1/12 text-end">
                 Action
               </div>
             </section>
           </header>
-          <main className="flex flex-col gap-2">
+          <main className="w-full flex flex-col gap-2 overflow-hidden">
             {pets?.map(
               (pet, petkey) =>
                 (pet[1]?.toLowerCase().includes(search.toLowerCase()) ||
@@ -124,27 +123,24 @@ export default function Page() {
                 pet[6] === "TRUE" && (
                   <section
                     key={petkey}
-                    className="flex items-center py-5 px-3 bg-white border border-neutral-300 rounded text-sm"
+                    className="w-full flex items-center py-5 px-3 bg-white border border-neutral-300 rounded text-sm"
                   >
-                    <div className="flex-none overflow-hidden text-nowrap text-clip w-1/12">
+                    <div className="flex-none overflow-hidden truncate px-2 w-1/12">
                       {pet[0]}
                     </div>
-                    <div className="flex-none overflow-hidden text-nowrap text-clip w-2/12">
+                    <div className="flex-none overflow-hidden truncate px-2 w-2/12">
                       {pet[1]}
                     </div>
-                    <div className="flex-none overflow-hidden text-nowrap text-clip w-2/12">
+                    <div className="flex-none overflow-hidden truncate px-2 w-2/12">
                       {pet[2]}
                     </div>
-                    <div className="flex-none overflow-hidden text-nowrap text-clip w-2/12">
+                    <div className="flex-none overflow-hidden truncate px-2 w-2/12">
                       {pet[3]}
                     </div>
-                    <div className="flex-none overflow-hidden text-nowrap text-clip w-3/12">
-                      {pet[5]}
-                    </div>
-                    <div className="flex-none overflow-hidden text-nowrap text-clip w-1/12">
+                    <div className="flex-none overflow-hidden truncate px-2 w-4/12">
                       {pet[4]}
                     </div>
-                    <div className="flex-none overflow-hidden text-nowrap text-clip w-1/12 flex justify-end gap-1">
+                    <div className="flex-none overflow-hidden truncate px-2 w-1/12 flex justify-end gap-1">
                       <FormModal
                         button={
                           <div className="size-8 flex justify-center items-center text-lg rounded-full bg-neutral-300 hover:bg-neutral-400 shadow-sm text-neutral-800">

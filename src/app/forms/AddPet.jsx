@@ -39,34 +39,12 @@ export default function AddPet({ fetchOnFinish, totalPets }) {
                 data.Name,
                 data.Title,
                 data.Type,
-                "n/a",
+                data.Image,
                 data.Lore,
                 "TRUE",
               ],
             }),
           });
-
-          // const something = new FormData();
-          // something.set("file", file);
-
-          // const upres = await fetch(`/../api/upload`, {
-          //   method: "POST",
-          //   body: something,
-          // });
-
-          // const response = await fetch(`/../api/add_pets`, {
-          //   method: "POST",
-          //   headers: {
-          //     "Content-Type": "application/json",
-          //   },
-          //   body: JSON.stringify({
-          //     Name: data.Name,
-          //     Title: data.Title,
-          //     Type: data.Type,
-          //     Lore: data.Lore,
-          //     Image: data.Image,
-          //   }),
-          // });
 
           // Parse the response content
           const res = await response.json();
@@ -120,18 +98,16 @@ export default function AddPet({ fetchOnFinish, totalPets }) {
           }))
         }
       ></LabeledInput>
-      <LabeledFileInput
+      <LabeledInput
         label={"Image"}
         id={"Image"}
-        onChange={(e) => {
-          const file = e.target.files[0];
-          if (file) {
-            setFile(file);
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-          }
-        }}
-      ></LabeledFileInput>
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+          }))
+        }
+      ></LabeledInput>
 
       <LabeledTextAreaInput
         label={"Lore"}

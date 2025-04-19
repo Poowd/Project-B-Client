@@ -14,7 +14,7 @@ const CREDENTIALS_PATH = path.join(
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 const APPLICATION_NAME = "Archetopia_Cyan_Realms";
 const SPREADSHEET_ID = "1pSsAF5l_eZ0eDxEWn91ELNGZ6GaHXRbQJyfUpC_CKlM"; // <- paste your spreadsheet ID here
-const SHEET_NAME = "Sheet1"; // <- adjust if your sheet has a different name
+const SHEET_NAME = "Cubiods_Sheet"; // <- adjust if your sheet has a different name
 
 function getSheetsService() {
   try {

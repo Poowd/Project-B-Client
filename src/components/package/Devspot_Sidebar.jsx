@@ -87,7 +87,18 @@ export default function Devspot_Sidebar({ children }) {
           )}
         </button>
         <a href="/auth/logout">
-          <button>Log out</button>
+          <button
+            className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
+              sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
+            }`}
+          >
+            <span className="mx-auto lg:mx-0 text-xl">
+              <PiDog />
+            </span>
+            {sidebarStatus && (
+              <span className="w-0 lg:w-fit hidden lg:block ms-1">Logout</span>
+            )}
+          </button>
         </a>
       </section>
     </main>

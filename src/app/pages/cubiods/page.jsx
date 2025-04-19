@@ -77,24 +77,7 @@ export default function Page() {
           onChange={(e) => setSearch(e.target.value)}
         ></Input>
       }
-      buttons={
-        <>
-          {secret && secret === "foodguy05" && (
-            <FormModal
-              button={
-                <div className="border-0 py-2 px-5 text-sm rounded-full bg-red-400 hover:bg-red-500 shadow-sm text-white">
-                  Add Pet
-                </div>
-              }
-            >
-              <AddPet
-                fetchOnFinish={() => getGoogleSheetData()}
-                totalPets={pets.length}
-              ></AddPet>
-            </FormModal>
-          )}
-        </>
-      }
+      buttons={<></>}
     >
       <Suspense fallback={<p>Loading pets...</p>}>
         {pets?.map(
@@ -105,8 +88,8 @@ export default function Page() {
                 key={key}
                 image={pet[4]}
                 name={pet[1]}
-                type={pet[2]}
-                title={pet[3]}
+                type={pet[3]}
+                title={pet[2]}
                 lore={pet[5]}
                 buttons={<></>}
               >
