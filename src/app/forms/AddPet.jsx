@@ -2,11 +2,11 @@
 
 import { useClose } from "@headlessui/react";
 import { useEffect, useState, useTransition } from "react";
-import LabeledFileInput from "./input/LabeledFileInput";
-import LabeledInput from "./input/LabeledInput";
-import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
-import PetForms from "@/components/package/PetForms";
 import { v4 as uuidv4 } from "uuid";
+import PetForms from "../../components/package/PetForms";
+import LabeledInput from "./input/LabeledInput";
+import LabeledFileInput from "./input/LabeledFileInput";
+import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
 
 export default function AddPet({ fetchOnFinish, totalPets }) {
   const close = useClose();

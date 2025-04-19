@@ -4,7 +4,7 @@ import { useClose } from "@headlessui/react";
 import { useEffect, useState, useTransition } from "react";
 import LabeledInput from "./input/LabeledInput";
 import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
-import PetForms from "@/components/package/PetForms";
+import PetForms from "../../components/package/PetForms";
 
 export default function EditPet({ fetchOnFinish, entry }) {
   const close = useClose();
