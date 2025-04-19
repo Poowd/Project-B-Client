@@ -1,8 +1,4 @@
 import "./globals.css";
-import Layout_1 from "@/components/Layout_1";
-import Navbar from "@/components/package/Navbar";
-import Content_2 from "@/components/Content_2";
-import Sidebar from "@/components/package/Sidebar";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,7 +6,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
       <head>
@@ -21,18 +16,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="w-full flex justify-center bg-neutral-50 relative">
-        <Layout_1>
-          <main className="h-screen flex flex-col">
-            <section className="flex-none">
-              <Navbar></Navbar>
-            </section>
-            <section className="flex-1">
-              <Content_2 sidebar={<Sidebar></Sidebar>}>
-                <main className="p-10">{children}</main>
-              </Content_2>
-            </section>
-          </main>
-        </Layout_1>
+        {children}
       </body>
     </html>
   );

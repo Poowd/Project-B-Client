@@ -1,14 +1,13 @@
 "use client";
 
-import AddPet from "@/app/forms/AddPet";
-import EditPet from "@/app/forms/EditPet";
-import Input from "@/app/forms/input/Input";
-import PetInformation from "@/components/package/PetInformation";
-import PetSkillDetails from "@/components/package/PetSkillDetails";
-import PetTraitDetails from "@/components/package/PetTraitDetails";
-import CubiodsContent from "@/components/pages/CubiodsContent";
-import FormModal from "@/components/single/modal/FormModal";
 import { Suspense, useEffect, useState } from "react";
+import CubiodsContent from "../../../components/pages/CubiodsContent";
+import Input from "../../forms/input/Input";
+import FormModal from "../../../components/single/modal/FormModal";
+import AddPet from "../../forms/AddPet";
+import PetInformation from "../../../components/package/PetInformation";
+import PetTraitDetails from "../../../components/package/PetTraitDetails";
+import PetSkillDetails from "../../../components/package/PetSkillDetails";
 
 export default function Page() {
   const [pets, setPets] = useState([]);
@@ -28,7 +27,26 @@ export default function Page() {
       const petsFetched = await response.json();
       console.log(petsFetched.data.pets);
 
-      return setPets(petsFetched.data.pets);
+      return; //setPets(petsFetched.data.pets);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getGoogleSheetData = async () => {
+    try {
+      const response = await fetch(`../../api/cubiods_list`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Parse the response content
+      const fetchData = await response.json();
+      console.log(fetchData.data.slice(1));
+
+      return setPets(fetchData.data.slice(1));
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +61,8 @@ export default function Page() {
       setSecret(secretValue);
     } else {
     }
-    getList();
+    //getList();
+    getGoogleSheetData();
   }, []);
 
   return (
@@ -68,7 +87,10 @@ export default function Page() {
                 </div>
               }
             >
-              <AddPet fetchOnFinish={() => getList()}></AddPet>
+              <AddPet
+                fetchOnFinish={() => getGoogleSheetData()}
+                totalPets={pets.length}
+              ></AddPet>
             </FormModal>
           )}
         </>
@@ -76,41 +98,17 @@ export default function Page() {
     >
       <Suspense fallback={<p>Loading pets...</p>}>
         {pets?.map(
-          (pet) =>
-            (pet.Name.toLowerCase().includes(search.toLowerCase()) ||
+          (pet, key) =>
+            (pet[1]?.toLowerCase().includes(search.toLowerCase()) ||
               search == null) && (
               <PetInformation
-                key={pet.ID}
-                image={pet.Image}
-                name={pet.Name}
-                type={pet.Type}
-                title={pet.Title}
-                lore={pet.Lore}
-                buttons={
-                  <>
-                    {secret && secret === "foodguy05" && (
-                      <FormModal
-                        button={
-                          <div className="py-2 px-4 border border-neutral-300 rounded-full text-xs text-neutral-800 flex justify-center items-center hover:bg-neutral-100 hover:cursor-pointer">
-                            Edited
-                          </div>
-                        }
-                      >
-                        <EditPet
-                          fetchOnFinish={() => getList()}
-                          entry={{
-                            ID: pet.ID,
-                            Image: pet.Image,
-                            Name: pet.Name,
-                            Type: pet.Type,
-                            Title: pet.Title,
-                            Lore: pet.Lore,
-                          }}
-                        ></EditPet>
-                      </FormModal>
-                    )}
-                  </>
-                }
+                key={key}
+                image={pet[4]}
+                name={pet[1]}
+                type={pet[2]}
+                title={pet[3]}
+                lore={pet[5]}
+                buttons={<></>}
               >
                 <PetTraitDetails traits={pet.Traits}></PetTraitDetails>
                 <PetSkillDetails skills={pet.Skills}></PetSkillDetails>

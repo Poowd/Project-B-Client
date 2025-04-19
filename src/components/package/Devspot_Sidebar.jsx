@@ -6,8 +6,9 @@ import { IoIosArrowForward } from "react-icons/io";
 import { AiOutlineHome } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { PiDog } from "react-icons/pi";
+import { LuLayoutDashboard } from "react-icons/lu";
 
-export default function Sidebar({ children }) {
+export default function Devspot_Sidebar({ children }) {
   const router = useRouter();
   const [sidebarStatus, setSidebarStatus] = useState(true);
 
@@ -44,7 +45,7 @@ export default function Sidebar({ children }) {
       <hr className="w-full mb-5 text-neutral-100" />
       <section className="flex flex-col gap-2">
         <button
-          onClick={() => router.push("/pages")}
+          onClick={() => router.push("/pages/")}
           className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
             sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
           }`}
@@ -56,8 +57,22 @@ export default function Sidebar({ children }) {
             <span className="w-0 lg:w-fit hidden lg:block ms-1">Home</span>
           )}
         </button>
+        <hr className="my-3 text-neutral-700" />
         <button
-          onClick={() => router.push("/pages/cubiods")}
+          onClick={() => router.push("/devspot/pages")}
+          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
+            sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
+          }`}
+        >
+          <span className="mx-auto lg:mx-0 text-xl">
+            <LuLayoutDashboard />
+          </span>
+          {sidebarStatus && (
+            <span className="w-0 lg:w-fit hidden lg:block ms-1">Dashboard</span>
+          )}
+        </button>
+        <button
+          onClick={() => router.push("/devspot/pages/cubiods")}
           className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
             sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
           }`}
@@ -71,6 +86,9 @@ export default function Sidebar({ children }) {
             </span>
           )}
         </button>
+        <a href="/auth/logout">
+          <button>Log out</button>
+        </a>
       </section>
     </main>
   );

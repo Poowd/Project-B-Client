@@ -15,9 +15,9 @@ export default function PetInformation({
         <div className="hover:-translate-y-2 delay-100 duration-300 hover:cursor-pointer scale-up-center">
           <main className="h-full w-full flex flex-col gap-2">
             <section className="flex-1 outline-0 rounded aspect-square flex justify-center items-center ">
-              <figure className="p-2">
+              <figure className="p-5 w-full">
                 <img
-                  src={`/images/public/${image}`}
+                  src={`${image}`}
                   alt={name}
                   className={"w-full aspect-square rounded"}
                 ></img>
@@ -39,7 +39,7 @@ export default function PetInformation({
               </div>
               <figure className="size-40 p-2">
                 <img
-                  src={`/images/public/${image}`}
+                  src={`${image}`}
                   alt={name}
                   className={"w-full aspect-square rounded"}
                 ></img>

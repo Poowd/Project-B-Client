@@ -6,8 +6,9 @@ import LabeledFileInput from "./input/LabeledFileInput";
 import LabeledInput from "./input/LabeledInput";
 import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
 import PetForms from "@/components/package/PetForms";
+import { v4 as uuidv4 } from "uuid";
 
-export default function AddPet({ fetchOnFinish }) {
+export default function AddPet({ fetchOnFinish, totalPets }) {
   const close = useClose();
   const [isPending, startTransition] = useTransition();
   const [file, setFile] = useState(null);
@@ -29,33 +30,50 @@ export default function AddPet({ fetchOnFinish }) {
     startTransition(async () => {
       if (true) {
         try {
-          const something = new FormData();
-          something.set("file", file);
-
-          const upres = await fetch(`/../api/upload`, {
+          const response = await fetch("/api/add_cubiods", {
             method: "POST",
-            body: something,
-          });
-
-          const response = await fetch(`/../api/add_pets`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              Name: data.Name,
-              Title: data.Title,
-              Type: data.Type,
-              Lore: data.Lore,
-              Image: data.Image,
+              row: [
+                uuidv4(),
+                data.Name,
+                data.Title,
+                data.Type,
+                "n/a",
+                data.Lore,
+                "TRUE",
+              ],
             }),
           });
 
+          // const something = new FormData();
+          // something.set("file", file);
+
+          // const upres = await fetch(`/../api/upload`, {
+          //   method: "POST",
+          //   body: something,
+          // });
+
+          // const response = await fetch(`/../api/add_pets`, {
+          //   method: "POST",
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //   },
+          //   body: JSON.stringify({
+          //     Name: data.Name,
+          //     Title: data.Title,
+          //     Type: data.Type,
+          //     Lore: data.Lore,
+          //     Image: data.Image,
+          //   }),
+          // });
+
           // Parse the response content
-          const res = await upres.json();
+          const res = await response.json();
 
           console.log(res);
           fetchOnFinish();
+
           close();
           return;
         } catch (error) {

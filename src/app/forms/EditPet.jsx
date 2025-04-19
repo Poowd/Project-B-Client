@@ -2,7 +2,6 @@
 
 import { useClose } from "@headlessui/react";
 import { useEffect, useState, useTransition } from "react";
-import LabeledFileInput from "./input/LabeledFileInput";
 import LabeledInput from "./input/LabeledInput";
 import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
 import PetForms from "@/components/package/PetForms";
@@ -10,7 +9,6 @@ import PetForms from "@/components/package/PetForms";
 export default function EditPet({ fetchOnFinish, entry }) {
   const close = useClose();
   const [isPending, startTransition] = useTransition();
-  const [file, setFile] = useState(null);
 
   const [data, setData] = useState({
     ID: "",
@@ -25,35 +23,26 @@ export default function EditPet({ fetchOnFinish, entry }) {
     setData(entry);
   }, []);
 
-  useEffect(() => {
-    setData((prev) => ({ ...prev, Image: file?.name || entry.Image }));
-  }, [file]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     startTransition(async () => {
       if (true) {
         try {
-          const something = new FormData();
-          something.set("file", file);
-
-          // const upres = await fetch(`/../api/upload`, {
-          //   method: "POST",
-          //   body: something,
-          // });
-
-          const response = await fetch(`/../api/edit_pets`, {
-            method: "POST",
+          const response = await fetch(`/../api/update_cubiods`, {
+            method: "PATCH",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              ID: data.ID,
-              Name: data.Name,
-              Title: data.Title,
-              Type: data.Type,
-              Lore: data.Lore,
-              Image: data.Image,
+              id: data.ID, // match column A
+              updatedValues: [
+                data.Name,
+                data.Title,
+                data.Type,
+                data.Image,
+                data.Lore,
+              ],
+              startCol: 1, // column B is index 1
             }),
           });
 
@@ -112,18 +101,17 @@ export default function EditPet({ fetchOnFinish, entry }) {
           }))
         }
       ></LabeledInput>
-      <LabeledFileInput
+      <LabeledInput
         label={"Image"}
         id={"Image"}
-        onChange={(e) => {
-          const file = e.target.files[0];
-          if (file) {
-            setFile(file);
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-          }
-        }}
-      ></LabeledFileInput>
+        value={data?.Image}
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+          }))
+        }
+      ></LabeledInput>
 
       <LabeledTextAreaInput
         label={"Lore"}
