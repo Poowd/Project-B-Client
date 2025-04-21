@@ -14,6 +14,7 @@ const CREDENTIALS_PATH = path.join(
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 const APPLICATION_NAME = "Archetopia_Cyan_Realms";
 const SPREADSHEET_ID = "1pSsAF5l_eZ0eDxEWn91ELNGZ6GaHXRbQJyfUpC_CKlM"; // <- paste your spreadsheet ID here
+const SHEET_NAME = "Cubiods_Trait_Sheet"; // <- adjust if your sheet has a different name
 
 function getSheetsService() {
   try {
@@ -38,33 +39,30 @@ function getSheetsService() {
   }
 }
 
-export async function GET(request) {
+export async function POST(request) {
   const sheets = getSheetsService();
+  const entry = await request.json(); // expects { row: [...] }
+
+  if (!entry?.row || !Array.isArray(entry.row)) {
+    return NextResponse.json({ error: "Invalid row data" }, { status: 400 });
+  }
 
   // Example usage: read data from a spreadsheet
   try {
-    const cubiodsList = await sheets.spreadsheets.values.get({
+    const response = await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: `Cubiods_Sheet!A:G`,
-    });
-    const cubiodsTraitList = await sheets.spreadsheets.values.get({
-      spreadsheetId: SPREADSHEET_ID,
-      range: `Cubiods_Trait_Sheet!A:F`,
-    });
-    const cubiodsSkillList = await sheets.spreadsheets.values.get({
-      spreadsheetId: SPREADSHEET_ID,
-      range: `Cubiods_Skill_Sheet!A:F`,
+      range: `${SHEET_NAME}!A1`, // starting point
+      valueInputOption: "RAW",
+      insertDataOption: "INSERT_ROWS",
+      requestBody: {
+        values: [entry.row],
+      },
     });
 
-    console.log(JSON.stringify(cubiodsList.data));
-    console.log(JSON.stringify(cubiodsTraitList.data));
+    console.log(JSON.stringify(response.data));
 
     return NextResponse.json(
-      {
-        pets: cubiodsList.data.values,
-        traits: cubiodsTraitList.data.values,
-        skills: cubiodsSkillList.data.values,
-      },
+      { data: response.data.values },
       {
         status: 200,
         headers: { "Content-Type": "application/json" },

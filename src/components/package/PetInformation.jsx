@@ -52,7 +52,7 @@ export default function PetInformation({
         </section>
         <section className="flex-none h-full lg:w-1/2 lg:border-l border-l-neutral-300 p-5 overflow-y-auto">
           <main>
-            <header className="text-start mb-5">
+            <header className="text-center mb-5">
               <h1 className="text-2xl font-semibold">{title}</h1>
             </header>
             <main className="flex flex-col gap-3">

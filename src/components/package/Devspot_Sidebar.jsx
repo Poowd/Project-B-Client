@@ -7,6 +7,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { PiDog } from "react-icons/pi";
 import { LuLayoutDashboard } from "react-icons/lu";
+import { BiLogOutCircle } from "react-icons/bi";
 
 export default function Devspot_Sidebar({ children }) {
   const router = useRouter();
@@ -93,7 +94,7 @@ export default function Devspot_Sidebar({ children }) {
             }`}
           >
             <span className="mx-auto lg:mx-0 text-xl">
-              <PiDog />
+              <BiLogOutCircle />
             </span>
             {sidebarStatus && (
               <span className="w-0 lg:w-fit hidden lg:block ms-1">Logout</span>

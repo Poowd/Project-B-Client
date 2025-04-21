@@ -19,7 +19,7 @@ export default function PetForms({ handleSubmit, title, isPending, children }) {
             <button
               type="submit"
               disabled={isPending}
-              className="w-fit py-2 px-3 border border-neutral-300 rounded bg-neutral-100 text-neutral-700 hover:cursor-pointer hover:bg-neutral-400"
+              className="border-0 py-2 px-5 text-sm rounded-full bg-red-400 hover:bg-red-500 shadow-sm text-white"
             >
               {isPending ? "Submitting" : "Submit"}
             </button>

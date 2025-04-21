@@ -2,6 +2,8 @@
 
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { useState } from "react";
+import TableButton from "../button/TableButton";
+import { IoCloseOutline } from "react-icons/io5";
 
 export default function InformationModal({ button, buttons, children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +21,7 @@ export default function InformationModal({ button, buttons, children }) {
         }
       >
         <DialogPanel
-          className={"h-full lg:h-10/12 w-full lg:w-3/5 rounded p-5"}
+          className={"h-full lg:h-11/12 w-full lg:w-4/6 rounded p-5"}
         >
           <main className="w-full h-full flex flex-col gap-3 lg:pe-0">
             <section className="flex-none flex justify-end gap-3">
@@ -27,13 +29,15 @@ export default function InformationModal({ button, buttons, children }) {
                 {buttons}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="size-8 border border-neutral-300 rounded-full text-xs text-neutral-800 flex justify-center items-center hover:bg-neutral-100 hover:cursor-pointer"
+                  className="outline-0 p-0 m-0"
                 >
-                  X
+                  <TableButton>
+                    <IoCloseOutline />
+                  </TableButton>
                 </button>
               </div>
             </section>
-            <section className="flex-1 border border-neutral-300 rounded bg-white overflow-y-auto p-5">
+            <section className="flex-1 border border-neutral-300 rounded bg-white overflow-y-auto p-10">
               {children}
             </section>
           </main>

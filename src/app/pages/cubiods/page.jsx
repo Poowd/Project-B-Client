@@ -3,35 +3,14 @@
 import { Suspense, useEffect, useState } from "react";
 import CubiodsContent from "../../../components/pages/CubiodsContent";
 import Input from "../../forms/input/Input";
-import FormModal from "../../../components/single/modal/FormModal";
-import AddPet from "../../forms/AddPet";
 import PetInformation from "../../../components/package/PetInformation";
-import PetTraitDetails from "../../../components/package/PetTraitDetails";
-import PetSkillDetails from "../../../components/package/PetSkillDetails";
+import PeteffectEffect from "../../../components/package/PetTraitEffect";
 
 export default function Page() {
   const [pets, setPets] = useState([]);
+  const [petTraits, setPetTraits] = useState([]);
+  const [petSkills, setPetSkills] = useState([]);
   const [search, setSearch] = useState("");
-  const [secret, setSecret] = useState(null);
-
-  const getList = async () => {
-    try {
-      const response = await fetch(`../../api/pets`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // Parse the response content
-      const petsFetched = await response.json();
-      console.log(petsFetched.data.pets);
-
-      return; //setPets(petsFetched.data.pets);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const getGoogleSheetData = async () => {
     try {
@@ -44,26 +23,24 @@ export default function Page() {
 
       // Parse the response content
       const fetchData = await response.json();
-      console.log(fetchData.data.slice(1));
 
-      return setPets(fetchData.data.slice(1));
+      setPets(fetchData.pets.slice(1));
+      setPetTraits(fetchData.traits.slice(1));
+      setPetSkills(fetchData.skills.slice(1));
+      return;
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const secretValue = window.localStorage.getItem("do_not_spread");
-      if (secretValue === null) {
-        window.localStorage.setItem("do_not_spread", "");
-      }
-      setSecret(secretValue);
-    } else {
-    }
-    //getList();
     getGoogleSheetData();
   }, []);
+
+  const getCubiodsEffect = (array, column, id) => {
+    const Effect = array.filter((pet) => pet[column] === id);
+    return Effect;
+  };
 
   return (
     <CubiodsContent
@@ -93,8 +70,14 @@ export default function Page() {
                 lore={pet[5]}
                 buttons={<></>}
               >
-                <PetTraitDetails traits={pet.Traits}></PetTraitDetails>
-                <PetSkillDetails skills={pet.Skills}></PetSkillDetails>
+                <PeteffectEffect
+                  title={"Traits"}
+                  effects={getCubiodsEffect(petTraits, 1, pet[0])}
+                ></PeteffectEffect>
+                <PeteffectEffect
+                  title={"Skills"}
+                  effects={getCubiodsEffect(petSkills, 1, pet[0])}
+                ></PeteffectEffect>
               </PetInformation>
             )
         )}

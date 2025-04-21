@@ -3,22 +3,19 @@
 import { useClose } from "@headlessui/react";
 import { useEffect, useState, useTransition } from "react";
 import { v4 as uuidv4 } from "uuid";
-import PetForms from "../../components/package/PetForms";
 import LabeledInput from "./input/LabeledInput";
-import LabeledFileInput from "./input/LabeledFileInput";
 import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
+import PetForms from "../../components/package/PetForms";
 
-export default function AddPet({ fetchOnFinish, totalPets }) {
+export default function AddSkill({ fetchOnFinish, ID }) {
   const close = useClose();
   const [isPending, startTransition] = useTransition();
   const [file, setFile] = useState(null);
 
   const [data, setData] = useState({
-    Name: "",
-    Title: "",
-    Type: "",
-    Lore: "",
-    Image: "",
+    Skill: "",
+    Level: "",
+    Description: "",
   });
 
   useEffect(() => {
@@ -30,17 +27,16 @@ export default function AddPet({ fetchOnFinish, totalPets }) {
     startTransition(async () => {
       if (true) {
         try {
-          const response = await fetch("/api/add_cubiods", {
+          const response = await fetch("/api/add_skill", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               row: [
                 uuidv4(),
-                data.Name,
-                data.Title,
-                data.Type,
-                data.Image,
-                data.Lore,
+                ID,
+                data.Skill,
+                data.Level,
+                data.Description,
                 "TRUE",
               ],
             }),
@@ -65,12 +61,12 @@ export default function AddPet({ fetchOnFinish, totalPets }) {
   return (
     <PetForms
       handleSubmit={handleSubmit}
-      title={"Add Pet"}
+      title={"Add Skill"}
       isPending={isPending}
     >
       <LabeledInput
-        label={"Name"}
-        id={"Name"}
+        label={"Skill"}
+        id={"Skill"}
         required={true}
         onChange={(e) =>
           setData((prev) => ({
@@ -80,30 +76,8 @@ export default function AddPet({ fetchOnFinish, totalPets }) {
         }
       ></LabeledInput>
       <LabeledInput
-        label={"Title"}
-        id={"Title"}
-        required={true}
-        onChange={(e) =>
-          setData((prev) => ({
-            ...prev,
-            [e.target.id]: e.target.value,
-          }))
-        }
-      ></LabeledInput>
-      <LabeledInput
-        label={"Type"}
-        id={"Type"}
-        required={true}
-        onChange={(e) =>
-          setData((prev) => ({
-            ...prev,
-            [e.target.id]: e.target.value,
-          }))
-        }
-      ></LabeledInput>
-      <LabeledInput
-        label={"Image"}
-        id={"Image"}
+        label={"Level"}
+        id={"Level"}
         required={true}
         onChange={(e) =>
           setData((prev) => ({
@@ -114,8 +88,8 @@ export default function AddPet({ fetchOnFinish, totalPets }) {
       ></LabeledInput>
 
       <LabeledTextAreaInput
-        label={"Lore"}
-        id={"Lore"}
+        label={"Description"}
+        id={"Description"}
         onChange={(e) =>
           setData((prev) => ({
             ...prev,
