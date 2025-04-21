@@ -36,28 +36,6 @@ export default function Page() {
             </main>
           </Content_1>
         </section>
-
-        <section className="flex justify-center">
-          <Content_1>
-            <main className="w-full">
-              <main className="p-5 border border-neutral-300 rounded w-full flex justify-between">
-                <section>
-                  <p className="text-neutral-800">
-                    Are you part of the DevTeam?
-                  </p>
-                </section>
-                <section>
-                  <Link
-                    href={"/devspot/"}
-                    className="py-2 px-5 border border-neutral-300 rounded bg-cyan-600 hover:bg-cyan-800 text-white"
-                  >
-                    Access Devspot
-                  </Link>
-                </section>
-              </main>
-            </main>
-          </Content_1>
-        </section>
       </main>
     </Layout_1>
   );
