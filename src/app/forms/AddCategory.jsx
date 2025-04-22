@@ -5,20 +5,17 @@ import { useEffect, useState, useTransition } from "react";
 import { v4 as uuidv4 } from "uuid";
 import PetForms from "../../components/package/PetForms";
 import LabeledInput from "./input/LabeledInput";
-import LabeledFileInput from "./input/LabeledFileInput";
-import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
+import { colors } from "../../hooks/data/colors";
 
-export default function AddPet({ fetchOnFinish, totalPets, categories }) {
+export default function AddCategory({ fetchOnFinish, totalPets }) {
   const close = useClose();
   const [isPending, startTransition] = useTransition();
   const [file, setFile] = useState(null);
 
   const [data, setData] = useState({
-    Name: "",
-    Title: "",
-    Type: "",
-    Lore: "",
-    Image: "",
+    Category: "",
+    Level: "",
+    Color: "",
   });
 
   useEffect(() => {
@@ -30,19 +27,11 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
     startTransition(async () => {
       if (true) {
         try {
-          const response = await fetch("/api/add_cubiods", {
+          const response = await fetch("/api/add_category", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              row: [
-                uuidv4(),
-                data.Name,
-                data.Title,
-                data.Type,
-                data.Image,
-                data.Lore,
-                "TRUE",
-              ],
+              row: [uuidv4(), data.Category, data.Level, data.Color, "TRUE"],
             }),
           });
 
@@ -65,12 +54,12 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
   return (
     <PetForms
       handleSubmit={handleSubmit}
-      title={"Add Pet"}
+      title={"Add Category"}
       isPending={isPending}
     >
       <LabeledInput
-        label={"Name"}
-        id={"Name"}
+        label={"Category"}
+        id={"Category"}
         required={true}
         onChange={(e) =>
           setData((prev) => ({
@@ -80,8 +69,8 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
         }
       ></LabeledInput>
       <LabeledInput
-        label={"Title"}
-        id={"Title"}
+        label={"Level"}
+        id={"Level"}
         required={true}
         onChange={(e) =>
           setData((prev) => ({
@@ -90,10 +79,11 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
           }))
         }
       ></LabeledInput>
+
       <select
         className="py-2 px-3 outline outline-neutral-300  rounded"
-        name="Type"
-        id="Type"
+        name="Color"
+        id="Color"
         onChange={(e) =>
           setData((prev) => ({
             ...prev,
@@ -101,34 +91,10 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
           }))
         }
       >
-        {categories.map((category) => (
-          <option value={category[1]}>{category[1]}</option>
+        {colors.map((color) => (
+          <option value={color.color}>{color.display}</option>
         ))}
       </select>
-
-      <LabeledInput
-        label={"Image"}
-        id={"Image"}
-        required={true}
-        onChange={(e) =>
-          setData((prev) => ({
-            ...prev,
-            [e.target.id]: e.target.value,
-          }))
-        }
-      ></LabeledInput>
-
-      <LabeledTextAreaInput
-        label={"Lore"}
-        id={"Lore"}
-        onChange={(e) =>
-          setData((prev) => ({
-            ...prev,
-            [e.target.id]: e.target.value,
-          }))
-        }
-        required={true}
-      ></LabeledTextAreaInput>
     </PetForms>
   );
 }

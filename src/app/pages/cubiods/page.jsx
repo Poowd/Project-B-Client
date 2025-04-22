@@ -6,12 +6,14 @@ import Input from "../../forms/input/Input";
 import PetInformation from "../../../components/package/PetInformation";
 import PeteffectEffect from "../../../components/package/PetTraitEffect";
 import SkeletonCubiods_1 from "../../../components/package/SkeletonCubiods_1";
+import { getPetColor } from "../../../hooks/functions/getPetColor";
 
 export default function Page() {
   const [isPending, startTransition] = useTransition();
   const [pets, setPets] = useState([]);
   const [petTraits, setPetTraits] = useState([]);
   const [petSkills, setPetSkills] = useState([]);
+  const [petCategories, setPetCategories] = useState([]);
   const [search, setSearch] = useState("");
 
   const getGoogleSheetData = () => {
@@ -30,6 +32,7 @@ export default function Page() {
         setPets(fetchData.pets.slice(1));
         setPetTraits(fetchData.traits.slice(1));
         setPetSkills(fetchData.skills.slice(1));
+        setPetCategories(fetchData.categories.slice(1));
         return;
       } catch (error) {
         console.log(error);
@@ -60,10 +63,7 @@ export default function Page() {
       }
       buttons={<></>}
     >
-      {isPending && (
-        <SkeletonCubiods_1></SkeletonCubiods_1>
-        
-      )}
+      {isPending && <SkeletonCubiods_1></SkeletonCubiods_1>}
       {!isPending && (
         <>
           {pets?.map(
@@ -71,6 +71,7 @@ export default function Page() {
               (pet[1]?.toLowerCase().includes(search.toLowerCase()) ||
                 search == null) && (
                 <PetInformation
+                  color={getPetColor(pet[3], petCategories)}
                   key={key}
                   image={pet[4]}
                   name={pet[1]}

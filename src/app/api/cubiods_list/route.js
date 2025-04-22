@@ -20,6 +20,10 @@ export async function GET(request) {
       spreadsheetId: SPREADSHEET_ID,
       range: `Cubiods_Skill_Sheet!A:F`,
     });
+    const cubiodsCategoriesList = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `Cubiod_Category!A:E`,
+    });
 
     console.log(JSON.stringify(cubiodsList.data));
     console.log(JSON.stringify(cubiodsTraitList.data));
@@ -29,6 +33,7 @@ export async function GET(request) {
         pets: cubiodsList.data.values,
         traits: cubiodsTraitList.data.values,
         skills: cubiodsSkillList.data.values,
+        categories: cubiodsCategoriesList.data.values,
       },
       {
         status: 200,

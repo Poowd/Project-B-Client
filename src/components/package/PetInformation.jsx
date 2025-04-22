@@ -8,6 +8,7 @@ export default function PetInformation({
   lore,
   children,
   buttons,
+  color,
 }) {
   return (
     <InformationModal
@@ -29,12 +30,12 @@ export default function PetInformation({
       }
       buttons={buttons}
     >
-      <main className="h-fit lg:h-full lg:flex gap-5">
+      <main className={`h-fit lg:h-full lg:flex gap-5`}>
         <section className="flex-1 rounded p-5 h-full overflow-y-auto">
           <main className="h-full flex flex-col">
             <section className="lg:w-full flex flex-col items-center mb-5">
               <div className="text-center">
-                <h1 className="text-xl font-bold">{name}</h1>
+                <h1 className={`text-xl font-bold ${color}`}>{name}</h1>
                 <h3>{type} Pet</h3>
               </div>
               <figure className="size-40 p-2">
@@ -53,7 +54,7 @@ export default function PetInformation({
         <section className="flex-none h-full lg:w-1/2 lg:border-l border-l-neutral-300 p-5 overflow-y-auto">
           <main>
             <header className="text-center mb-5">
-              <h1 className="text-2xl font-semibold">{title}</h1>
+              <h1 className={`text-2xl font-semibold ${color}`}>{title}</h1>
             </header>
             <main className="flex flex-col gap-3">
               <main className="mb-5">
