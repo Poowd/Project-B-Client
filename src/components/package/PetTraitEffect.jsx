@@ -1,7 +1,17 @@
+import { TbEditCircle } from "react-icons/tb";
 import LabeledContent1 from "../LabeledContent1";
+import TableButton from "../single/button/TableButton";
+import FormModal from "../single/modal/FormModal";
 import PetDetail from "../single/modal/PetDetail";
+import EditEffect from "../../app/forms/EditEffect";
 
-export default function PeteffectEffect({ title, effects }) {
+export default function PeteffectEffect({
+  title,
+  effects,
+  fetchOnFinish,
+  isAdmin,
+  api,
+}) {
   return (
     <main className="flex flex-col gap-3">
       <LabeledContent1 label={title}>
@@ -19,6 +29,29 @@ export default function PeteffectEffect({ title, effects }) {
                   <section>
                     <pre>{effect[4]}</pre>
                   </section>
+                  {isAdmin && (
+                    <section className="mt-5">
+                      <FormModal
+                        button={
+                          <TableButton>
+                            <TbEditCircle />
+                          </TableButton>
+                        }
+                      >
+                        <EditEffect
+                          fetchOnFinish={() => fetchOnFinish()}
+                          api={api}
+                          entry={{
+                            ID: effect[0],
+                            Pet: effect[1],
+                            Effect: effect[2],
+                            Level: effect[3],
+                            Description: effect[4],
+                          }}
+                        ></EditEffect>
+                      </FormModal>
+                    </section>
+                  )}
                 </main>
               </PetDetail>
             ))}

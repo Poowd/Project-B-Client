@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { TbEditCircle } from "react-icons/tb";
 import { FaRegStar } from "react-icons/fa";
 import AddPet from "../../../forms/AddPet";
@@ -16,32 +16,36 @@ import AddTrait from "../../../forms/AddTrait";
 import { LuSmilePlus } from "react-icons/lu";
 import { PiTarget } from "react-icons/pi";
 import AddSkill from "../../../forms/AddSkill";
+import SkeletonCubiods_2 from "../../../../components/package/SkeletonCubiods_2";
 
 export default function Page() {
+  const [isPending, startTransition] = useTransition();
   const [pets, setPets] = useState([]);
   const [petTraits, setPetTraits] = useState([]);
   const [petSkills, setPetSkills] = useState([]);
   const [search, setSearch] = useState("");
 
-  const getGoogleSheetData = async () => {
-    try {
-      const response = await fetch(`../../api/cubiods_list`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  const getGoogleSheetData = () => {
+    startTransition(async () => {
+      try {
+        const response = await fetch(`../../api/cubiods_list`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      // Parse the response content
-      const fetchData = await response.json();
+        // Parse the response content
+        const fetchData = await response.json();
 
-      setPets(fetchData.pets.slice(1));
-      setPetTraits(fetchData.traits.slice(1));
-      setPetSkills(fetchData.skills.slice(1));
-      return;
-    } catch (error) {
-      console.log(error);
-    }
+        setPets(fetchData.pets.slice(1));
+        setPetTraits(fetchData.traits.slice(1));
+        setPetSkills(fetchData.skills.slice(1));
+        return;
+      } catch (error) {
+        console.log(error);
+      }
+    });
   };
 
   useEffect(() => {
@@ -99,112 +103,123 @@ export default function Page() {
             </section>
           </header>
           <main className="w-full flex flex-col gap-2 overflow-hidden">
-            {pets?.map(
-              (pet, petkey) =>
-                (pet[1]?.toLowerCase().includes(search.toLowerCase()) ||
-                  search == null) &&
-                pet[6] === "TRUE" && (
-                  <section
-                    key={petkey}
-                    className="h-20 w-full flex items-center px-3 bg-white border border-neutral-300 rounded text-sm"
-                  >
-                    <div className="flex-none overflow-hidden truncate px-2 w-2/12">
-                      {pet[1]}
-                    </div>
-                    <div className="flex-none overflow-hidden truncate px-2 w-3/12">
-                      {pet[2]}
-                    </div>
-                    <div className="flex-none overflow-hidden truncate px-2 w-2/12">
-                      {pet[3]}
-                    </div>
-                    <div className="flex-none overflow-hidden truncate px-2 w-5/12 flex justify-end gap-1">
-                      <FormModal
-                        button={
-                          <TableButton>
-                            <FaRegStar />
-                          </TableButton>
-                        }
+            {isPending && <SkeletonCubiods_2></SkeletonCubiods_2>}
+            {!isPending && (
+              <>
+                {pets?.map(
+                  (pet, petkey) =>
+                    (pet[1]?.toLowerCase().includes(search.toLowerCase()) ||
+                      search == null) &&
+                    pet[6] === "TRUE" && (
+                      <section
+                        key={petkey}
+                        className="h-20 w-full flex items-center px-3 bg-white border border-neutral-300 rounded text-sm"
                       >
-                        <UpdateStatus
-                          fetchOnFinish={() => getGoogleSheetData()}
-                          entry={{
-                            ID: pet[0],
-                            Name: pet[1],
-                            Title: pet[2],
-                            Type: pet[3],
-                            Image: pet[4],
-                            Lore: pet[5],
-                          }}
-                        ></UpdateStatus>
-                      </FormModal>
-                      <FormModal
-                        button={
-                          <TableButton>
-                            <TbEditCircle />
-                          </TableButton>
-                        }
-                      >
-                        <EditPet
-                          fetchOnFinish={() => getGoogleSheetData()}
-                          entry={{
-                            ID: pet[0],
-                            Name: pet[1],
-                            Title: pet[2],
-                            Type: pet[3],
-                            Image: pet[4],
-                            Lore: pet[5],
-                          }}
-                        ></EditPet>
-                      </FormModal>
-                      <InformationModal
-                        button={
-                          <TableButton>
-                            <MdOutlineViewInAr />
-                          </TableButton>
-                        }
-                        buttons={
-                          <>
-                            <FormModal
-                              button={
-                                <TableButton>
-                                  <LuSmilePlus />
-                                </TableButton>
-                              }
-                            >
-                              <AddTrait
+                        <div className="flex-none overflow-hidden truncate px-2 w-2/12">
+                          {pet[1]}
+                        </div>
+                        <div className="flex-none overflow-hidden truncate px-2 w-3/12">
+                          {pet[2]}
+                        </div>
+                        <div className="flex-none overflow-hidden truncate px-2 w-2/12">
+                          {pet[3]}
+                        </div>
+                        <div className="flex-none overflow-hidden truncate px-2 w-5/12 flex justify-end gap-1">
+                          <FormModal
+                            button={
+                              <TableButton>
+                                <FaRegStar />
+                              </TableButton>
+                            }
+                          >
+                            <UpdateStatus
+                              fetchOnFinish={() => getGoogleSheetData()}
+                              entry={{
+                                ID: pet[0],
+                                Name: pet[1],
+                                Title: pet[2],
+                                Type: pet[3],
+                                Image: pet[4],
+                                Lore: pet[5],
+                              }}
+                            ></UpdateStatus>
+                          </FormModal>
+                          <FormModal
+                            button={
+                              <TableButton>
+                                <TbEditCircle />
+                              </TableButton>
+                            }
+                          >
+                            <EditPet
+                              fetchOnFinish={() => getGoogleSheetData()}
+                              entry={{
+                                ID: pet[0],
+                                Name: pet[1],
+                                Title: pet[2],
+                                Type: pet[3],
+                                Image: pet[4],
+                                Lore: pet[5],
+                              }}
+                            ></EditPet>
+                          </FormModal>
+                          <InformationModal
+                            button={
+                              <TableButton>
+                                <MdOutlineViewInAr />
+                              </TableButton>
+                            }
+                            buttons={
+                              <>
+                                <FormModal
+                                  button={
+                                    <TableButton>
+                                      <LuSmilePlus />
+                                    </TableButton>
+                                  }
+                                >
+                                  <AddTrait
+                                    fetchOnFinish={() => getGoogleSheetData()}
+                                    ID={pet[0]}
+                                  ></AddTrait>
+                                </FormModal>
+                                <FormModal
+                                  button={
+                                    <TableButton>
+                                      <PiTarget />
+                                    </TableButton>
+                                  }
+                                >
+                                  <AddSkill
+                                    fetchOnFinish={() => getGoogleSheetData()}
+                                    ID={pet[0]}
+                                  ></AddSkill>
+                                </FormModal>
+                              </>
+                            }
+                          >
+                            <PetDetails pet={pet}>
+                              <PeteffectEffect
+                                isAdmin={true}
                                 fetchOnFinish={() => getGoogleSheetData()}
-                                ID={pet[0]}
-                              ></AddTrait>
-                            </FormModal>
-                            <FormModal
-                              button={
-                                <TableButton>
-                                  <PiTarget />
-                                </TableButton>
-                              }
-                            >
-                              <AddSkill
+                                api={"update_traits"}
+                                title={"Traits"}
+                                effects={getCubiodsEffect(petTraits, 1, pet[0])}
+                              ></PeteffectEffect>
+                              <PeteffectEffect
+                                isAdmin={true}
                                 fetchOnFinish={() => getGoogleSheetData()}
-                                ID={pet[0]}
-                              ></AddSkill>
-                            </FormModal>
-                          </>
-                        }
-                      >
-                        <PetDetails pet={pet}>
-                          <PeteffectEffect
-                            title={"Traits"}
-                            effects={getCubiodsEffect(petTraits, 1, pet[0])}
-                          ></PeteffectEffect>
-                          <PeteffectEffect
-                            title={"Skills"}
-                            effects={getCubiodsEffect(petSkills, 1, pet[0])}
-                          ></PeteffectEffect>
-                        </PetDetails>
-                      </InformationModal>
-                    </div>
-                  </section>
-                )
+                                api={"update_skills"}
+                                title={"Skills"}
+                                effects={getCubiodsEffect(petSkills, 1, pet[0])}
+                              ></PeteffectEffect>
+                            </PetDetails>
+                          </InformationModal>
+                        </div>
+                      </section>
+                    )
+                )}
+              </>
             )}
           </main>
         </main>
