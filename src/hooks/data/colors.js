@@ -79,4 +79,14 @@ export const colors = [
     color: "white",
     code: "text-white",
   },
+  {
+    display: "Dark Orange",
+    color: "dark_orange",
+    code: "text-orange-800",
+  },
+  {
+    display: "Light Orange",
+    color: "light_orange",
+    code: "text-orange-600",
+  },
 ];

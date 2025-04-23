@@ -16,7 +16,7 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
   const [data, setData] = useState({
     Name: "",
     Title: "",
-    Type: "",
+    Type: categories[0][1],
     Lore: "",
     Image: "",
   });
@@ -90,21 +90,30 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
           }))
         }
       ></LabeledInput>
-      <select
-        className="py-2 px-3 outline outline-neutral-300  rounded"
-        name="Type"
-        id="Type"
-        onChange={(e) =>
-          setData((prev) => ({
-            ...prev,
-            [e.target.id]: e.target.value,
-          }))
-        }
-      >
-        {categories.map((category) => (
-          <option value={category[1]}>{category[1]}</option>
-        ))}
-      </select>
+
+      <div className="flex flex-col text-start">
+        <label htmlFor={"Type"} className="text-sm mb-1">
+          Type
+        </label>
+        <select
+          className="py-2 px-3 outline outline-neutral-300  rounded"
+          name="Type"
+          id="Type"
+          required
+          onChange={(e) =>
+            setData((prev) => ({
+              ...prev,
+              [e.target.id]: e.target.value,
+            }))
+          }
+        >
+          {categories.map((category) => (
+            <option key={category[0]} value={category[1]}>
+              {category[1]}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <LabeledInput
         label={"Image"}

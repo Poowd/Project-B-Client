@@ -3,5 +3,9 @@ import { getColor } from "./getColor";
 export const getPetColor = (type, array) => {
   const category = array.filter((category) => category[1] === type);
 
-  return getColor(category[0][3]);
+  if (category) {
+    getColor(category[0][3]);
+  }
+
+  return getColor("dark_gray");
 };
