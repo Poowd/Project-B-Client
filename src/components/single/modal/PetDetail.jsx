@@ -7,7 +7,7 @@ import { SlArrowUp } from "react-icons/sl";
 
 export default function PetDetail({ button, children, highlights }) {
   return (
-    <main className={`w-full h-fit p-5 rounded ${highlights ? highlights : 'bg-neutral-800'}`}>
+    <main className={`w-full h-fit p-5 rounded ${highlights ? highlights : 'bg-neutral-800'} delay-300 duration-150 ease-in-out`}>
       <Disclosure>
         {({ open }) => (
           /* Use the `open` state to conditionally change the direction of an icon. */

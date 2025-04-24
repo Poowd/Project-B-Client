@@ -19,7 +19,7 @@ export default function Sidebar({ children }) {
   };
 
   return (
-    <main className={`${Sidebar(sidebarStatus)} p-5`}>
+    <main className={`${Sidebar(sidebarStatus)} h-full p-5`}>
       <section className="flex justify-between items-center mb-3">
         {sidebarStatus && (
           <div className="hidden lg:block text-sm w-0 lg:w-full">

@@ -1,3 +1,4 @@
+import Card2 from "../single/card/Card2";
 import InformationModal from "../single/modal/InformationModal";
 
 export default function PetInformation({
@@ -14,27 +15,14 @@ export default function PetInformation({
   return (
     <InformationModal
       button={
-        <div className="hover:-translate-y-2 delay-100 duration-300 hover:cursor-pointer scale-up-center">
-          <main className="h-full w-full flex flex-col gap-2">
-            <section className="flex-1 outline-0 rounded aspect-square flex justify-center items-center ">
-              <figure className="p-5 w-full">
-                <img
-                  src={`${image}`}
-                  alt={name}
-                  className={"w-full aspect-square rounded"}
-                ></img>
-              </figure>
-            </section>
-            <section className={`flex-none ${color} text-lg font-bold`}>
-              {name}
-            </section>
-          </main>
-        </div>
+        <Card2 background={bg_color} title={title} image={image}>
+          {name}
+        </Card2>
       }
       buttons={buttons}
     >
       <main className={`h-fit lg:h-full lg:flex`}>
-        <section className={`flex-1 p-10 h-full overflow-y-auto ${bg_color}`}>
+        <section className={`flex-1 p-10 h-full overflow-y-auto ${bg_color} delay-300 duration-150 ease-in-out`}>
           <main className="h-full flex flex-col">
             <section className="lg:w-full flex flex-col items-center mb-5">
               <div className="text-center">

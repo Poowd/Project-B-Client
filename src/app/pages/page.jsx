@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Card3 from "../../components/single/card/Card3";
 
 export default function Home() {
   const [pets, setPets] = useState([]);
@@ -31,10 +32,7 @@ export default function Home() {
     <main>
       <header className="w-full h-fit flex items-center gap-2">
         <main className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          <section className="h-40 border border-neutral-300 rounded p-5 text-center flex flex-col justify-center gap-3">
-            <h3 className="text-lg">Cubiods</h3>
-            <h1 className="text-4xl font-bold text-cyan-600">{pets.length}</h1>
-          </section>
+          <Card3 data={0}>Cubiods</Card3>
           <section className="h-40 border border-neutral-300 rounded p-5 text-center flex flex-col justify-center gap-3">
             <h3 className="text-lg">Build Competitions</h3>
             <h1 className="text-4xl font-bold text-cyan-600">0</h1>

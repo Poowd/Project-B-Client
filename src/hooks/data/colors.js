@@ -1,23 +1,23 @@
 export const colors = [
   {
-    display: "Black",
-    color: "black",
-    code: "text-black",
+    display: "Light Gray",
+    color: "light_gray",
+    code: "text-neutral-300",
   },
   {
-    display: "Dark Gray",
-    color: "dark_gray",
-    code: "text-neutral-400",
-  },
-  {
-    display: "Dark Blue",
-    color: "dark_blue",
-    code: "text-blue-700",
+    display: "Red",
+    color: "red",
+    code: "text-red-600",
   },
   {
     display: "Light Blue",
     color: "light_blue",
-    code: "text-blue-500",
+    code: "text-blue-600",
+  },
+  {
+    display: "Gold",
+    color: "gold",
+    code: "text-orange-600",
   },
   {
     display: "Dark Green",
@@ -25,254 +25,74 @@ export const colors = [
     code: "text-green-600",
   },
   {
-    display: "Light Green",
-    color: "light_green",
-    code: "text-green-500",
-  },
-  {
-    display: "Dark Cyan",
-    color: "dark_cyan",
-    code: "text-cyan-700",
-  },
-  {
-    display: "Light Cyan",
-    color: "light_cyan",
-    code: "text-cyan-500",
-  },
-  {
-    display: "Dark Red",
-    color: "dark_red",
-    code: "text-red-600",
-  },
-  {
-    display: "Light Red",
-    color: "light_red",
-    code: "text-red-500",
-  },
-  {
-    display: "Dark Purple",
-    color: "dark_purple",
-    code: "text-purple-700",
-  },
-  {
-    display: "Light Purple",
-    color: "light_purple",
-    code: "text-purple-500",
-  },
-  {
-    display: "Dark Yellow",
-    color: "dark_yellow",
-    code: "text-yellow-700",
-  },
-  {
-    display: "Light Yellow",
-    color: "light_yellow",
-    code: "text-yellow-500",
-  },
-  {
-    display: "Light Gray",
-    color: "light_gray",
-    code: "text-neutral-300",
-  },
-  {
-    display: "White",
-    color: "white",
-    code: "text-white",
-  },
-  {
-    display: "Dark Orange",
-    color: "dark_orange",
-    code: "text-orange-700",
-  },
-  {
-    display: "Light Orange",
-    color: "light_orange",
-    code: "text-orange-500",
+    display: "Purple",
+    color: "purple",
+    code: "text-purple-600",
   },
 ];
 
 export const backgroundcolors = [
   {
-    display: "Black",
-    color: "black",
-    code: "text-white bg-black",
+    display: "Light Gray",
+    color: "light_gray",
+    code: "text-neutral-700 bg-linear-to-bl hover:bg-linear-to-l from-neutral-500 to-neutral-400 hover:border hover:border-4 hover:border-neutral-300",
   },
   {
-    display: "Dark Gray",
-    color: "dark_gray",
-    code: "text-neutral-900 bg-neutral-500",
-  },
-  {
-    display: "Dark Blue",
-    color: "dark_blue",
-    code: "text-white bg-blue-500",
+    display: "Red",
+    color: "red",
+    code: "text-red-950 bg-linear-to-bl hover:bg-linear-to-l from-red-800 to-red-700 hover:border hover:border-4 hover:border-red-600",
   },
   {
     display: "Light Blue",
     color: "light_blue",
-    code: "text-white bg-blue-400",
+    code: "text-blue-900 bg-linear-to-bl hover:bg-linear-to-l from-blue-500 to-blue-400 hover:border hover:border-4 hover:border-blue-300",
+  },
+  {
+    display: "Gold",
+    color: "gold",
+    code: "text-orange-900 bg-linear-to-bl hover:bg-linear-to-l from-orange-500 to-orange-400 hover:border hover:border-4 hover:border-orange-300",
   },
   {
     display: "Dark Green",
     color: "dark_green",
-    code: "text-white bg-green-500",
+    code: "text-green-950 bg-linear-to-bl hover:bg-linear-to-l from-green-800 to-green-700 hover:border hover:border-4 hover:border-green-600",
   },
   {
-    display: "Light Green",
-    color: "light_green",
-    code: "text-white bg-green-400",
-  },
-  {
-    display: "Dark Cyan",
-    color: "dark_cyan",
-    code: "text-white bg-cyan-500",
-  },
-  {
-    display: "Light Cyan",
-    color: "light_cyan",
-    code: "text-white bg-cyan-400",
-  },
-  {
-    display: "Dark Red",
-    color: "dark_red",
-    code: "text-white bg-red-500",
-  },
-  {
-    display: "Light Red",
-    color: "light_red",
-    code: "text-white bg-red-400",
-  },
-  {
-    display: "Dark Purple",
-    color: "dark_purple",
-    code: "text-white bg-purple-500",
-  },
-  {
-    display: "Light Purple",
-    color: "light_purple",
-    code: "text-white bg-purple-400",
-  },
-  {
-    display: "Dark Yellow",
-    color: "dark_yellow",
-    code: "text-white bg-yellow-500",
-  },
-  {
-    display: "Light Yellow",
-    color: "light_yellow",
-    code: "text-white bg-yellow-400",
-  },
-  {
-    display: "Light Gray",
-    color: "light_gray",
-    code: "text-white bg-neutral-300",
-  },
-  {
-    display: "White",
-    color: "white",
-    code: "text-white bg-white",
-  },
-  {
-    display: "Dark Orange",
-    color: "dark_orange",
-    code: "text-white bg-orange-500",
-  },
-  {
-    display: "Light Orange",
-    color: "light_orange",
-    code: "text-white bg-orange-400",
+    display: "Purple",
+    color: "purple",
+    code: "text-purple-950 bg-linear-to-bl hover:bg-linear-to-l from-purple-800 to-purple-700 hover:border hover:border-4 hover:border-purple-600",
   },
 ];
 
 export const highlights = [
   {
-    display: "Black",
-    color: "black",
-    code: "text-white bg-black",
+    display: "Light Gray",
+    color: "light_gray",
+    code: "text-white bg-neutral-800",
   },
   {
-    display: "Dark Gray",
-    color: "dark_gray",
-    code: "text-neutral-900 bg-neutral-600",
-  },
-  {
-    display: "Dark Blue",
-    color: "dark_blue",
-    code: "text-white bg-blue-400",
+    display: "Red",
+    color: "red",
+    code: "text-white bg-red-950",
   },
   {
     display: "Light Blue",
     color: "light_blue",
-    code: "text-white bg-blue-500",
+    code: "text-white bg-blue-800",
+  },
+  {
+    display: "Gold",
+    color: "gold",
+    code: "text-white bg-orange-800",
   },
   {
     display: "Dark Green",
     color: "dark_green",
-    code: "text-white bg-green-400",
+    code: "text-white bg-green-950",
   },
   {
-    display: "Light Green",
-    color: "light_green",
-    code: "text-white bg-green-500",
-  },
-  {
-    display: "Dark Cyan",
-    color: "dark_cyan",
-    code: "text-white bg-cyan-400",
-  },
-  {
-    display: "Light Cyan",
-    color: "light_cyan",
-    code: "text-white bg-cyan-500",
-  },
-  {
-    display: "Dark Red",
-    color: "dark_red",
-    code: "text-white bg-red-400",
-  },
-  {
-    display: "Light Red",
-    color: "light_red",
-    code: "text-white bg-red-500",
-  },
-  {
-    display: "Dark Purple",
-    color: "dark_purple",
-    code: "text-white bg-purple-400",
-  },
-  {
-    display: "Light Purple",
-    color: "light_purple",
-    code: "text-white bg-purple-500",
-  },
-  {
-    display: "Dark Yellow",
-    color: "dark_yellow",
-    code: "text-white bg-yellow-400",
-  },
-  {
-    display: "Light Yellow",
-    color: "light_yellow",
-    code: "text-white bg-yellow-500",
-  },
-  {
-    display: "Light Gray",
-    color: "light_gray",
-    code: "text-white bg-neutral-300",
-  },
-  {
-    display: "White",
-    color: "white",
-    code: "text-white bg-white",
-  },
-  {
-    display: "Dark Orange",
-    color: "dark_orange",
-    code: "text-white bg-orange-400",
-  },
-  {
-    display: "Light Orange",
-    color: "light_orange",
-    code: "text-white bg-orange-500",
+    display: "Purple",
+    color: "purple",
+    code: "text-white bg-purple-950",
   },
 ];
