@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="w-full flex justify-center bg-neutral-800 relative">
+      <body className="w-full flex justify-center bg-neutral-900 relative">
         {children}
       </body>
     </html>

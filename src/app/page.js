@@ -15,8 +15,8 @@ export default function Page() {
           <Content_1>
             <main className="w-full mt-5">
               <main className="p-10 border border-neutral-300 rounded w-full">
-                <section className="mb-5">
-                  <h1 className="text-4xl">Welcome to Archetopia</h1>
+                <section className="mb-10">
+                  <h1 className="text-4xl text-cyan-600">Welcome to Archetopia</h1>
                   <p className="text-neutral-500">
                     Navigate to different contents and guides available here at
                     Archetopia. The primary purpose of this website is to

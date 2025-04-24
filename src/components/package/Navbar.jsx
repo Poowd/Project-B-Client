@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <main
@@ -11,7 +13,11 @@ export default function Navbar() {
           <section>
             <ul className="flex gap-3">
               <li>Guide</li>
-              <li>Cyan Realms</li>
+              <li>
+                <Link href={"https://cyanrealms.com"} target="_blank">
+                  Cyan Realms
+                </Link>
+              </li>
             </ul>
           </section>
           <section></section>
