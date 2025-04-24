@@ -1,9 +1,9 @@
 export default function CubiodsContent({ search, buttons, children }) {
   return (
     <main>
-      <header className="w-full h-fit bg-white border border-neutral-300 rounded-full p-2 mb-5 flex items-center gap-2">
+      <header className="w-full h-fit bg-neutral-950 rounded-full p-2 mb-5 flex items-center gap-2 ps-3">
         <section className="flex-1">{search}</section>
-        <section className="flex-none flex flex-row-reverse gap-2">
+        <section className={`flex-none flex flex-row-reverse gap-2`}>
           {buttons}
         </section>
       </header>

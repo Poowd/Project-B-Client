@@ -7,6 +7,8 @@ import PetInformation from "../../../components/package/PetInformation";
 import PeteffectEffect from "../../../components/package/PetTraitEffect";
 import SkeletonCubiods_1 from "../../../components/package/SkeletonCubiods_1";
 import { getPetColor } from "../../../hooks/functions/getPetColor";
+import { getPetBackgroundColor } from "../../../hooks/functions/getPetBackgroundColor";
+import { getPetHighlights } from "../../../hooks/functions/getPetHighlights";
 
 export default function Page() {
   const [isPending, startTransition] = useTransition();
@@ -54,7 +56,7 @@ export default function Page() {
       search={
         <Input
           style={
-            "outline-0 border border-neutral-300 bg-neutral-50 w-full py-2 px-5 text-sm rounded-full"
+            "outline-0 bg-neutral-800 w-full py-2 px-5 text-sm rounded-full"
           }
           id={"search"}
           placeholder={"Search"}
@@ -72,6 +74,7 @@ export default function Page() {
                 search == null) && (
                 <PetInformation
                   color={getPetColor(pet[3], petCategories)}
+                  bg_color={getPetBackgroundColor(pet[3], petCategories)}
                   key={key}
                   image={pet[4]}
                   name={pet[1]}
@@ -81,10 +84,12 @@ export default function Page() {
                   buttons={<></>}
                 >
                   <PeteffectEffect
+                    highlight={getPetHighlights(pet[3], petCategories)}
                     title={"Traits"}
                     effects={getCubiodsEffect(petTraits, 1, pet[0])}
                   ></PeteffectEffect>
                   <PeteffectEffect
+                    highlight={getPetHighlights(pet[3], petCategories)}
                     title={"Skills"}
                     effects={getCubiodsEffect(petSkills, 1, pet[0])}
                   ></PeteffectEffect>

@@ -11,6 +11,7 @@ export default function PeteffectEffect({
   fetchOnFinish,
   isAdmin,
   api,
+  highlight,
 }) {
   return (
     <main className="flex flex-col gap-3">
@@ -19,6 +20,7 @@ export default function PeteffectEffect({
           {effects &&
             effects.map((effect, effectkey) => (
               <PetDetail
+                highlights={highlight}
                 key={effectkey}
                 button={<div className="">{effect[2]}</div>}
               >

@@ -25,7 +25,7 @@ export default function InformationModal({ button, buttons, children }) {
         >
           <main className="w-full h-full flex flex-col gap-3 lg:pe-0">
             <section className="flex-none flex justify-end gap-3">
-              <div className="border border-neutral-300 p-2 rounded-full flex gap-2 bg-white">
+              <div className="p-2 rounded-full flex gap-2 bg-neutral-900">
                 {buttons}
                 <button
                   onClick={() => setIsOpen(false)}
@@ -37,7 +37,7 @@ export default function InformationModal({ button, buttons, children }) {
                 </button>
               </div>
             </section>
-            <section className="flex-1 border border-neutral-300 rounded bg-white overflow-y-auto p-10">
+            <section className="flex-1 rounded bg-neutral-900 overflow-y-auto">
               {children}
             </section>
           </main>

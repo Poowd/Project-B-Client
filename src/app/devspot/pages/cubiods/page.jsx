@@ -76,7 +76,7 @@ export default function Page() {
       <section className="flex gap-3 justify-end">
         <InformationModal
           button={
-            <div className="border-0 py-2 px-5 text-sm rounded-full bg-neutral-400 hover:bg-neutral-500 shadow-sm text-white">
+            <div className="border-0 py-2 px-5 text-sm rounded-full bg-neutral-800 hover:bg-neutral-900 shadow-sm text-white">
               Categories
             </div>
           }
@@ -97,31 +97,33 @@ export default function Page() {
             </>
           }
         >
-          <header className="mb-5">
-            <h1 className="text-4xl text-cyan-600">Categories</h1>
-            <p className="w-1/2 text-neutral-500">
-              This contains the list of available categories!
-            </p>
-          </header>
-          <section className="flex flex-col gap-2">
-            {petCategories.map((category, categorykey) => (
-              <div
-                key={categorykey}
-                className={`h-20 w-full flex items-center justify-between px-5 bg-white rounded border border-neutral-300 ${getColor(
-                  category[3]
-                )}`}
-              >
-                <section>{category[1]}</section>
-                <section className="font-semibold">
-                  {pets.filter((pet) => pet[3] === category[1]).length}
-                </section>
-              </div>
-            ))}
-          </section>
+          <main className="h-full p-10 bg-neutral-900">
+            <header className="mb-5">
+              <h1 className="text-4xl text-cyan-600">Categories</h1>
+              <p className="w-1/2 text-neutral-500">
+                This contains the list of available categories!
+              </p>
+            </header>
+            <section className="flex flex-col gap-2">
+              {petCategories.map((category, categorykey) => (
+                <div
+                  key={categorykey}
+                  className={`h-20 w-full flex items-center justify-between px-5 bg-neutral-800 rounded ${getColor(
+                    category[3]
+                  )}`}
+                >
+                  <section>{category[1]}</section>
+                  <section className="font-semibold">
+                    {pets.filter((pet) => pet[3] === category[1]).length}
+                  </section>
+                </div>
+              ))}
+            </section>
+          </main>
         </InformationModal>
         <FormModal
           button={
-            <div className="border-0 py-2 px-5 text-sm rounded-full bg-red-400 hover:bg-red-500 shadow-sm text-white">
+            <div className="border-0 py-2 px-5 text-sm rounded-full bg-red-500 hover:bg-red-600 shadow-sm text-white">
               Add Pet
             </div>
           }
@@ -138,7 +140,7 @@ export default function Page() {
       <section>
         <main>
           <header className="mb-3">
-            <section className="flex p-3 bg-neutral-100 border border-neutral-300 rounded text-sm">
+            <section className="flex p-3 bg-neutral-800 rounded text-sm">
               <div className="flex-none overflow-hidden truncate px-2 w-2/12">
                 Name
               </div>
@@ -164,7 +166,7 @@ export default function Page() {
                     pet[6] === "TRUE" && (
                       <section
                         key={petkey}
-                        className={`h-20 w-full flex items-center px-3 bg-white rounded text-sm border border-neutral-300 ${getPetColor(
+                        className={`h-20 w-full flex items-center px-3 bg-neutral-800 rounded ${getPetColor(
                           pet[3],
                           petCategories
                         )}`}

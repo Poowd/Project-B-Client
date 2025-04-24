@@ -9,6 +9,7 @@ export default function PetInformation({
   children,
   buttons,
   color,
+  bg_color,
 }) {
   return (
     <InformationModal
@@ -24,18 +25,20 @@ export default function PetInformation({
                 ></img>
               </figure>
             </section>
-            <section className="flex-none">{name}</section>
+            <section className={`flex-none ${color} text-lg font-bold`}>
+              {name}
+            </section>
           </main>
         </div>
       }
       buttons={buttons}
     >
-      <main className={`h-fit lg:h-full lg:flex gap-5`}>
-        <section className="flex-1 rounded p-5 h-full overflow-y-auto">
+      <main className={`h-fit lg:h-full lg:flex`}>
+        <section className={`flex-1 p-10 h-full overflow-y-auto ${bg_color}`}>
           <main className="h-full flex flex-col">
             <section className="lg:w-full flex flex-col items-center mb-5">
               <div className="text-center">
-                <h1 className={`text-xl font-bold ${color}`}>{name}</h1>
+                <h1 className={`text-4xl font-bold`}>{name}</h1>
                 <h3>{type} Pet</h3>
               </div>
               <figure className="size-40 p-2">
@@ -51,14 +54,16 @@ export default function PetInformation({
             </section>
           </main>
         </section>
-        <section className="flex-none h-full lg:w-1/2 lg:border-l border-l-neutral-300 p-5 overflow-y-auto">
+        <section className="flex-none h-full lg:w-1/2  p-10 overflow-y-auto bg-neutral-900 text-neutral-300">
           <main>
             <header className="text-center mb-5">
               <h1 className={`text-2xl font-semibold ${color}`}>{title}</h1>
             </header>
             <main className="flex flex-col gap-3">
               <main className="mb-5">
-                <pre className="text-justify leading-8 text-sm">{lore}</pre>
+                <pre className="text-justify leading-8 font-extralight">
+                  {lore}
+                </pre>
               </main>
             </main>
           </main>

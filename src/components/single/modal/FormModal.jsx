@@ -25,7 +25,7 @@ export default function FormModal({ button, children }) {
         >
           <main className="w-full h-full flex flex-col gap-3 pe-3 lg:pe-0">
             <section className="flex-none flex justify-end gap-3">
-              <div className="border border-neutral-300 p-2 rounded-full flex gap-2 bg-white">
+              <div className="p-2 rounded-full flex gap-2 bg-neutral-900">
                 <button
                   onClick={() => setIsOpen(false)}
                   className="outline-0 p-0 m-0"
@@ -36,7 +36,7 @@ export default function FormModal({ button, children }) {
                 </button>
               </div>
             </section>
-            <section className="flex-1 border border-neutral-300 rounded bg-white overflow-y-auto">
+            <section className="flex-1 h-full bg-neutral-900 overflow-y-auto rounded">
               {children}
             </section>
           </main>
