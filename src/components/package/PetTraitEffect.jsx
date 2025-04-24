@@ -26,7 +26,7 @@ export default function PeteffectEffect({
               >
                 <main className="text-sm text-start">
                   <section>
-                    <h3>{`Unlocks at level ${effect[3]}`}</h3>
+                    <h3>{`Pet Level ${effect[3]}`}</h3>
                   </section>
                   <section>
                     <pre>{effect[4]}</pre>
