@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="h-screen w-full overflow-y-hidden flex justify-center bg-linear-180 from-neutral-900 to-slate-900 text-neutral-300 relative">
+      <body className="h-screen w-full overflow-y-hidden flex justify-center bg-linear-180 from-neutral-900 to-slate-900 text-neutral-300 font-light relative select-none scroll-smooth appearance-none">
         {children}
       </body>
     </html>

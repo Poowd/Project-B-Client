@@ -9,6 +9,9 @@ import SkeletonCubiods_1 from "../../../components/package/SkeletonCubiods_1";
 import { getPetColor } from "../../../hooks/functions/getPetColor";
 import { getPetBackgroundColor } from "../../../hooks/functions/getPetBackgroundColor";
 import { getPetHighlights } from "../../../hooks/functions/getPetHighlights";
+import InformationModal from "../../../components/single/modal/InformationModal";
+import { getColor } from "../../../hooks/functions/getColor";
+import { getBackgroundColor } from "../../../hooks/functions/getBackgroundColor";
 
 export default function Page() {
   const [isPending, startTransition] = useTransition();
@@ -63,7 +66,42 @@ export default function Page() {
           onChange={(e) => setSearch(e.target.value)}
         ></Input>
       }
-      buttons={<></>}
+      buttons={
+        <>
+          <InformationModal
+            button={
+              <div className="border-0 py-2 px-5 text-sm rounded-full bg-neutral-800 hover:bg-red-600 cursor-pointer shadow-sm text-white">
+                Categories
+              </div>
+            }
+            buttons={<></>}
+          >
+            <main className="h-full p-10 bg-neutral-900">
+              <header className="mb-5">
+                <h1 className="text-4xl text-cyan-600">Categories</h1>
+                <p className="w-1/2 text-neutral-500">
+                  This contains the list of available categories!
+                </p>
+              </header>
+              <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                {petCategories.map((category, categorykey) => (
+                  <div
+                    key={categorykey}
+                    className={`h-20 w-full flex items-center justify-between px-5 bg-neutral-800 rounded font-extrabold ${getBackgroundColor(
+                      category[3]
+                    )}`}
+                  >
+                    <section>{category[1]}</section>
+                    <section className="text-2xl">
+                      {pets.filter((pet) => pet[3] === category[1]).length}
+                    </section>
+                  </div>
+                ))}
+              </section>
+            </main>
+          </InformationModal>
+        </>
+      }
     >
       {isPending && <SkeletonCubiods_1></SkeletonCubiods_1>}
       {!isPending && (

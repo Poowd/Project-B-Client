@@ -1,7 +1,7 @@
 export default function Card2({ background, image, title, children }) {
   return (
     <main
-      className={`w-full aspect-video flex items-center p-10 rounded delay-300 duration-150 ease-in-out ${background}`}
+      className={`w-full aspect-video flex items-center p-10 rounded delay-300 duration-150 ease-in-out ${background} scale-up-center`}
     >
       <section
         className={`flex-none h-4/5 aspect-square border border-white rounded-full flex justify-center items-center`}

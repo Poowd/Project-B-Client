@@ -4,11 +4,10 @@ import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
 import { AiOutlineHome } from "react-icons/ai";
-import { useRouter } from "next/navigation";
 import { PiDog } from "react-icons/pi";
+import SidebarButton from "../single/button/SidebarButton";
 
 export default function Sidebar({ children }) {
-  const router = useRouter();
   const [sidebarStatus, setSidebarStatus] = useState(true);
 
   const Sidebar = (open) => {
@@ -41,36 +40,22 @@ export default function Sidebar({ children }) {
           </button>
         </div>
       </section>
-      <hr className="w-full mb-5 text-neutral-100" />
+      <hr className="w-full mb-5 text-neutral-800" />
       <section className="flex flex-col gap-2">
-        <button
-          onClick={() => router.push("/pages")}
-          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
-            sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
-          }`}
+        <SidebarButton
+          path={"/pages"}
+          icon={<AiOutlineHome />}
+          sidebarStatus={sidebarStatus}
         >
-          <span className="mx-auto lg:mx-0 text-xl">
-            <AiOutlineHome />
-          </span>
-          {sidebarStatus && (
-            <span className="w-0 lg:w-fit hidden lg:block ms-1">Home</span>
-          )}
-        </button>
-        <button
-          onClick={() => router.push("/pages/cubiods")}
-          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
-            sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
-          }`}
+          Home
+        </SidebarButton>
+        <SidebarButton
+          path={"/pages/cubiods"}
+          icon={<PiDog />}
+          sidebarStatus={sidebarStatus}
         >
-          <span className="mx-auto lg:mx-0 text-xl">
-            <PiDog />
-          </span>
-          {sidebarStatus && (
-            <span className="w-0 lg:w-fit hidden lg:block ms-1">
-              Pets: Cubiods
-            </span>
-          )}
-        </button>
+          Pets
+        </SidebarButton>
       </section>
     </main>
   );
