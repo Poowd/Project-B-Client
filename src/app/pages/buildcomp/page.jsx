@@ -68,16 +68,20 @@ export default function Page() {
       {isPending && <SkeletonCubiods_1></SkeletonCubiods_1>}
       {!isPending && (
         <>
-          {buildcomps?.map((buildcomp, buildcompkey) => (
-            <Card4
-              key={buildcompkey}
-              title={buildcomp[1]}
-              subtitle={buildcomp[2]}
-              start={buildcomp[3]}
-              end={buildcomp[4]}
-              image={buildcomp[6]}
-            ></Card4>
-          ))}
+          {buildcomps?.map(
+            (buildcomp, buildcompkey) =>
+              (buildcomp[1]?.toLowerCase().includes(search.toLowerCase()) ||
+                search == null) && (
+                <Card4
+                  key={buildcompkey}
+                  title={buildcomp[1]}
+                  subtitle={buildcomp[2]}
+                  start={buildcomp[3]}
+                  end={buildcomp[4]}
+                  image={buildcomp[6]}
+                ></Card4>
+              )
+          )}
         </>
       )}
     </BuildCompContent>
