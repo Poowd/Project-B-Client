@@ -12,9 +12,9 @@ export default function Sidebar({ children }) {
 
   const Sidebar = (open) => {
     if (open) {
-      return "w-20 lg:w-72";
+      return "w-14 lg:w-72";
     }
-    return "w-20";
+    return "w-14 lg:w-20";
   };
 
   return (

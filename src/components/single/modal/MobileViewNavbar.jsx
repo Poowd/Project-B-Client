@@ -1,0 +1,43 @@
+"use client";
+
+import { Dialog, DialogPanel } from "@headlessui/react";
+import { useState } from "react";
+import TableButton from "../button/TableButton";
+import { IoCloseOutline } from "react-icons/io5";
+
+export default function MobileViewNavbar({ button, children }) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)} className={`outline-0 p-0 m-0`}>
+        {button}
+      </button>
+
+      <Dialog
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        className={
+          "fixed top-0 left-0 h-screen w-screen flex justify-center items-center backdrop-blur-sm z-100 bg-black/50"
+        }
+      >
+        <DialogPanel className={"h-full lg:h-11/12 w-full lg:w-4/6 lg:rounded"}>
+          <main className="w-full h-full flex lg:hidden flex-col gap-1 lg:gap-3 lg:pe-0  bg-neutral-900">
+            <section className="flex-none flex justify-end gap-3 p-2">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="outline-0 p-0 m-0"
+              >
+                <TableButton>
+                  <IoCloseOutline />
+                </TableButton>
+              </button>
+            </section>
+            <section className="flex-1 overflow-y-auto py-5 px-10">
+              {children}
+            </section>
+          </main>
+        </DialogPanel>
+      </Dialog>
+    </>
+  );
+}

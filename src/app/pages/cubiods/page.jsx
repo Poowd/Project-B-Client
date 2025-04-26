@@ -4,13 +4,11 @@ import { Suspense, useEffect, useState, useTransition } from "react";
 import CubiodsContent from "../../../components/pages/CubiodsContent";
 import Input from "../../forms/input/Input";
 import PetInformation from "../../../components/package/PetInformation";
-import PeteffectEffect from "../../../components/package/PetEffect";
 import SkeletonCubiods_1 from "../../../components/package/SkeletonCubiods_1";
 import { getPetColor } from "../../../hooks/functions/getPetColor";
 import { getPetBackgroundColor } from "../../../hooks/functions/getPetBackgroundColor";
 import { getPetHighlights } from "../../../hooks/functions/getPetHighlights";
 import InformationModal from "../../../components/single/modal/InformationModal";
-import { getColor } from "../../../hooks/functions/getColor";
 import { getBackgroundColor } from "../../../hooks/functions/getBackgroundColor";
 import PetEffect from "../../../components/package/PetEffect";
 import PetTag from "../../../components/package/PetTag";
@@ -85,9 +83,9 @@ export default function Page() {
             buttons={<></>}
           >
             <main className="h-full p-10 bg-neutral-900">
-              <header className="mb-5">
+              <header className="mb-5 text-center md:text-start">
                 <h1 className="text-4xl text-cyan-600">Categories</h1>
-                <p className="w-1/2 text-neutral-500">
+                <p className="w-full lg:w-1/2 text-neutral-500">
                   This contains the list of available categories!
                 </p>
               </header>
@@ -113,9 +111,9 @@ export default function Page() {
             buttons={<></>}
           >
             <main className="h-full p-10 bg-neutral-900">
-              <header className="mb-5">
+              <header className="mb-5 text-center md:text-start">
                 <h1 className="text-4xl text-cyan-600">Tags</h1>
-                <p className="w-1/2 text-neutral-500">
+                <p className="w-full lg:w-1/2 text-neutral-500">
                   This contains the list of available tags!
                 </p>
               </header>

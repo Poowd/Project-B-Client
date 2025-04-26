@@ -1,5 +1,3 @@
-import InformationModal from "../single/modal/InformationModal";
-
 export default function PetDetails({ pet, children }) {
   return (
     <main className="h-fit lg:h-full lg:flex bg-neutral-900 text-neutral-300">
