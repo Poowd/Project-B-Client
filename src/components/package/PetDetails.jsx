@@ -28,7 +28,7 @@ export default function PetDetails({ pet, children }) {
       </section>
       <section className="flex-none h-full lg:w-1/2 p-10 overflow-y-auto">
         <main>
-          <section className="flex flex-col gap-3 text-center">
+          <section className="flex flex-col gap-5 text-center">
             {children}
           </section>
         </main>

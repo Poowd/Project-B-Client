@@ -37,7 +37,7 @@ export default function PetInformation({
                 ></img>
               </figure>
             </section>
-            <section className="flex flex-col gap-3 text-center">
+            <section className="flex flex-col gap-5 text-center">
               {children}
             </section>
           </main>

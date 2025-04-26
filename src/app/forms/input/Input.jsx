@@ -6,6 +6,8 @@ export default function Input({ style, onChange, placeholder, id }) {
         placeholder={placeholder}
         id={id}
         onChange={onChange}
+        autoComplete="off"
+        autoCapitalize="on"
       />
     </div>
   );

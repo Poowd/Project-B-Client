@@ -1,14 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import Card3 from "../../components/single/card/Card3";
+import DashboardContent from "../../components/pages/DashboardContent";
 
 export default function Home() {
-  const [pets, setPets] = useState([]);
+  const [isPending, startTransition] = useTransition();
+  const [cubiods, setCubiods] = useState(0);
 
-  useEffect(() => {
-    const getList = async () => {
+  const getGoogleSheetData = () => {
+    startTransition(async () => {
       try {
-        const response = await fetch(`./api/pets`, {
+        const response = await fetch(`../../api/dashboard`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -16,39 +18,33 @@ export default function Home() {
         });
 
         // Parse the response content
-        const petsFetched = await response.json();
-        console.log(petsFetched.data.pets);
+        const fetchData = await response.json();
 
-        return setPets(petsFetched.data.pets);
+        setCubiods(fetchData.cubiods);
+        return;
       } catch (error) {
         console.log(error);
       }
-    };
+    });
+  };
 
-    getList();
+  useEffect(() => {
+    getGoogleSheetData();
   }, []);
 
   return (
-    <main>
-      <header className="w-full h-fit flex items-center gap-2">
-        <main className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          <Card3 data={0}>Cubiods</Card3>
-          <section className="h-40 border border-neutral-300 rounded p-5 text-center flex flex-col justify-center gap-3">
-            <h3 className="text-lg">Build Competitions</h3>
-            <h1 className="text-4xl font-bold text-cyan-600">0</h1>
-          </section>
-          <section className="h-40 border border-neutral-300 rounded p-5 text-center flex flex-col justify-center gap-3">
-            <h3 className="text-lg">Parkours</h3>
-            <h1 className="text-4xl font-bold text-cyan-600">0</h1>
-          </section>
-          <section className="h-40 border border-neutral-300 rounded p-5 text-center flex flex-col justify-center gap-3">
-            <h3 className="text-lg">Areas</h3>
-            <h1 className="text-4xl font-bold text-cyan-600">0</h1>
-          </section>
-        </main>
-      </header>
-
-      <section className="w-full mb-5 grid grid-cols-3 lg:grid-cols-7 gap-3"></section>
-    </main>
+    <DashboardContent
+      cards={
+        <>
+          <Card3 data={cubiods}>Cubiods</Card3>
+          <Card3 data={0}>Build Competitions</Card3>
+          <Card3 data={0}>Parkours</Card3>
+          <Card3 data={0}>Realms</Card3>
+        </>
+      }
+    >
+      <main className="flex-1 border border-neutral-800"></main>
+      <main className="flex-none w-2/6 border border-neutral-800"></main>
+    </DashboardContent>
   );
 }

@@ -1,3 +1,3 @@
 export default async function Layout({ children }) {
-  return <main className="w-full">{children}</main>;
+  return <main className="h-full w-full">{children}</main>;
 }

@@ -31,7 +31,7 @@ export default function Sidebar({ children }) {
           }`}
         >
           <button
-            className="size-8 rounded-full text-xs hover:cursor-pointer hover:bg-neutral-950 delay-100 duration-300 flex justify-center items-center"
+            className="size-8 rounded-full text-xs hover:cursor-pointer hover:bg-neutral-950 delay-100 duration-100 flex justify-center items-center"
             onClick={() => {
               setSidebarStatus(!sidebarStatus);
             }}

@@ -34,7 +34,7 @@ export default function Devspot_Sidebar({ children }) {
           }`}
         >
           <button
-            className="size-8 rounded-full text-xs hover:cursor-pointer hover:bg-neutral-950 delay-100 duration-300 flex justify-center items-center"
+            className="size-8 rounded-full text-xs hover:cursor-pointer hover:bg-neutral-950 delay-100 duration-100 flex justify-center items-center"
             onClick={() => {
               setSidebarStatus(!sidebarStatus);
             }}
@@ -47,7 +47,7 @@ export default function Devspot_Sidebar({ children }) {
       <section className="flex flex-col gap-2">
         <button
           onClick={() => router.push("/pages/")}
-          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
+          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-100 flex justify-start items-center ${
             sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
           }`}
         >
@@ -61,7 +61,7 @@ export default function Devspot_Sidebar({ children }) {
         <hr className="my-3 text-neutral-700" />
         <button
           onClick={() => router.push("/devspot/pages")}
-          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
+          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-100 flex justify-start items-center ${
             sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
           }`}
         >
@@ -74,7 +74,7 @@ export default function Devspot_Sidebar({ children }) {
         </button>
         <button
           onClick={() => router.push("/devspot/pages/cubiods")}
-          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
+          className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-100 flex justify-start items-center ${
             sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
           }`}
         >
@@ -89,7 +89,7 @@ export default function Devspot_Sidebar({ children }) {
         </button>
         <a href="/auth/logout">
           <button
-            className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-300 flex justify-start items-center ${
+            className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-400 delay-75 duration-100 flex justify-start items-center ${
               sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
             }`}
           >

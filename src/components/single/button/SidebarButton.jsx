@@ -8,7 +8,7 @@ export default function SidebarButton({ path, icon, children, sidebarStatus }) {
   return (
     <button
       onClick={() => router.push(path)}
-      className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-600 hover:scale-105 delay-75 duration-300 flex justify-start items-center ${
+      className={`w-full rounded text-sm py-3 hover:cursor-pointer hover:bg-neutral-950 hover:text-red-600 hover:scale-105 delay-75 duration-100 flex justify-start items-center ${
         sidebarStatus ? "lg:ps-5" : "lg:ps-2.5"
       }`}
     >

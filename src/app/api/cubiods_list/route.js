@@ -24,9 +24,14 @@ export async function GET(request) {
       spreadsheetId: SPREADSHEET_ID,
       range: `Cubiod_Category!A:E`,
     });
-
-    console.log(JSON.stringify(cubiodsList.data));
-    console.log(JSON.stringify(cubiodsTraitList.data));
+    const cubiodsTagsList = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `Cubiod_Tags!A:C`,
+    });
+    const cubiodsPetTagsList = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `Cubiods_Tag_Sheet!A:D`,
+    });
 
     return NextResponse.json(
       {
@@ -34,6 +39,8 @@ export async function GET(request) {
         traits: cubiodsTraitList.data.values,
         skills: cubiodsSkillList.data.values,
         categories: cubiodsCategoriesList.data.values,
+        tags: cubiodsTagsList.data.values,
+        petTags: cubiodsPetTagsList.data.values,
       },
       {
         status: 200,

@@ -4,7 +4,7 @@ import { Suspense, useEffect, useState, useTransition } from "react";
 import CubiodsContent from "../../../components/pages/CubiodsContent";
 import Input from "../../forms/input/Input";
 import PetInformation from "../../../components/package/PetInformation";
-import PeteffectEffect from "../../../components/package/PetTraitEffect";
+import PeteffectEffect from "../../../components/package/PetEffect";
 import SkeletonCubiods_1 from "../../../components/package/SkeletonCubiods_1";
 import { getPetColor } from "../../../hooks/functions/getPetColor";
 import { getPetBackgroundColor } from "../../../hooks/functions/getPetBackgroundColor";
@@ -12,6 +12,9 @@ import { getPetHighlights } from "../../../hooks/functions/getPetHighlights";
 import InformationModal from "../../../components/single/modal/InformationModal";
 import { getColor } from "../../../hooks/functions/getColor";
 import { getBackgroundColor } from "../../../hooks/functions/getBackgroundColor";
+import PetEffect from "../../../components/package/PetEffect";
+import PetTag from "../../../components/package/PetTag";
+import RegularButton from "../../../components/single/button/RegularButton";
 
 export default function Page() {
   const [isPending, startTransition] = useTransition();
@@ -19,6 +22,8 @@ export default function Page() {
   const [petTraits, setPetTraits] = useState([]);
   const [petSkills, setPetSkills] = useState([]);
   const [petCategories, setPetCategories] = useState([]);
+  const [petTags, setPetTags] = useState([]);
+  const [petCubiodTag, setPetCubiodTag] = useState([]);
   const [search, setSearch] = useState("");
 
   const getGoogleSheetData = () => {
@@ -38,6 +43,8 @@ export default function Page() {
         setPetTraits(fetchData.traits.slice(1));
         setPetSkills(fetchData.skills.slice(1));
         setPetCategories(fetchData.categories.slice(1));
+        setPetTags(fetchData.tags.slice(1));
+        setPetCubiodTag(fetchData.petTags.slice(1));
         return;
       } catch (error) {
         console.log(error);
@@ -52,6 +59,11 @@ export default function Page() {
   const getCubiodsEffect = (array, column, id) => {
     const Effect = array.filter((pet) => pet[column] === id);
     return Effect;
+  };
+
+  const getCubiodsTag = (array, column, id) => {
+    const Tag = array.filter((pet) => pet[column] === id);
+    return Tag;
   };
 
   return (
@@ -69,11 +81,7 @@ export default function Page() {
       buttons={
         <>
           <InformationModal
-            button={
-              <div className="border-0 py-2 px-5 text-sm rounded-full bg-neutral-800 hover:bg-red-600 cursor-pointer shadow-sm text-white">
-                Categories
-              </div>
-            }
+            button={<RegularButton>Categories</RegularButton>}
             buttons={<></>}
           >
             <main className="h-full p-10 bg-neutral-900">
@@ -94,6 +102,32 @@ export default function Page() {
                     <section>{category[1]}</section>
                     <section className="text-2xl">
                       {pets.filter((pet) => pet[3] === category[1]).length}
+                    </section>
+                  </div>
+                ))}
+              </section>
+            </main>
+          </InformationModal>
+          <InformationModal
+            button={<RegularButton>Tags</RegularButton>}
+            buttons={<></>}
+          >
+            <main className="h-full p-10 bg-neutral-900">
+              <header className="mb-5">
+                <h1 className="text-4xl text-cyan-600">Tags</h1>
+                <p className="w-1/2 text-neutral-500">
+                  This contains the list of available tags!
+                </p>
+              </header>
+              <section className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                {petTags.map((tag, tagkey) => (
+                  <div
+                    key={tagkey}
+                    className={`h-20 w-full flex items-center justify-between px-5 bg-neutral-800 rounded`}
+                  >
+                    <section>{tag[1]}</section>
+                    <section className="font-semibold">
+                      {petCubiodTag.filter((pet) => pet[2] === tag[1]).length}
                     </section>
                   </div>
                 ))}
@@ -121,16 +155,21 @@ export default function Page() {
                   lore={pet[5]}
                   buttons={<></>}
                 >
-                  <PeteffectEffect
+                  <PetTag
+                    highlight={getPetHighlights(pet[3], petCategories)}
+                    title={"Available on!"}
+                    tags={getCubiodsTag(petCubiodTag, 1, pet[0])}
+                  ></PetTag>
+                  <PetEffect
                     highlight={getPetHighlights(pet[3], petCategories)}
                     title={"Traits"}
                     effects={getCubiodsEffect(petTraits, 1, pet[0])}
-                  ></PeteffectEffect>
-                  <PeteffectEffect
+                  ></PetEffect>
+                  <PetEffect
                     highlight={getPetHighlights(pet[3], petCategories)}
                     title={"Skills"}
                     effects={getCubiodsEffect(petSkills, 1, pet[0])}
-                  ></PeteffectEffect>
+                  ></PetEffect>
                 </PetInformation>
               )
           )}

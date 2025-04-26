@@ -5,7 +5,7 @@ import FormModal from "../single/modal/FormModal";
 import PetDetail from "../single/modal/PetDetail";
 import EditEffect from "../../app/forms/EditEffect";
 
-export default function PeteffectEffect({
+export default function PetEffect({
   title,
   effects,
   fetchOnFinish,
