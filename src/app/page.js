@@ -16,6 +16,7 @@ import {
   PopoverButton,
   PopoverPanel,
 } from "@headlessui/react";
+import { LuHammer } from "react-icons/lu";
 
 export default function Page() {
   return (
@@ -103,7 +104,7 @@ export default function Page() {
             </main>
             <main className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               <Card1 icon={<MdOutlinePets />}>Pets</Card1>
-              <Card1 icon={<FaHammer />}>BuildComp</Card1>
+              <Card1 icon={<LuHammer />}>BuildComp</Card1>
             </main>
           </Content_1>
         </section>

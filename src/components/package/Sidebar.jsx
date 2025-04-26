@@ -6,6 +6,8 @@ import { IoIosArrowForward } from "react-icons/io";
 import { AiOutlineHome } from "react-icons/ai";
 import { PiDog } from "react-icons/pi";
 import SidebarButton from "../single/button/SidebarButton";
+import { FaHammer } from "react-icons/fa6";
+import { LuHammer } from "react-icons/lu";
 
 export default function Sidebar({ children }) {
   const [sidebarStatus, setSidebarStatus] = useState(true);
@@ -55,6 +57,13 @@ export default function Sidebar({ children }) {
           sidebarStatus={sidebarStatus}
         >
           Pets
+        </SidebarButton>
+        <SidebarButton
+          path={"/pages/buildcomp"}
+          icon={<LuHammer />}
+          sidebarStatus={sidebarStatus}
+        >
+          BuildComp
         </SidebarButton>
       </section>
     </main>

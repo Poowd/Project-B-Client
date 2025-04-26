@@ -26,11 +26,11 @@ export async function GET(request) {
     });
     const cubiodsTagsList = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `Cubiod_Tags!A:C`,
+      range: `Cubiods_Tag_Sheet!A:C`,
     });
     const cubiodsPetTagsList = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `Cubiods_Tag_Sheet!A:D`,
+      range: `Cubiods_Tag_Sheet!E:H`,
     });
 
     return NextResponse.json(
