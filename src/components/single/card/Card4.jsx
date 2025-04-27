@@ -10,7 +10,7 @@ export default function Card4({
     <main className="w-full h-fit border border-neutral-800 rounded">
       <figure className="w-full aspect-video border border-neutral-800 rounded-t">
         <img
-          src={`${image}`}
+          src={image}
           alt={children}
           className={"size-full object-cover"}
         ></img>
