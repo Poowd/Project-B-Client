@@ -34,7 +34,7 @@ export default function BuildCompInformation({ buildcomp, children, buttons }) {
             <section className="flex-1 text-justify text-neutral-500">
               <pre>{buildcomp[5]}</pre>
             </section>
-            <section className="flex-none w-2/6 text-center flex flex-col gap-5">
+            <section className="flex-none w-full md:w-2/6 text-center flex flex-col gap-5">
               <h3 className="">Rewards</h3>
               {children}
             </section>
