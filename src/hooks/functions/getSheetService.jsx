@@ -7,10 +7,9 @@ const CREDENTIALS_PATH = path.join(
   process.cwd(),
   "src",
   "app",
-  "credentials.json"
+  process.env.GOOGLE_APPLICATION_CREDENTIALS
 ); // adjust path as needed
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
-const APPLICATION_NAME = "Wikitopia";
 
 export function getSheetsService() {
   try {
