@@ -1,19 +1,25 @@
 // app/api/sheets/route.js
 import { google } from "googleapis";
-import fs from "fs";
-import path from "path";
 
-const CREDENTIALS_PATH = path.join(
-  process.cwd(),
-  "src",
-  "app",
-  process.env.GOOGLE_APPLICATION_CREDENTIALS
-); // adjust path as needed
+const credentials = {
+  type: "service_account",
+  project_id: process.env.PROJECT_ID,
+  private_key_id: process.env.PRIVATE_KEY_ID,
+  private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"),
+  client_email: process.env.CLIENT_EMAIL,
+  client_id: process.env.CLIENT_ID,
+  auth_uri: process.env.AUTH_URI,
+  token_uri: process.env.TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.AUTH_PROVIDER_X509_CERT_URL,
+  client_x509_cert_url: process.env.CLIENT_X509_CERT_URL,
+  universe_domain: "googleapis.com",
+};
+console.log("credentials", credentials);
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 
 export function getSheetsService() {
   try {
-    const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH));
+    //const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH));
     const auth = new google.auth.GoogleAuth({
       credentials,
       scopes: SCOPES,
