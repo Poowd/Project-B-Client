@@ -30,7 +30,7 @@ export default function BuildCompInformation({ buildcomp, children, buttons }) {
             <p className="text-neutral-500">{`${buildcomp[3]} until ${buildcomp[4]}`}</p>
             <hr className="my-5" />
           </section>
-          <main className="flex gap-5 lg:gap-10">
+          <main className="flex flex-col md:flex-row gap-5 lg:gap-10">
             <section className="flex-1 text-justify text-neutral-500">
               <pre>{buildcomp[5]}</pre>
             </section>
