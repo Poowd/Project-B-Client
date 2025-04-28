@@ -8,19 +8,19 @@ export async function GET(request) {
 
   // Example usage: read data from a spreadsheet
   try {
-    const cubiodsList = await sheets.spreadsheets.values.get({
+    const buildcompRewardsLists = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `Cubiods_Sheet!A:G`,
+      range: `BuildComp_Rewards_Sheet!A:F`,
     });
-    const cubiodsCategoriesList = await sheets.spreadsheets.values.get({
+    const buildcompRewardTypesLists = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `Cubiod_Category!A:E`,
+      range: `Rewards_Types!A:C`,
     });
 
     return NextResponse.json(
       {
-        pets: cubiodsList.data.values,
-        categories: cubiodsCategoriesList.data.values,
+        rewards: buildcompRewardsLists.data.values,
+        rewardTypes: buildcompRewardTypesLists.data.values,
       },
       {
         status: 200,

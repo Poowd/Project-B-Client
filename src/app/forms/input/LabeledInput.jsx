@@ -6,6 +6,7 @@ export default function LabeledInput({
   label,
   value,
   required,
+  type,
 }) {
   return (
     <div className="flex flex-col text-start">
@@ -19,6 +20,7 @@ export default function LabeledInput({
         onChange={onChange}
         value={value}
         required={required}
+        type={type}
       />
     </div>
   );

@@ -1,4 +1,5 @@
 import Layout_1 from "../../../components/Layout_1";
+import Devspot_Sidebar from "../../../components/package/Devspot_Sidebar";
 import Navbar from "../../../components/package/Navbar";
 import Sidebar from "../../../components/package/Sidebar";
 
@@ -12,7 +13,7 @@ export default async function Layout({ children }) {
         <section className="flex-1 p-0 lg:p-5 overflow-y-hidden">
           <main className={`h-full w-full flex gap-5`}>
             <section className={`flex-none h-full bg-neutral-950 lg:rounded`}>
-              <Sidebar></Sidebar>
+              <Devspot_Sidebar></Devspot_Sidebar>
             </section>
             <section className="flex-1 h-full overflow-y-auto">
               {children}

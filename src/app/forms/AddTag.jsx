@@ -29,13 +29,17 @@ export default function AddTag({ fetchOnFinish, ID, tags, tag }) {
       if (checkedTags.length > 0) {
         try {
           checkedTags.forEach(async (tag) => {
-            await fetch("/api/add_tag", {
+            const response = await fetch("/api/add_tag", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 row: [uuidv4(), ID, tag, "TRUE"],
               }),
             });
+
+            // Parse the response content
+            const res = await response.json();
+            console.log(res);
           });
 
           fetchOnFinish();

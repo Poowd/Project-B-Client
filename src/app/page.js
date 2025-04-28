@@ -31,11 +31,11 @@ export default function Page() {
               <main className="border border-neutral-800 bg-neutral-900 rounded w-full flex flex-col lg:flex-row items-center text-center lg:text-start">
                 <section className="flex-1 p-10">
                   <h1 className="text-4xl text-cyan-600">
-                    Welcome to Archetopia
+                    Welcome to Wikitopia
                   </h1>
                   <p className="text-neutral-500 mb-10">
                     Navigate to different contents and guides available here at
-                    Archetopia.
+                    Wikitopia.
                   </p>
                   <Link
                     href={"/pages/"}
@@ -59,10 +59,10 @@ export default function Page() {
             <main className="h-fit mb-20">
               <section className="text-center mb-5">
                 <h1 className="text-5xl font-bold text-cyan-600 mb-5">
-                  Archetopia
+                  Wikitopia
                 </h1>
                 <p className="text-neutral-500 text-lg">
-                  Archetopia is one of the realms of Philippine Minecraft
+                  Wikitopia is one of the realms of Philippine Minecraft
                   Server, Cyan Realms. As the Guardians embark on lengthly
                   journey across the realms, the Archetypes, seeker of knowledge
                   and information distribution, will provide assistance in

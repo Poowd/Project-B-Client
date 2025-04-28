@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getSheetsService } from "../../../hooks/functions/getSheetService";
 
 const SPREADSHEET_ID = "1pSsAF5l_eZ0eDxEWn91ELNGZ6GaHXRbQJyfUpC_CKlM"; // <- paste your spreadsheet ID here
-const SHEET_NAME = "Cubiods_Tag_Sheet"; // <- adjust if your sheet has a different name
+const SHEET_NAME = "BuildComp_Sheet"; // <- adjust if your sheet has a different name
 
 export async function POST(request) {
   const sheets = getSheetsService();

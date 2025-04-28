@@ -24,7 +24,7 @@ export default function Page() {
   const [petCubiodTag, setPetCubiodTag] = useState([]);
   const [search, setSearch] = useState("");
 
-  const getGoogleSheetData = () => {
+  const loadCubiodsList = () => {
     startTransition(async () => {
       try {
         const response = await fetch(`../../api/cubiods_list`, {
@@ -37,10 +37,30 @@ export default function Page() {
         // Parse the response content
         const fetchData = await response.json();
 
-        setPets(fetchData.pets.slice(1));
+        setPets(fetchData.pets.slice(1).reverse());
+        setPetCategories(fetchData.categories.slice(1));
+        return;
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  };
+
+  const loadEffectAndTags = () => {
+    startTransition(async () => {
+      try {
+        const response = await fetch(`../../api/cubiods_effects`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        // Parse the response content
+        const fetchData = await response.json();
+
         setPetTraits(fetchData.traits.slice(1));
         setPetSkills(fetchData.skills.slice(1));
-        setPetCategories(fetchData.categories.slice(1));
         setPetTags(fetchData.tags.slice(1));
         setPetCubiodTag(fetchData.petTags.slice(1));
         return;
@@ -51,7 +71,8 @@ export default function Page() {
   };
 
   useEffect(() => {
-    getGoogleSheetData();
+    loadCubiodsList();
+    loadEffectAndTags();
   }, []);
 
   const getCubiodsEffect = (array, column, id) => {

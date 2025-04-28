@@ -8,19 +8,29 @@ export async function GET(request) {
 
   // Example usage: read data from a spreadsheet
   try {
-    const cubiodsList = await sheets.spreadsheets.values.get({
+    const cubiodsTraitList = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `Cubiods_Sheet!A:G`,
+      range: `Cubiods_Trait_Sheet!A:F`,
     });
-    const cubiodsCategoriesList = await sheets.spreadsheets.values.get({
+    const cubiodsSkillList = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `Cubiod_Category!A:E`,
+      range: `Cubiods_Skill_Sheet!A:F`,
+    });
+    const cubiodsTagsList = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `Cubiods_Tag!A:C`,
+    });
+    const cubiodsPetTagsList = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `Cubiods_Tag_Sheet!A:D`,
     });
 
     return NextResponse.json(
       {
-        pets: cubiodsList.data.values,
-        categories: cubiodsCategoriesList.data.values,
+        traits: cubiodsTraitList.data.values,
+        skills: cubiodsSkillList.data.values,
+        tags: cubiodsTagsList.data.values,
+        petTags: cubiodsPetTagsList.data.values,
       },
       {
         status: 200,

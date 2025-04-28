@@ -2,47 +2,49 @@
 
 import { useClose } from "@headlessui/react";
 import { useEffect, useState, useTransition } from "react";
-import { v4 as uuidv4 } from "uuid";
-import PetForms from "../../components/package/PetForms";
 import LabeledInput from "./input/LabeledInput";
-import LabeledFileInput from "./input/LabeledFileInput";
 import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
+import PetForms from "../../components/package/PetForms";
 
-export default function AddPet({ fetchOnFinish, totalPets, categories }) {
+export default function EditBuildComp({ fetchOnFinish, entry }) {
   const close = useClose();
   const [isPending, startTransition] = useTransition();
-  const [file, setFile] = useState(null);
 
   const [data, setData] = useState({
-    Name: "",
+    ID: "",
     Title: "",
-    Type: categories[0][1],
-    Lore: "",
+    Subtitle: "",
+    Start: "",
+    End: "",
+    Description: "",
     Image: "",
   });
 
   useEffect(() => {
-    setData((prev) => ({ ...prev, Image: file?.name }));
-  }, [file]);
+    setData(entry);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     startTransition(async () => {
       if (true) {
         try {
-          const response = await fetch("/api/add_cubiods", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
+          const response = await fetch(`/../api/update_buildcomp`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
             body: JSON.stringify({
-              row: [
-                uuidv4(),
-                data.Name,
+              id: data.ID, // match column A
+              updatedValues: [
                 data.Title,
-                data.Type,
+                data.Subtitle,
+                data.Start,
+                data.End,
+                data.Description,
                 data.Image,
-                data.Lore,
-                "TRUE",
               ],
+              startCol: 1, // column B is index 1
             }),
           });
 
@@ -51,7 +53,6 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
 
           console.log(res);
           fetchOnFinish();
-
           close();
           return;
         } catch (error) {
@@ -65,13 +66,13 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
   return (
     <PetForms
       handleSubmit={handleSubmit}
-      title={"Add Pet"}
+      title={"Modify Build Competition"}
       isPending={isPending}
     >
       <LabeledInput
-        label={"Name"}
-        id={"Name"}
-        required={true}
+        label={"Title"}
+        id={"Title"}
+        value={data?.Title}
         onChange={(e) =>
           setData((prev) => ({
             ...prev,
@@ -80,9 +81,9 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
         }
       ></LabeledInput>
       <LabeledInput
-        label={"Title"}
-        id={"Title"}
-        required={true}
+        label={"Subtitle"}
+        id={"Subtitle"}
+        value={data?.Subtitle}
         onChange={(e) =>
           setData((prev) => ({
             ...prev,
@@ -90,35 +91,34 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
           }))
         }
       ></LabeledInput>
-
-      <div className="flex flex-col text-start">
-        <label htmlFor={"Type"} className="text-sm mb-1">
-          Type
-        </label>
-        <select
-          className="py-2 px-3 outline outline-neutral-300  rounded bg-neutral-900"
-          name="Type"
-          id="Type"
-          required
-          onChange={(e) =>
-            setData((prev) => ({
-              ...prev,
-              [e.target.id]: e.target.value,
-            }))
-          }
-        >
-          {categories.map((category) => (
-            <option key={category[0]} value={category[1]}>
-              {category[1]}
-            </option>
-          ))}
-        </select>
-      </div>
-
+      <LabeledInput
+        label={"Start"}
+        id={"Start"}
+        value={data?.Start}
+        type={"date"}
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+          }))
+        }
+      ></LabeledInput>
+      <LabeledInput
+        label={"End"}
+        id={"End"}
+        value={data?.End}
+        type={"date"}
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+          }))
+        }
+      ></LabeledInput>
       <LabeledInput
         label={"Image"}
         id={"Image"}
-        required={true}
+        value={data?.Image}
         onChange={(e) =>
           setData((prev) => ({
             ...prev,
@@ -128,8 +128,9 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
       ></LabeledInput>
 
       <LabeledTextAreaInput
-        label={"Lore"}
-        id={"Lore"}
+        label={"Description"}
+        id={"Description"}
+        value={data?.Description}
         onChange={(e) =>
           setData((prev) => ({
             ...prev,

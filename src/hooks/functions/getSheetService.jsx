@@ -10,7 +10,7 @@ const CREDENTIALS_PATH = path.join(
   "credentials.json"
 ); // adjust path as needed
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
-const APPLICATION_NAME = "Archetopia_Cyan_Realms";
+const APPLICATION_NAME = "Wikitopia";
 
 export function getSheetsService() {
   try {

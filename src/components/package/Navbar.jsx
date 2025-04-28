@@ -12,7 +12,7 @@ export default function Navbar() {
     >
       <section>
         <RedirectButton path={"/"}>
-          <h1 className="text-3xl font-extrabold">Archetopia</h1>
+          <h1 className="text-3xl font-extrabold">Wikitopia</h1>
         </RedirectButton>
       </section>
       <section>

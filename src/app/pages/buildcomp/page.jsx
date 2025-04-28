@@ -1,32 +1,20 @@
 "use client";
 
 import { Suspense, useEffect, useState, useTransition } from "react";
-import CubiodsContent from "../../../components/pages/CubiodsContent";
 import Input from "../../forms/input/Input";
-import PetInformation from "../../../components/package/PetInformation";
 import SkeletonCubiods_1 from "../../../components/package/SkeletonCubiods_1";
-import { getPetColor } from "../../../hooks/functions/getPetColor";
-import { getPetBackgroundColor } from "../../../hooks/functions/getPetBackgroundColor";
-import { getPetHighlights } from "../../../hooks/functions/getPetHighlights";
-import InformationModal from "../../../components/single/modal/InformationModal";
-import { getBackgroundColor } from "../../../hooks/functions/getBackgroundColor";
-import PetEffect from "../../../components/package/PetEffect";
-import PetTag from "../../../components/package/PetTag";
-import RegularButton from "../../../components/single/button/RegularButton";
 import BuildCompContent from "../../../components/pages/BuildCompContent";
-import Card4 from "../../../components/single/card/Card4";
+import BuildCompInformation from "../../../components/package/BuildCompInformation";
+import BuildCompReward from "../../../components/package/BuildCompReward";
 
 export default function Page() {
   const [isPending, startTransition] = useTransition();
   const [buildcomps, setBuildComps] = useState([]);
-  const [petTraits, setPetTraits] = useState([]);
-  const [petSkills, setPetSkills] = useState([]);
-  const [petCategories, setPetCategories] = useState([]);
-  const [petTags, setPetTags] = useState([]);
-  const [petCubiodTag, setPetCubiodTag] = useState([]);
+  const [buildcompsRewards, setBuildCompsRewards] = useState([]);
+  const [buildcompsRewardTypes, setBuildCompsRewardTypes] = useState([]);
   const [search, setSearch] = useState("");
 
-  const getGoogleSheetData = () => {
+  const loadBuildCompList = () => {
     startTransition(async () => {
       try {
         const response = await fetch(`../../api/buildcomp_list`, {
@@ -39,7 +27,7 @@ export default function Page() {
         // Parse the response content
         const fetchData = await response.json();
 
-        setBuildComps(fetchData.buildcomps.slice(1));
+        setBuildComps(fetchData.buildcomps.slice(1).reverse());
         return;
       } catch (error) {
         console.log(error);
@@ -47,9 +35,37 @@ export default function Page() {
     });
   };
 
+  const loadBuildCompRewards = async () => {
+    try {
+      const response = await fetch(`../../api/buildcomp_rewards`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Parse the response content
+      const fetchData = await response.json();
+
+      setBuildCompsRewards(fetchData.rewards.slice(1));
+      setBuildCompsRewardTypes(fetchData.rewardTypes.slice(1));
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    getGoogleSheetData();
+    loadBuildCompList();
+    loadBuildCompRewards();
   }, []);
+
+  const getBuildCompRewards = (array, column, id, type) => {
+    const Rewards = array.filter(
+      (buildcomp) => buildcomp[column] === id && buildcomp[4] === type
+    );
+    return Rewards;
+  };
 
   return (
     <BuildCompContent
@@ -72,14 +88,20 @@ export default function Page() {
             (buildcomp, buildcompkey) =>
               (buildcomp[1]?.toLowerCase().includes(search.toLowerCase()) ||
                 search == null) && (
-                <Card4
-                  key={buildcompkey}
-                  title={buildcomp[1]}
-                  subtitle={buildcomp[2]}
-                  start={buildcomp[3]}
-                  end={buildcomp[4]}
-                  image={buildcomp[6]}
-                ></Card4>
+                <BuildCompInformation key={buildcompkey} buildcomp={buildcomp}>
+                  {buildcompsRewardTypes.map((type, typekey) => (
+                    <BuildCompReward
+                      key={typekey}
+                      title={type[1]}
+                      rewards={getBuildCompRewards(
+                        buildcompsRewards,
+                        1,
+                        buildcomp[0],
+                        type[1]
+                      )}
+                    ></BuildCompReward>
+                  ))}
+                </BuildCompInformation>
               )
           )}
         </>

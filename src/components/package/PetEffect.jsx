@@ -5,16 +5,11 @@ import FormModal from "../single/modal/FormModal";
 import PetDetail from "../single/modal/PetDetail";
 import EditEffect from "../../app/forms/EditEffect";
 
-export default function PetEffect({
-  title,
-  effects,
-  fetchOnFinish,
-  isAdmin,
-  api,
-  highlight,
-}) {
+export default function PetEffect({ title, effects, highlight }) {
   return (
-    <main className="flex flex-col gap-3">
+    <main
+      className={`flex-col gap-3 ${effects.length > 0 ? "flex" : "hidden"}`}
+    >
       <LabeledContent1 label={title}>
         <div className="flex flex-col gap-3">
           {effects &&
@@ -31,29 +26,6 @@ export default function PetEffect({
                   <section>
                     <pre>{effect[4]}</pre>
                   </section>
-                  {isAdmin && (
-                    <section className="mt-5">
-                      <FormModal
-                        button={
-                          <TableButton>
-                            <TbEditCircle />
-                          </TableButton>
-                        }
-                      >
-                        <EditEffect
-                          fetchOnFinish={() => fetchOnFinish()}
-                          api={api}
-                          entry={{
-                            ID: effect[0],
-                            Pet: effect[1],
-                            Effect: effect[2],
-                            Level: effect[3],
-                            Description: effect[4],
-                          }}
-                        ></EditEffect>
-                      </FormModal>
-                    </section>
-                  )}
                 </main>
               </PetDetail>
             ))}

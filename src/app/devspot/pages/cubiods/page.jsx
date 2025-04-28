@@ -11,21 +11,18 @@ import InformationModal from "../../../../components/single/modal/InformationMod
 import { MdOutlineViewInAr } from "react-icons/md";
 import TableButton from "../../../../components/single/button/TableButton";
 import PetDetails from "../../../../components/package/PetDetails";
-import PeteffectEffect from "../../../../components/package/PetEffect";
 import AddTrait from "../../../forms/AddTrait";
 import { LuSmilePlus, LuTags } from "react-icons/lu";
 import { PiTarget } from "react-icons/pi";
 import AddSkill from "../../../forms/AddSkill";
 import SkeletonCubiods_2 from "../../../../components/package/SkeletonCubiods_2";
 import AddCategory from "../../../forms/AddCategory";
-import { getColor } from "../../../../hooks/functions/getColor";
-import { getPetColor } from "../../../../hooks/functions/getPetColor";
-import DevspotCubiodsContent from "../../../../components/pages/DevspotCubiodsContent";
 import AddTags from "../../../forms/AddTags";
 import AddTag from "../../../forms/AddTag";
 import PetEffect from "../../../../components/package/PetEffect";
 import PetTag from "../../../../components/package/PetTag";
 import RegularButton from "../../../../components/single/button/RegularButton";
+import DevspotContent1 from "../../../../components/pages/DevspotCubiodsContent";
 
 export default function Page() {
   const [isPending, startTransition] = useTransition();
@@ -37,7 +34,7 @@ export default function Page() {
   const [petCubiodTag, setPetCubiodTag] = useState([]);
   const [search, setSearch] = useState("");
 
-  const getGoogleSheetData = () => {
+  const loadCubiodsList = () => {
     startTransition(async () => {
       try {
         const response = await fetch(`../../api/cubiods_list`, {
@@ -50,12 +47,8 @@ export default function Page() {
         // Parse the response content
         const fetchData = await response.json();
 
-        setPets(fetchData.pets.slice(1));
-        setPetTraits(fetchData.traits.slice(1));
-        setPetSkills(fetchData.skills.slice(1));
+        setPets(fetchData.pets.slice(1).reverse());
         setPetCategories(fetchData.categories.slice(1));
-        setPetTags(fetchData.tags.slice(1));
-        setPetCubiodTag(fetchData.petTags.slice(1));
         return;
       } catch (error) {
         console.log(error);
@@ -63,8 +56,31 @@ export default function Page() {
     });
   };
 
+  const loadEffectAndTags = async () => {
+    try {
+      const response = await fetch(`../../api/cubiods_effects`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Parse the response content
+      const fetchData = await response.json();
+
+      setPetTraits(fetchData.traits.slice(1));
+      setPetSkills(fetchData.skills.slice(1));
+      setPetTags(fetchData.tags.slice(1));
+      setPetCubiodTag(fetchData.petTags.slice(1));
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    getGoogleSheetData();
+    loadCubiodsList();
+    loadEffectAndTags();
   }, []);
 
   const getCubiodsEffect = (array, column, id) => {
@@ -78,7 +94,7 @@ export default function Page() {
   };
 
   return (
-    <DevspotCubiodsContent
+    <DevspotContent1
       buttons={
         <>
           <FormModal
@@ -89,7 +105,7 @@ export default function Page() {
             }
           >
             <AddPet
-              fetchOnFinish={() => getGoogleSheetData()}
+              fetchOnFinish={() => loadCubiodsList()}
               categories={petCategories}
               totalPets={pets.length}
             ></AddPet>
@@ -106,7 +122,7 @@ export default function Page() {
                   }
                 >
                   <AddCategory
-                    fetchOnFinish={() => getGoogleSheetData()}
+                    fetchOnFinish={() => loadCubiodsList()}
                     totalPets={pets.length}
                   ></AddCategory>
                 </FormModal>
@@ -147,7 +163,7 @@ export default function Page() {
                   }
                 >
                   <AddTags
-                    fetchOnFinish={() => getGoogleSheetData()}
+                    fetchOnFinish={() => loadCubiodsList()}
                     totalPets={pets.length}
                   ></AddTags>
                 </FormModal>
@@ -226,7 +242,7 @@ export default function Page() {
                         }
                       >
                         <UpdateStatus
-                          fetchOnFinish={() => getGoogleSheetData()}
+                          fetchOnFinish={() => loadCubiodsList()}
                           entry={{
                             ID: pet[0],
                             Name: pet[1],
@@ -245,7 +261,7 @@ export default function Page() {
                         }
                       >
                         <EditPet
-                          fetchOnFinish={() => getGoogleSheetData()}
+                          fetchOnFinish={() => loadCubiodsList()}
                           entry={{
                             ID: pet[0],
                             Name: pet[1],
@@ -272,7 +288,7 @@ export default function Page() {
                               }
                             >
                               <AddTag
-                                fetchOnFinish={() => getGoogleSheetData()}
+                                fetchOnFinish={() => loadEffectAndTags()}
                                 ID={pet[0]}
                                 tags={petTags}
                                 tag={getCubiodsTag(petCubiodTag, 1, pet[0])}
@@ -286,7 +302,7 @@ export default function Page() {
                               }
                             >
                               <AddTrait
-                                fetchOnFinish={() => getGoogleSheetData()}
+                                fetchOnFinish={() => loadEffectAndTags()}
                                 ID={pet[0]}
                               ></AddTrait>
                             </FormModal>
@@ -298,7 +314,7 @@ export default function Page() {
                               }
                             >
                               <AddSkill
-                                fetchOnFinish={() => getGoogleSheetData()}
+                                fetchOnFinish={() => loadEffectAndTags()}
                                 ID={pet[0]}
                               ></AddSkill>
                             </FormModal>
@@ -311,16 +327,10 @@ export default function Page() {
                             tags={getCubiodsTag(petCubiodTag, 1, pet[0])}
                           ></PetTag>
                           <PetEffect
-                            isAdmin={true}
-                            fetchOnFinish={() => getGoogleSheetData()}
-                            api={"update_traits"}
                             title={"Traits"}
                             effects={getCubiodsEffect(petTraits, 1, pet[0])}
                           ></PetEffect>
                           <PetEffect
-                            isAdmin={true}
-                            fetchOnFinish={() => getGoogleSheetData()}
-                            api={"update_skills"}
                             title={"Skills"}
                             effects={getCubiodsEffect(petSkills, 1, pet[0])}
                           ></PetEffect>
@@ -333,6 +343,6 @@ export default function Page() {
           </>
         )}
       </main>
-    </DevspotCubiodsContent>
+    </DevspotContent1>
   );
 }
