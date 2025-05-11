@@ -6,6 +6,7 @@ import SkeletonCubiods_1 from "../../../components/package/SkeletonCubiods_1";
 import BuildCompContent from "../../../components/pages/BuildCompContent";
 import BuildCompInformation from "../../../components/package/BuildCompInformation";
 import BuildCompReward from "../../../components/package/BuildCompReward";
+import BuildCompDetail from "../../../components/single/modal/BuildCompDetail";
 
 export default function Page() {
   const [isPending, startTransition] = useTransition();
@@ -89,18 +90,29 @@ export default function Page() {
               (buildcomp[1]?.toLowerCase().includes(search.toLowerCase()) ||
                 search == null) && (
                 <BuildCompInformation key={buildcompkey} buildcomp={buildcomp}>
-                  {buildcompsRewardTypes.map((type, typekey) => (
-                    <BuildCompReward
-                      key={typekey}
-                      title={type[1]}
-                      rewards={getBuildCompRewards(
+                  {buildcompsRewardTypes.map(
+                    (type, typekey) =>
+                      getBuildCompRewards(
                         buildcompsRewards,
                         1,
                         buildcomp[0],
                         type[1]
-                      )}
-                    ></BuildCompReward>
-                  ))}
+                      ).length > 0 && (
+                        <BuildCompDetail
+                          key={typekey}
+                          button={<div className="">{type[1]}</div>}
+                        >
+                          <BuildCompReward
+                            rewards={getBuildCompRewards(
+                              buildcompsRewards,
+                              1,
+                              buildcomp[0],
+                              type[1]
+                            )}
+                          ></BuildCompReward>
+                        </BuildCompDetail>
+                      )
+                  )}
                 </BuildCompInformation>
               )
           )}

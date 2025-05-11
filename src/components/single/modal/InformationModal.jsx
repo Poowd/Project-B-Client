@@ -20,9 +20,7 @@ export default function InformationModal({ button, buttons, children }) {
           "fixed top-0 left-0 h-screen w-screen flex justify-center items-center backdrop-blur-sm z-100 bg-black/50"
         }
       >
-        <DialogPanel
-          className={"h-full lg:h-11/12 w-full lg:w-4/6 lg:rounded lg:p-5"}
-        >
+        <DialogPanel className={"h-full  w-full lg:w-4/6 lg:rounded lg:p-5"}>
           <main className="w-full h-full flex flex-col gap-1 lg:gap-3 lg:pe-0">
             <section className="flex-none flex justify-end gap-3 p-2 lg:p-0">
               <div className="p-2 rounded-full flex gap-2 bg-neutral-900">

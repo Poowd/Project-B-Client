@@ -14,7 +14,7 @@ export default function LabeledInput({
         {label}
       </label>
       <input
-        className={`py-2 px-3 outline outline-neutral-300  rounded ${style}`}
+        className={`py-2 px-3 outline-0 border border-neutral-800 focus:border-cyan-300 rounded ${style}`}
         placeholder={placeholder}
         id={id}
         onChange={onChange}

@@ -12,8 +12,8 @@ export default function LabeledTextAreaInput({
         {label}
       </label>
       <textarea
-        className={`py-2 px-3 outline outline-neutral-300 text-sm rounded ${style}`}
-        rows={5}
+        className={`py-2 px-3 outline-0 border border-neutral-800 focus:border-cyan-300 rounded ${style}`}
+        rows={3}
         placeholder={placeholder}
         id={id}
         value={value}

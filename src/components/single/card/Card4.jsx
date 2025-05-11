@@ -7,8 +7,8 @@ export default function Card4({
   end,
 }) {
   return (
-    <main className="w-full h-fit border border-neutral-800 rounded hover:text-cyan-500 hover:cursor-pointer">
-      <figure className="w-full aspect-video border border-neutral-800 rounded-t overflow-hidden">
+    <main className="w-full h-fit rounded hover:text-cyan-500 hover:cursor-pointer">
+      <figure className="w-full aspect-video rounded-t overflow-hidden">
         <img
           src={image}
           alt={children}
@@ -17,7 +17,7 @@ export default function Card4({
           }
         ></img>
       </figure>
-      <header className="text-center p-2">
+      <header className="text-center p-2  bg-neutral-950">
         <h1 className="text-lg">{title}</h1>
         <h3 className="text-sm text-neutral-500">{subtitle}</h3>
         <p className="text-xs text-neutral-500">{`${start} - ${end}`}</p>

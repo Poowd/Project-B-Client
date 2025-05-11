@@ -96,7 +96,7 @@ export default function AddPet({ fetchOnFinish, totalPets, categories }) {
           Type
         </label>
         <select
-          className="py-2 px-3 outline outline-neutral-300  rounded bg-neutral-900"
+          className="py-2 px-3 border border-neutral-800 focus:border-cyan-300 rounded bg-neutral-900"
           name="Type"
           id="Type"
           required

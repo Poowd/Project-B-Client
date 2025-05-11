@@ -85,7 +85,7 @@ export default function AddCategory({ fetchOnFinish, totalPets }) {
           Color
         </label>
         <select
-          className="py-2 px-3 outline outline-neutral-300 bg-neutral-800 rounded"
+          className="py-2 px-3 border border-neutral-800 focus:border-cyan-300 rounded"
           name="Color"
           id="Color"
           defaultValue={colors[0].color}

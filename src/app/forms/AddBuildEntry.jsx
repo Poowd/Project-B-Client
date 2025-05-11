@@ -5,15 +5,18 @@ import { useEffect, useState, useTransition } from "react";
 import { v4 as uuidv4 } from "uuid";
 import PetForms from "../../components/package/PetForms";
 import LabeledInput from "./input/LabeledInput";
+import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
 
-export default function AddRewards({ fetchOnFinish, types, ID }) {
+export default function AddBuildEntry({ fetchOnFinish, ID }) {
   const close = useClose();
   const [isPending, startTransition] = useTransition();
 
   const [data, setData] = useState({
-    Reward: "",
-    Value: 0,
-    Type: types[0][1] || "None",
+    Title: "",
+    Team: "",
+    Members: "",
+    Description: "",
+    Image: "None",
   });
 
   const handleSubmit = async (e) => {
@@ -21,11 +24,20 @@ export default function AddRewards({ fetchOnFinish, types, ID }) {
     startTransition(async () => {
       if (true) {
         try {
-          const response = await fetch("/api/add_rewards", {
+          const response = await fetch("/api/add_buildentry", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              row: [uuidv4(), ID, data.Reward, data.Value, data.Type, "TRUE"],
+              row: [
+                uuidv4(),
+                ID,
+                data.Team,
+                data.Members,
+                data.Title,
+                data.Description,
+                data.Image,
+                "TRUE",
+              ],
             }),
           });
 
@@ -48,24 +60,12 @@ export default function AddRewards({ fetchOnFinish, types, ID }) {
   return (
     <PetForms
       handleSubmit={handleSubmit}
-      title={"Add Rewards"}
+      title={"Add Build Entry"}
       isPending={isPending}
     >
       <LabeledInput
-        label={"Reward"}
-        id={"Reward"}
-        required={true}
-        onChange={(e) =>
-          setData((prev) => ({
-            ...prev,
-            [e.target.id]: e.target.value,
-          }))
-        }
-      ></LabeledInput>
-      <LabeledInput
-        label={"Value"}
-        id={"Value"}
-        type={"number"}
+        label={"Title"}
+        id={"Title"}
         required={true}
         onChange={(e) =>
           setData((prev) => ({
@@ -75,29 +75,53 @@ export default function AddRewards({ fetchOnFinish, types, ID }) {
         }
       ></LabeledInput>
 
-      <div className="flex flex-col text-start">
-        <label htmlFor={"Type"} className="text-sm mb-1">
-          Type
-        </label>
-        <select
-          className="py-2 px-3 border border-neutral-800 focus:border-cyan-300 rounded bg-neutral-900"
-          name="Type"
-          id="Type"
-          required
-          onChange={(e) =>
-            setData((prev) => ({
-              ...prev,
-              [e.target.id]: e.target.value,
-            }))
-          }
-        >
-          {types.map((type) => (
-            <option key={type[0]} value={type[1]}>
-              {type[1]}
-            </option>
-          ))}
-        </select>
-      </div>
+      <LabeledInput
+        label={"Team"}
+        id={"Team"}
+        required={true}
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+          }))
+        }
+      ></LabeledInput>
+
+      <LabeledTextAreaInput
+        label={"Members"}
+        id={"Members"}
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+          }))
+        }
+        required={true}
+      ></LabeledTextAreaInput>
+
+      <LabeledInput
+        label={"Image"}
+        id={"Image"}
+        required={true}
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+          }))
+        }
+      ></LabeledInput>
+
+      <LabeledTextAreaInput
+        label={"Description"}
+        id={"Description"}
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+          }))
+        }
+        required={true}
+      ></LabeledTextAreaInput>
     </PetForms>
   );
 }
