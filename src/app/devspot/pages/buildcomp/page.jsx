@@ -250,7 +250,11 @@ export default function Page() {
                       >
                         <BuildCompDetails
                           buildcomp={buildcomp}
-                          entries={buildcompsEntries.map((entry, entrykey) => (
+                          entries={getBuildCompEntries(
+                            buildcompsEntries,
+                            1,
+                            buildcomp[0]
+                          ).map((entry, entrykey) => (
                             <BuildCompDetail key={entrykey} button={entry[4]}>
                               <main>
                                 <section>

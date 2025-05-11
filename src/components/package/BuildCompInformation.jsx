@@ -4,7 +4,7 @@ import RegularButton from "../single/button/RegularButton";
 import Card4 from "../single/card/Card4";
 import InformationModal from "../single/modal/InformationModal";
 
-export default function BuildCompInformation({ buildcomp, children, buttons }) {
+export default function BuildCompInformation({ buildcomp, children, buttons, entries }) {
   return (
     <InformationModal
       button={
@@ -37,7 +37,13 @@ export default function BuildCompInformation({ buildcomp, children, buttons }) {
           </section>
           <main className="flex flex-col md:flex-row gap-5 lg:gap-10">
             <section className="flex-1 text-justify text-neutral-500">
-              <pre>{buildcomp[5]}</pre>
+              <section className="w-full mb-10">
+                <pre>{buildcomp[5]}</pre>
+              </section>
+              <section>
+                <h3 className="text-xl mb-5">Build Entries</h3>
+                <div className="flex flex-col gap-3">{entries}</div>
+              </section>
             </section>
             <section className="flex-none w-full md:w-2/6 text-center flex flex-col gap-5">
               <section className="flex flex-col gap-3">

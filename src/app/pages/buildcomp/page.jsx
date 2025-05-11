@@ -13,6 +13,7 @@ export default function Page() {
   const [buildcomps, setBuildComps] = useState([]);
   const [buildcompsRewards, setBuildCompsRewards] = useState([]);
   const [buildcompsRewardTypes, setBuildCompsRewardTypes] = useState([]);
+  const [buildcompsEntries, setBuildCompsEntries] = useState([]);
   const [search, setSearch] = useState("");
 
   const loadBuildCompList = () => {
@@ -56,9 +57,29 @@ export default function Page() {
     }
   };
 
+  const loadBuildCompEntries = async () => {
+    try {
+      const response = await fetch(`../../api/buildcomp_entries`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      // Parse the response content
+      const fetchData = await response.json();
+
+      setBuildCompsEntries(fetchData.entries.slice(1));
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     loadBuildCompList();
     loadBuildCompRewards();
+    loadBuildCompEntries();
   }, []);
 
   const getBuildCompRewards = (array, column, id, type) => {
@@ -66,6 +87,11 @@ export default function Page() {
       (buildcomp) => buildcomp[column] === id && buildcomp[4] === type
     );
     return Rewards;
+  };
+
+  const getBuildCompEntries = (array, column, id) => {
+    const Entries = array.filter((buildcomp) => buildcomp[column] === id);
+    return Entries;
   };
 
   return (
@@ -89,7 +115,26 @@ export default function Page() {
             (buildcomp, buildcompkey) =>
               (buildcomp[1]?.toLowerCase().includes(search.toLowerCase()) ||
                 search == null) && (
-                <BuildCompInformation key={buildcompkey} buildcomp={buildcomp}>
+                <BuildCompInformation
+                  key={buildcompkey}
+                  entries={getBuildCompEntries(
+                    buildcompsEntries,
+                    1,
+                    buildcomp[0]
+                  ).map((entry, entrykey) => (
+                    <BuildCompDetail key={entrykey} button={entry[4]}>
+                      <main>
+                        <section>
+                          <p>Team: {entry[2]}</p>
+                          <p>Members: {entry[3]}</p>
+                          <p>Build: {entry[4]}</p>
+                          <p>Description: {entry[5]}</p>
+                        </section>
+                      </main>
+                    </BuildCompDetail>
+                  ))}
+                  buildcomp={buildcomp}
+                >
                   {buildcompsRewardTypes.map(
                     (type, typekey) =>
                       getBuildCompRewards(
