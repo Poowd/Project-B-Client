@@ -7,6 +7,8 @@ export default function LabeledInput({
   value,
   required,
   type,
+  min,
+  max,
 }) {
   return (
     <div className="flex flex-col text-start">
@@ -21,6 +23,8 @@ export default function LabeledInput({
         value={value}
         required={required}
         type={type}
+        min={min}
+        max={max}
       />
     </div>
   );

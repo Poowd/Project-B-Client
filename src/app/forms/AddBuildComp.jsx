@@ -18,6 +18,7 @@ export default function AddBuildComp({ fetchOnFinish }) {
     End: "",
     Description: "",
     Image: "",
+    Code: "",
   });
 
   const handleSubmit = async (e) => {
@@ -38,6 +39,7 @@ export default function AddBuildComp({ fetchOnFinish }) {
                 data.Description,
                 data.Image,
                 "TRUE",
+                data.Code,
               ],
             }),
           });
@@ -64,6 +66,18 @@ export default function AddBuildComp({ fetchOnFinish }) {
       title={"Add Build Competition"}
       isPending={isPending}
     >
+      <LabeledInput
+        label={"Code"}
+        id={"Code"}
+        required={true}
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            [e.target.id]: e.target.value,
+          }))
+        }
+      ></LabeledInput>
+
       <LabeledInput
         label={"Title"}
         id={"Title"}
