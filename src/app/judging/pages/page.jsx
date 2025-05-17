@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useTransition } from "react";
-import Card3 from "../../components/single/card/Card3";
-import DashboardContent from "../../components/pages/DashboardContent";
+import DashboardContent from "../../../components/pages/DashboardContent";
+import Card3 from "../../../components/single/card/Card3";
 
 export default function Home() {
   const [isPending, startTransition] = useTransition();
