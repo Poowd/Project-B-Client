@@ -27,7 +27,7 @@ export default function BuildCompContent({ search, buttons, children }) {
         </MobileViewNavbar>
       </header>
 
-      <section className="flex-1 w-full h-fit grid grid-cols-1 lg:grid-cols-2 content-start gap-5">
+      <section className="flex-1 w-full h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 content-start gap-5">
         {children}
       </section>
     </main>
