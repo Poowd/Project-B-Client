@@ -25,7 +25,16 @@ export default function Page() {
   const [buildcompsEntries, setBuildCompsEntries] = useState([]);
   const [scores, setScores] = useState([]);
   const [search, setSearch] = useState("");
-  const [currentBuildComp, setCurrentBuildComp] = useState([]);
+  const [currentBuildComp, setCurrentBuildComp] = useState([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
 
   const currentDate = date.toLocaleDateString("en-US", {
     year: "2-digit",
