@@ -31,8 +31,6 @@ export default function Page() {
         setBuildComp(fetchData.buildcomp);
         setParticipants(fetchData.entries);
         setScores(fetchData.scores);
-
-        console.log(fetchData.entries);
         return;
       } catch (error) {
         console.log(error);

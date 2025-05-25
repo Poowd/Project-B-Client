@@ -13,9 +13,15 @@ export async function GET(request) {
       range: `Cubiods_Sheet!A:A`,
     });
 
+    const buildcompLists = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `BuildComp_Sheet!A:A`,
+    });
+
     return NextResponse.json(
       {
         cubiods: cubiodsList.data.values.length,
+        buildcomps: buildcompLists.data.values.length,
       },
       {
         status: 200,

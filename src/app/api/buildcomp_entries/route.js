@@ -10,12 +10,17 @@ export async function GET(request) {
   try {
     const buildcompEntries = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `BuildComp_Entries!A:H`,
+      range: `BuildComp_Entries!A:I`,
+    });
+    const buildScores = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `BuildComp_Scores!A:I`,
     });
 
     return NextResponse.json(
       {
         entries: buildcompEntries.data.values,
+        scores: buildScores.data.values,
       },
       {
         status: 200,

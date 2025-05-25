@@ -6,6 +6,7 @@ import DashboardContent from "../../components/pages/DashboardContent";
 export default function Home() {
   const [isPending, startTransition] = useTransition();
   const [cubiods, setCubiods] = useState(0);
+  const [buildcomps, setBuildComps] = useState(0);
 
   const getGoogleSheetData = () => {
     startTransition(async () => {
@@ -21,6 +22,7 @@ export default function Home() {
         const fetchData = await response.json();
 
         setCubiods(fetchData.cubiods);
+        setBuildComps(fetchData.buildcomps);
         return;
       } catch (error) {
         console.log(error);
@@ -37,7 +39,7 @@ export default function Home() {
       cards={
         <>
           <Card3 data={cubiods}>Cubiods</Card3>
-          <Card3 data={0}>Build Competitions</Card3>
+          <Card3 data={buildcomps}>Build Competitions</Card3>
           <Card3 data={0}>Parkours</Card3>
           <Card3 data={0}>Realms</Card3>
         </>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState, useTransition } from "react";
-import CubiodsContent from "../../../components/pages/CubiodsContent";
+import ContentLists from "../../../components/pages/ContentLists";
 import Input from "../../forms/input/Input";
 import PetInformation from "../../../components/package/PetInformation";
 import SkeletonCubiods_1 from "../../../components/package/SkeletonCubiods_1";
@@ -86,7 +86,7 @@ export default function Page() {
   };
 
   return (
-    <CubiodsContent
+    <ContentLists
       search={
         <Input
           style={
@@ -194,6 +194,6 @@ export default function Page() {
           )}
         </>
       )}
-    </CubiodsContent>
+    </ContentLists>
   );
 }

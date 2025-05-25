@@ -7,7 +7,7 @@ import TableButton from "../single/button/TableButton";
 export default function CubiodsContent({ search, buttons, children }) {
   return (
     <main className="h-full flex flex-col pe-5 pt-5 lg:pt-0">
-      <header className="flex-none h-fit w-full mb-5 hidden lg:flex items-center justify-end gap-3">
+      <header className="flex-none h-fit w-full mb-5 hidden lg:flex items-center justify-center gap-3">
         <section className={`flex-none flex flex-row-reverse gap-2`}>
           {buttons}
         </section>

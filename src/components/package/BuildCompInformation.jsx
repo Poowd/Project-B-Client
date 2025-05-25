@@ -10,7 +10,6 @@ export default function BuildCompInformation({ buildcomp, children, buttons, ent
       button={
         <Card4
           title={buildcomp[1]}
-          subtitle={buildcomp[2]}
           start={getFormattedDate(buildcomp[3])}
           end={getFormattedDate(buildcomp[4])}
           image={buildcomp[6]}

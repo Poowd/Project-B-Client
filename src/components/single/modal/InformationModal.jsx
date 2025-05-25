@@ -21,9 +21,9 @@ export default function InformationModal({ button, buttons, children }) {
         }
       >
         <DialogPanel className={"h-full  w-full lg:w-4/6 lg:rounded lg:p-5"}>
-          <main className="w-full h-full flex flex-col gap-1 lg:gap-3 lg:pe-0">
-            <section className="flex-none flex justify-end gap-3 p-2 lg:p-0">
-              <div className="p-2 rounded-full flex gap-2 bg-neutral-900">
+          <main className="w-full h-full flex flex-col gap-1 lg:gap-3 lg:pe-0 relative">
+            <section className="absolute top-0 right-0 p-5">
+              <div className="p-2 rounded-full flex gap-2">
                 {buttons}
                 <button
                   onClick={() => setIsOpen(false)}
