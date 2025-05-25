@@ -33,6 +33,7 @@ export default function Page() {
     "",
     "",
     "",
+    "FALSE",
     "",
   ]);
 
@@ -186,50 +187,56 @@ export default function Page() {
             button={<RegularButton>Standings</RegularButton>}
             buttons={<></>}
           >
-            {currentBuildComp[7] === "TRUE" ? (
-              <main className="rounded p-10">
-                <header className="mb-5 text-center md:text-start">
-                  <h1 className="text-4xl text-cyan-600">{`${currentBuildComp[1]} is On-Going!`}</h1>
-                  <p className="w-full lg:w-1/2 text-neutral-500">
-                    This contains the list of available categories!
-                  </p>
-                </header>
-                <section className="w-full flex flex-col gap-5 mt-10">
-                  {getAllScores(buildcompsEntries) &&
-                    getAllScores(buildcompsEntries)?.map(
-                      (item, i) =>
-                        currentBuildComp[8] === item[8] && (
-                          <div
-                            key={i}
-                            className="w-full flex items-center gap-5 border border-neutral-800 rounded p-5"
-                          >
-                            <section className="flex justify-center flex-wrap gap-3">
-                              <div className="size-20 flex flex-col justify-center items-center">
-                                <p className="text-xs">Rank</p>
-                                <p>{i + 1}</p>
+            {buildcomps && currentBuildComp && (
+              <>
+                {currentBuildComp[7] === "TRUE" ? (
+                  <main className="rounded p-10">
+                    <header className="mb-5 text-center md:text-start">
+                      <h1 className="text-4xl text-cyan-600">{`${currentBuildComp[1]} is On-Going!`}</h1>
+                      <p className="w-full lg:w-1/2 text-neutral-500">
+                        This contains the list of available categories!
+                      </p>
+                    </header>
+                    <section className="w-full flex flex-col gap-5 mt-10">
+                      {getAllScores(buildcompsEntries) &&
+                        getAllScores(buildcompsEntries)?.map(
+                          (item, i) =>
+                            currentBuildComp[8] === item[8] && (
+                              <div
+                                key={i}
+                                className="w-full flex items-center gap-5 border border-neutral-800 rounded p-5"
+                              >
+                                <section className="flex justify-center flex-wrap gap-3">
+                                  <div className="size-20 flex flex-col justify-center items-center">
+                                    <p className="text-xs">Rank</p>
+                                    <p>{i + 1}</p>
+                                  </div>
+                                  <div className="h-20 flex flex-col justify-center items-center">
+                                    |
+                                  </div>
+                                  <div className="size-20 flex flex-col justify-center items-center">
+                                    <p className="text-xs">Score</p>
+                                    <p>{getEntryScore(item[0], scores)}</p>
+                                  </div>
+                                  <div className="h-20 flex flex-col justify-center items-center">
+                                    |
+                                  </div>
+                                </section>
+                                <header className="text-start">
+                                  <h3 className="text-sm">{item[2]}</h3>
+                                  <h1 className="text-xl font-light">
+                                    {item[4]}
+                                  </h1>
+                                </header>
                               </div>
-                              <div className="h-20 flex flex-col justify-center items-center">
-                                |
-                              </div>
-                              <div className="size-20 flex flex-col justify-center items-center">
-                                <p className="text-xs">Score</p>
-                                <p>{getEntryScore(item[0], scores)}</p>
-                              </div>
-                              <div className="h-20 flex flex-col justify-center items-center">
-                                |
-                              </div>
-                            </section>
-                            <header className="text-start">
-                              <h3 className="text-sm">{item[2]}</h3>
-                              <h1 className="text-xl font-light">{item[4]}</h1>
-                            </header>
-                          </div>
-                        )
-                    )}
-                </section>
-              </main>
-            ) : (
-              "No Active Build Competition"
+                            )
+                        )}
+                    </section>
+                  </main>
+                ) : (
+                  "No Active Build Competition"
+                )}
+              </>
             )}
           </InformationModal>
         </>
