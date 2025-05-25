@@ -7,7 +7,7 @@ import PetForms from "../../components/package/PetForms";
 import LabeledInput from "./input/LabeledInput";
 import LabeledTextAreaInput from "./input/LabeledTextAreaInput";
 
-export default function AddBuildEntry({ fetchOnFinish, ID }) {
+export default function AddBuildEntry({ fetchOnFinish, ID, Code }) {
   const close = useClose();
   const [isPending, startTransition] = useTransition();
 
@@ -37,6 +37,7 @@ export default function AddBuildEntry({ fetchOnFinish, ID }) {
                 data.Description,
                 data.Image,
                 "TRUE",
+                Code,
               ],
             }),
           });

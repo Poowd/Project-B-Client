@@ -21,6 +21,7 @@ import { LuSmilePlus } from "react-icons/lu";
 import AddBuildEntry from "../../../forms/AddBuildEntry";
 import { HiMiniBuildingLibrary } from "react-icons/hi2";
 import BuildCompDetail from "../../../../components/single/modal/BuildCompDetail";
+import Link from "next/link";
 
 export default function Page() {
   const [isPending, startTransition] = useTransition();
@@ -180,6 +181,14 @@ export default function Page() {
                       {getFormattedDate(buildcomp[4])}
                     </div>
                     <div className="flex-none overflow-hidden truncate px-2 w-3/12 flex justify-end gap-1">
+                      <Link
+                        href={`/judging/pages/buildcomp/${buildcomp[8]}`}
+                        target="_blank"
+                      >
+                        <TableButton>
+                          <FaRegStar />
+                        </TableButton>
+                      </Link>
                       <FormModal
                         button={
                           <TableButton>
@@ -230,6 +239,7 @@ export default function Page() {
                               <AddBuildEntry
                                 fetchOnFinish={() => loadBuildCompRewards()}
                                 ID={buildcomp[0]}
+                                Code={buildcomp[8]}
                               ></AddBuildEntry>
                             </FormModal>
                             <FormModal

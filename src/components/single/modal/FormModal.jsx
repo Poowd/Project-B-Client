@@ -21,7 +21,9 @@ export default function FormModal({ button, children }) {
         }
       >
         <DialogPanel
-          className={"h-full lg:h-11/12 w-full lg:w-4/12 ounded p-5"}
+          className={
+            "h-full lg:h-fit lg:max-h-11/12 w-full lg:w-4/12 ounded p-5"
+          }
         >
           <main className="w-full h-full flex flex-col gap-3 pe-3 lg:pe-0">
             <section className="flex-none flex justify-end gap-3">

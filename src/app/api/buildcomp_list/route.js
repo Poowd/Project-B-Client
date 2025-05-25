@@ -10,7 +10,7 @@ export async function GET(request) {
   try {
     const buildcompLists = await sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET_ID,
-      range: `BuildComp_Sheet!A:H`,
+      range: `BuildComp_Sheet!A:I`,
     });
 
     return NextResponse.json(

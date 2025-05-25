@@ -48,7 +48,7 @@ export default function StatusBuildComp({ fetchOnFinish, ID }) {
   return (
     <PetForms
       handleSubmit={handleSubmit}
-      title={"Modify Pet"}
+      title={"Status of Build Competition"}
       isPending={isPending}
     >
       <LabeledInput
