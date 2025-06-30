@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -7,9 +8,18 @@ export default function Page() {
   const params = useParams();
   const searchParams = useSearchParams();
   const [data, setData] = useState(JSON.parse(searchParams.get("data")));
-  console.log(JSON.parse(searchParams.get("data")));
+
+  console.log(data);
+
   return (
     <main className="w-[90%] lg:w-[40%] mx-auto py-20">
+      <header className="mb-5 flex justify-end">
+        <Link href={"/guides/pets"}>
+          <main className="w-fit py-2 px-4 hover:px-10 delay-75 duration-150 ease-in-out bg-neutral-900 rounded-full">
+            <p className="text-neutral-400">Back to Lists</p>
+          </main>
+        </Link>
+      </header>
       <section className="w-full flex flex-col gap-5">
         <div className="flex flex-col items-center text-center">
           <figure>
@@ -17,9 +27,9 @@ export default function Page() {
           </figure>
         </div>
         <div className="flex flex-col items-center text-center">
-          <p className="text-neutral-400 mb-2.5">{`${data.category} Cubiod`}</p>
-          <h1 className="text-4xl font-bold mb-2.5">{data.name}</h1>
-          <h3 className="text-xl">{data.title}</h3>
+          <p className={`mb-2.5`}>{`${data.type} Cubiod`}</p>
+          <h1 className={`text-4xl font-bold mb-2.5`}>{data.name}</h1>
+          <h3 className="text-xl text-neutral-400">{data.title}</h3>
         </div>
         <div className="w-full grid grid-cols-2 gap-5">
           {data.traits.length > 0 &&

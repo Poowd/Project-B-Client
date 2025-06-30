@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const [data, setData] = useState(null);
+  const [petList, setPetList] = useState(null);
+  const [petCategory, setPetCategory] = useState(null);
 
   const load_data = async () => {
     try {
@@ -15,7 +16,8 @@ export default function Page() {
         },
       });
       const fetchData = await response.json();
-      setData(fetchData.pets);
+      setPetList(fetchData.pets);
+      setPetCategory(fetchData.categories);
       return;
     } catch (error) {
       console.log(error);
@@ -26,16 +28,18 @@ export default function Page() {
     load_data();
   }, []);
 
+  console.log(petCategory);
+
   return (
     <main className="w-[90%] lg:w-[68%] mx-auto py-20">
-      {!data && (
+      {!petList && (
         <main className="h-20 w-full bg-neutral-900 rounded-2xl flex justify-center items-center">
           <p>Fetching Pets...</p>
         </main>
       )}
-      {data && (
+      {petList && (
         <section className="w-full grid grid-cols-5 gap-5">
-          {data.map((item, i) => (
+          {petList.map((item, i) => (
             <Link
               key={i}
               href={{

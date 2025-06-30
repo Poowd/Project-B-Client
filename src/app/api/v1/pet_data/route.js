@@ -19,13 +19,32 @@ export async function GET() {
       spreadsheetId: SPREADSHEET_ID,
       range: `Cubiods_Trait_Sheet!A:F`,
     });
+    const cubiodsCategoryList = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `Cubiod_Category!A:E`,
+    });
 
     const pets = petList.data.values.slice(1).reverse();
     const skills = petSkillList.data.values.slice(1).reverse();
     const traits = petTraitList.data.values.slice(1).reverse();
+    const categories = cubiodsCategoryList.data.values.slice(1).reverse();
     let petsJSON = [];
     let skillsJSON = [];
     let traitsJSON = [];
+    let categoryJSON = [];
+
+    if (categories.length > 0) {
+      for (let i = 0; i < categories.length; i++) {
+        const category = categories[i];
+        categoryJSON.push({
+          id: category[0],
+          category: category[1],
+          level: category[2],
+          color: category[3],
+          status: category[4],
+        });
+      }
+    }
 
     if (skills.length > 0) {
       for (let i = 0; i < skills.length; i++) {
@@ -60,15 +79,17 @@ export async function GET() {
         const pet = pets[i];
         const petskills = skillsJSON.filter((e) => e.pet === pet[0]);
         const pettraits = traitsJSON.filter((e) => e.pet === pet[0]);
+        const petcategory = categoryJSON.filter((e) => e.category === pet[3]);
         petsJSON.push({
           id: pet[0],
           name: pet[1],
           title: pet[2],
-          category: pet[3],
+          type: pet[3],
           image: pet[4],
           lore: pet[5],
           traits: pettraits,
           skills: petskills,
+          category: petcategory[0],
           status: pet[6],
         });
       }
@@ -77,6 +98,7 @@ export async function GET() {
     return NextResponse.json(
       {
         pets: petsJSON,
+        categories: categoryJSON,
       },
       {
         status: 200,
