@@ -28,8 +28,6 @@ export default function Page() {
     load_data();
   }, []);
 
-  console.log(petCategory);
-
   return (
     <main className="w-[90%] lg:w-[68%] mx-auto py-20">
       {!petList && (
