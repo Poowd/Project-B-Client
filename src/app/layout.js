@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
                   <p>Home</p>
                 </Link>
                 <Link href={"/guides"}>
-                  <p>Guides</p>
+                  <p>Browse</p>
                 </Link>
               </div>
               <div>
