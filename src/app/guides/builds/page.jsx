@@ -30,15 +30,6 @@ export default function Page() {
 
   return (
     <main className="w-[90%] lg:w-[68%] mx-auto py-20">
-      <main className="h-20 w-full bg-neutral-900 rounded-2xl flex justify-center items-center">
-        <p>
-          Build Competition is Under Maintainance. Use the Old Version{" "}
-          <Link href={"/pages/buildcomp"} className="text-blue-500">
-            Click Here
-          </Link>
-        </p>
-      </main>
-
       {!buildList && (
         <main className="h-20 w-full bg-neutral-900 rounded-2xl flex justify-center items-center">
           <p>Fetching Builds...</p>

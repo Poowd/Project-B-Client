@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <main className="w-[90%] lg:w-[40%] mx-auto py-20">
       <header className="mb-5 flex justify-end">
-        <Link href={"/guides/pets"}>
+        <Link href={"/guides/builds"}>
           <main className="w-fit py-2 px-4 hover:px-10 delay-75 duration-150 ease-in-out bg-neutral-900 rounded-full">
             <p className="text-neutral-400">Back to Lists</p>
           </main>
@@ -34,45 +34,45 @@ export default function Page() {
         </div>
 
         {data.rewards.length > 0 &&
-          data.rewards.map((item, i) => (
-            <div key={i}>
-              <div>{item.type}</div>
-              <div className="w-full flex flex-wrap justify-items-stretch gap-2.5">
-                {item.rewards.map((item1, j) => (
-                  <div
-                    key={(i, j)}
-                    className="flex-auto w-fit bg-neutral-900 rounded-2xl py-2 px-4 text-center"
-                  >
-                    <p className="text-neutral-400">{`${formatNumber(
-                      item1.value
-                    )} ${item1.reward}`}</p>
+          data.rewards.map(
+            (item, i) =>
+              item.rewards.length > 0 && (
+                <div key={i}>
+                  <div className="mb-2.5">{item.type} Rewards</div>
+                  <div className="w-full flex flex-wrap justify-items-stretch gap-2.5">
+                    {item.rewards.map((item1, j) => (
+                      <div
+                        key={(i, j)}
+                        className="flex-auto w-fit bg-neutral-900 rounded-2xl py-2 px-4 text-center"
+                      >
+                        <p className="text-neutral-400">{`${formatNumber(
+                          item1.value
+                        )} ${item1.reward}`}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        {/* {data.traits.length > 0 &&
-            data.traits.map((item, i) => (
-              <div key={i} className="bg-neutral-900 rounded-2xl p-5">
-                <h3 className="text-xl">{item.trait}</h3>
-                <p className="text-neutral-400">{`Cubiod Level: ${item.level}`}</p>
-                <p className="text-neutral-400">{item.description}</p>
-              </div>
-            ))}
-          {data.skills.length > 0 &&
-            data.skills.map((item, i) => (
-              <div key={i} className="bg-neutral-900 rounded-2xl p-5">
-                <h3 className="text-xl">{item.skill}</h3>
-                <p className="text-neutral-400">{`Cubiod Level: ${item.level}`}</p>
-                <p className="text-neutral-400">{item.description}</p>
-              </div>
-            ))} */}
-
+                </div>
+              )
+          )}
         <div className="bg-neutral-900 text-neutral-400 rounded-2xl p-10">
           <pre className="text-justify leading-8 mb-5">{data.description}</pre>
           <figure className="w-full aspect-video">
             <img src={data.image} className="size-full rounded-2xl"></img>
           </figure>
+        </div>
+        <div className="w-full">
+          <div className="mb-2.5">Participating Groups / Individual</div>
+          <div className="w-full grid grid-cols-2 gap-5">
+            {data.entries.length > 0 &&
+              data.entries.map((item, i) => (
+                <div key={i} className="bg-neutral-900 rounded-2xl p-5">
+                  <h3 className="text-xl w-full truncate">{item.title}</h3>
+                  <p className="text-neutral-400 w-full truncate">
+                    {item.team}
+                  </p>
+                </div>
+              ))}
+          </div>
         </div>
       </section>
     </main>

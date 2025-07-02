@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
           <section className="max-w-[2400px] w-full min-h-[65vh] h-fit mx-auto">
             {children}
           </section>
-          <footer className="w-full bg-cyan-700 text-[#fff] py-20">
+          <footer className="w-full bg-cyan-700 text-[#fff] pt-20 pb-5">
             <div className="h-full w-[90%] lg:w-[68%] mx-auto">
               <div className="h-fit w-full flex flex-col lg:flex-row gap-10">
                 <div className="flex-1">
@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
                   </ul>
                 </div>
               </div>
-              <div className="h-fit w-full py-10">
+              <div className="h-fit w-full pt-10">
                 <div>
                   <hr className="my-5" />
                 </div>

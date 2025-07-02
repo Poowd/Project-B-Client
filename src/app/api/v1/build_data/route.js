@@ -19,14 +19,60 @@ export async function GET() {
       spreadsheetId: SPREADSHEET_ID,
       range: `Rewards_Types!A:C`,
     });
+    const buildEntries = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `BuildComp_Entries!A:I`,
+    });
+    const buildScores = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `BuildComp_Scores!A:H`,
+    });
 
     const builds = buildList.data.values.slice(1).reverse();
     const rewards = buildReward.data.values.slice(1).reverse();
     const rewardtypes = rewardType.data.values.slice(1).reverse();
+    const entries = buildEntries.data.values.slice(1).reverse();
+    const scores = buildScores.data.values.slice(1).reverse();
     let buildsJSON = [];
     let rewardsJSON = [];
     let rewardtypesJSON = [];
+    let entriesJSON = [];
+    let scoresJSON = [];
 
+    if (scores.length > 0) {
+      for (let i = 0; i < scores.length; i++) {
+        const score = scores[i];
+        scoresJSON.push({
+          id: score[0],
+          evaluator: score[1],
+          build: score[2],
+          criteria1: score[3],
+          criteria2: score[4],
+          criteria3: score[5],
+          code: score[6],
+          status: score[7],
+        });
+      }
+    }
+
+    if (entries.length > 0) {
+      for (let i = 0; i < entries.length; i++) {
+        const entry = entries[i];
+        const entryScores = scoresJSON.filter((e) => e.build === entry[0]);
+        entriesJSON.push({
+          id: entry[0],
+          competition: entry[1],
+          team: entry[2],
+          members: entry[3],
+          title: entry[4],
+          description: entry[5],
+          scores: entryScores,
+          image: entry[6],
+          status: entry[7],
+          code: entry[8],
+        });
+      }
+    }
     if (rewardtypes.length > 0) {
       for (let i = 0; i < rewardtypes.length; i++) {
         const type = rewardtypes[i];
@@ -58,6 +104,7 @@ export async function GET() {
       for (let i = 0; i < builds.length; i++) {
         const build = builds[i];
         const rewards = rewardsJSON.filter((e) => e.build === build[0]);
+        const entries = entriesJSON.filter((e) => e.competition === build[0]);
         const categorizedrewards = [];
 
         for (let j = 0; j < rewardtypesJSON.length; j++) {
@@ -77,6 +124,7 @@ export async function GET() {
           end: build[4],
           description: build[5],
           rewards: categorizedrewards,
+          entries: entries,
           icon: build[6],
           image: build[7],
           code: build[8],
