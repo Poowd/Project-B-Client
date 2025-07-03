@@ -26,6 +26,17 @@ export default function Page() {
           </figure>
           <p className="text-center">Build Competition</p>
         </Link>
+        <Link href={"/guides/expcal"} className="w-full t">
+          <figure className="w-full flex justify-center items-center aspect-square rounded-2xl bg-neutral-900 hover:scale-105 delay-75 duration-150 ease-in-out mb-2.5">
+            <img
+              src={
+                "https://images.minecraft-heads.com/render3d/head/74/74600f7efc9eaa063e814ffdb1268315.webp"
+              }
+              className="size-32"
+            ></img>
+          </figure>
+          <p className="text-center">XP Calculator</p>
+        </Link>
       </section>
     </main>
   );

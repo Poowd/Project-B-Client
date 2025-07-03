@@ -12,7 +12,7 @@ export default function Page() {
 
   return (
     <main className="w-[90%] lg:w-[40%] mx-auto py-20">
-      <header className="mb-5 flex justify-end">
+      <header className="mb-5 flex">
         <Link href={"/guides/pets"}>
           <main className="w-fit py-2 px-4 hover:px-10 delay-75 duration-150 ease-in-out bg-neutral-900 rounded-full">
             <p className="text-neutral-400">Back to Lists</p>

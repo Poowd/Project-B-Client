@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { getFormattedDate } from "../../../../hooks/functions/getFormattedDate";
+import Accordion from "../../../../components/dialog/Accordion";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -14,7 +16,7 @@ export default function Page() {
 
   return (
     <main className="w-[90%] lg:w-[40%] mx-auto py-20">
-      <header className="mb-5 flex justify-end">
+      <header className="mb-5 flex">
         <Link href={"/guides/builds"}>
           <main className="w-fit py-2 px-4 hover:px-10 delay-75 duration-150 ease-in-out bg-neutral-900 rounded-full">
             <p className="text-neutral-400">Back to Lists</p>
@@ -28,7 +30,9 @@ export default function Page() {
           </figure>
         </div>
         <div className="flex flex-col items-center text-center">
-          <p className={`mb-2.5`}>{`${data.start} - ${data.end}`}</p>
+          <p className={`mb-2.5`}>{`${getFormattedDate(
+            data.start
+          )} - ${getFormattedDate(data.end)}`}</p>
           <h1 className={`text-4xl font-bold mb-2.5`}>{data.title}</h1>
           <h3 className="text-xl text-neutral-400">{data.subtitle}</h3>
         </div>
@@ -38,7 +42,9 @@ export default function Page() {
             (item, i) =>
               item.rewards.length > 0 && (
                 <div key={i}>
-                  <div className="mb-2.5">{item.type} Rewards</div>
+                  <div className="mb-2.5 text-neutral-600 text-xs">
+                    {item.type} Rewards
+                  </div>
                   <div className="w-full flex flex-wrap justify-items-stretch gap-2.5">
                     {item.rewards.map((item1, j) => (
                       <div
@@ -61,18 +67,57 @@ export default function Page() {
           </figure>
         </div>
         <div className="w-full">
-          <div className="mb-2.5">Participating Groups / Individual</div>
-          <div className="w-full grid grid-cols-2 gap-5">
-            {data.entries.length > 0 &&
-              data.entries.map((item, i) => (
-                <div key={i} className="bg-neutral-900 rounded-2xl p-5">
-                  <h3 className="text-xl w-full truncate">{item.title}</h3>
-                  <p className="text-neutral-400 w-full truncate">
-                    {item.team}
-                  </p>
-                </div>
-              ))}
-          </div>
+          {data.entries.length > 0 && (
+            <>
+              <div className="mb-2.5 text-neutral-600 text-xs">
+                Participating Groups / Individual
+              </div>
+              <div className="w-full flex flex-col gap-5">
+                {data.entries
+                  .sort((a, b) => b.final_score - a.final_score)
+                  .map((item, i) => (
+                    <Accordion
+                      key={i}
+                      button={
+                        <div className="w-full bg-neutral-900 rounded-2xl flex items-center gap-5 p-5">
+                          <div className="flex-none">
+                            <p className="text-neutral-400 text-2xl lg:text-4xl ps-5 font-bold truncate">
+                              {i + 1}
+                            </p>
+                          </div>
+                          <div className="flex-10/12">
+                            <h3 className="text-xl w-full truncate">
+                              {item.title}
+                            </h3>
+                            <p className="text-neutral-400 w-full truncate">
+                              {item.team}
+                            </p>
+                          </div>
+                          <div className="flex-2/12 text-end">
+                            <p className="text-neutral-400 w-full truncate">
+                              {item.final_score}
+                            </p>
+                          </div>
+                        </div>
+                      }
+                    >
+                      <main className="border border-neutral-800 rounded-2xl p-5 flex gap-5">
+                        <section className="flex-none pe-5 border-r border-neutral-800">
+                          <pre className="text-justify leading-8">
+                            {item.members}
+                          </pre>
+                        </section>
+                        <section className="flex-1">
+                          <pre className="text-justify leading-8">
+                            {item.description}
+                          </pre>
+                        </section>
+                      </main>
+                    </Accordion>
+                  ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
     </main>

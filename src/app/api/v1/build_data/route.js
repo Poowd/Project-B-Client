@@ -49,6 +49,7 @@ export async function GET() {
           criteria1: score[3],
           criteria2: score[4],
           criteria3: score[5],
+          total: +score[3] + +score[4] + +score[5],
           code: score[6],
           status: score[7],
         });
@@ -59,6 +60,14 @@ export async function GET() {
       for (let i = 0; i < entries.length; i++) {
         const entry = entries[i];
         const entryScores = scoresJSON.filter((e) => e.build === entry[0]);
+
+        let finalScore = 0;
+        for (let i = 0; i < entryScores.length; i++) {
+          const grade = entryScores[i];
+          finalScore = finalScore + grade.total;
+        }
+        finalScore = finalScore / entryScores.length;
+
         entriesJSON.push({
           id: entry[0],
           competition: entry[1],
@@ -67,6 +76,7 @@ export async function GET() {
           title: entry[4],
           description: entry[5],
           scores: entryScores,
+          final_score: finalScore,
           image: entry[6],
           status: entry[7],
           code: entry[8],
