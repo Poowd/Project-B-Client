@@ -62,7 +62,7 @@ export default function Page() {
             <input
               type="number"
               className="border border-neutral-800 h-full w-full rounded-r-full text-center"
-              placeholder="Input Level Here"
+              placeholder="Input Experience Points Here"
               onChange={(e) => setXPBudget(e.target.value)}
             ></input>
           </div>
