@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
               <div>
                 <h1 className="text-2xl">Wikitopia</h1>
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-5">
                 <Link href={"/"}>
                   <p>Home</p>
                 </Link>
@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
               </div>
             </section>
           </nav>
-          <section className="max-w-[2400px] w-full min-h-[65vh] h-fit mx-auto">
+          <section className="max-w-[2400px] w-full min-h-[calc(100vh-4rem)] h-fit mx-auto">
             {children}
           </section>
           <footer className="w-full bg-cyan-700 text-[#fff] pt-20 pb-5">

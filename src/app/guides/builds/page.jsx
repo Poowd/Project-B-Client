@@ -5,19 +5,17 @@ import { useEffect, useState } from "react";
 
 export default function Page() {
   const [buildList, setBuildList] = useState(null);
-  const [rewardType, setRewardType] = useState(null);
 
   const load_data = async () => {
     try {
-      const response = await fetch(`../../api/v1/build_data`, {
+      const response = await fetch(`../../api/e0/get_all_builds`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
       const fetchData = await response.json();
-      setBuildList(fetchData.builds);
-      setRewardType(fetchData.rewardtypes);
+      setBuildList(fetchData.data);
       return;
     } catch (error) {
       console.log(error);
@@ -31,9 +29,9 @@ export default function Page() {
   return (
     <main className="w-[90%] lg:w-[68%] mx-auto py-20">
       {!buildList && (
-        <main className="h-20 w-full bg-neutral-900 rounded-2xl flex justify-center items-center">
-          <p>Fetching Builds...</p>
-        </main>
+        <p className="text-neutral-700 bg-neutral-900 p-5 rounded-2xl">
+          Fetching Builds...
+        </p>
       )}
       {buildList && (
         <section className="w-full grid grid-cols-5 gap-5">
@@ -41,15 +39,15 @@ export default function Page() {
             <Link
               key={i}
               href={{
-                pathname: `/guides/builds/${item.id}`,
+                pathname: `/guides/builds/${item.BUILDID}`,
                 query: { data: JSON.stringify(item) },
               }}
               className="w-full"
             >
               <figure className="w-full flex justify-center items-center aspect-square rounded-2xl bg-neutral-900 hover:scale-105 delay-75 duration-150 ease-in-out mb-2.5">
-                <img src={item.icon} className="size-32"></img>
+                <img src={item.Icon} className="size-32"></img>
               </figure>
-              <p className="text-center">{item.title}</p>
+              <p className="text-center">{item.Title}</p>
             </Link>
           ))}
         </section>
