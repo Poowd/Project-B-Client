@@ -10,6 +10,7 @@ import {
 } from "@headlessui/react";
 import cyan_logo from "./assets/images/Icontext.png";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -40,38 +41,11 @@ export default function Page() {
                   </p>
                 </div>
                 <div>
-                  <Popover>
-                    <PopoverButton
-                      onClick={() => CopyToClipboard("play.cyanrealms.com")}
-                    >
-                      <div className="py-2 px-4 border border-cyan-500 shadow-xl bg-cyan-900 hover:bg-cyan-950 rounded-full hover:cursor-pointer">
-                        <p>play.cyanrealms.com</p>
-                      </div>
-                    </PopoverButton>
-                    <PopoverPanel
-                      className={
-                        "fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-black/75"
-                      }
-                    >
-                      <main className="bg-neutral-900 w-3/12 h-4/12 rounded scale-up-center flex flex-col justify-center items-center gap-10">
-                        <section className="flex flex-col justify-center items-center">
-                          <h1 className="text-8xl mb-3 text-green-500 drop-shadow-lg drop-shadow-green-400 animate-pulse">
-                            <IoIosCheckmarkCircleOutline />
-                          </h1>
-                          <h1 className="text-2xl">Copied to Clipboard</h1>
-                        </section>
-                        <section>
-                          <CloseButton
-                            className={
-                              "bg-red-600 py-2 px-4 rounded-full hover:bg-red-700 "
-                            }
-                          >
-                            Continue
-                          </CloseButton>
-                        </section>
-                      </main>
-                    </PopoverPanel>
-                  </Popover>
+                  <Link href={"/v0"}>
+                    <div className="py-2 px-4 border border-cyan-500 shadow-xl bg-cyan-900 hover:bg-cyan-950 rounded-full hover:cursor-pointer">
+                      <p>Explore Now!</p>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>

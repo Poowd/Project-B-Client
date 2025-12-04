@@ -26,6 +26,6 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx"
-  ],
+, "src/app/v0/pets/creator/page.jst"  ],
   "exclude": ["node_modules"]
 }
