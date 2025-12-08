@@ -10,13 +10,16 @@ export default function BasicListBox1({
   description,
 }) {
   return (
-    <>
-      <label className="text-sm mb-2.5">{label}</label>
-      <p className="text-sm mb-2.5 text-neutral-400">{description}</p>
+    <fieldset className="h-full flex flex-col justify-between">
+      <label className="text-sm mb-2.5">
+        <p>{label}</p>
+        <p className="text-sm text-neutral-400">{description}</p>
+      </label>
+
       <Listbox value={value} onChange={onChange}>
         <ListboxButton
           className={
-            "w-full border border-neutral-700 bg-neutral-800 rounded py-2 px-4 text-start"
+            "h-10 w-full border border-neutral-700 bg-neutral-800 rounded py-2 px-4 text-start"
           }
         >
           {value}
@@ -30,6 +33,6 @@ export default function BasicListBox1({
           {options}
         </ListboxOptions>
       </Listbox>
-    </>
+    </fieldset>
   );
 }

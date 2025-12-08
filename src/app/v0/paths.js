@@ -8,7 +8,7 @@ export const sidebarItems = [
 export const petNavigationItems = [
   { name: "Browse All", href: "/v0/pets/browse", status: true },
   { name: "Cubiod Creator", href: "/v0/pets/creator", status: true },
-  { name: "Feedback", href: "#", status: true },
+  { name: "Feedback", href: "/v0/pets/feedback", status: true },
   { name: null, href: "#", status: false },
   { name: null, href: "#", status: false },
 ];

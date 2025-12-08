@@ -28,7 +28,7 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="size-full p-10">
+    <main className="size-full p-5 md:p-10 scroll-smooth">
       <header className="w-full mb-5 border-b border-neutral-800 flex gap-10 pb-2">
         <div className="flex-1">
           <p className={`mb-2.5`}>Meet the</p>
@@ -40,7 +40,7 @@ export default function Page() {
         {!petList || (petList.length === 0 && <div>No pets found.</div>)}
         {!petList && <div>Loading...</div>}
         {petList && (
-          <section className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-7 gap-5">
+          <section className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-5">
             {petList
               .sort((a, b) => a.Name.localeCompare(b.Name))
               .map((item, i) => (
@@ -55,7 +55,7 @@ export default function Page() {
                   <figure className="w-full flex justify-center items-center aspect-square rounded-2xl bg-neutral-900 hover:scale-105 delay-75 duration-150 ease-in-out mb-2.5">
                     <img
                       src={imageUrl.concat(item.Image)}
-                      className="size-20 lg:size-[75%]"
+                      className="size-[75%]"
                     ></img>
                   </figure>
                   <p className="text-center">{item.Name}</p>

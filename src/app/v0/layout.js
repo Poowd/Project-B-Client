@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { sidebarItems } from "./paths";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function Layout({ children }) {
   return (
@@ -30,6 +31,16 @@ export default function Layout({ children }) {
                   Item 1
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+        <div className="lg:hidden flex flex-none min-h-[8vh] w-full bg-neutral-950/50 text-neutral-400 relative">
+          <div className="sticky top-0 h-[8vh] w-full flex items-center justify-between p-5">
+            <div>
+              <h1 className="text-xl">Wikitopia</h1>
+            </div>
+            <div>
+              <h1>Menu</h1>
             </div>
           </div>
         </div>

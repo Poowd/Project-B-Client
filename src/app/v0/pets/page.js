@@ -28,13 +28,13 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="size-full p-10">
+    <main className="size-full p-5 md:p-10">
       <header className="w-full mb-5">
-        <ul className="w-full grid grid-cols-5 gap-5">
+        <ul className="w-full grid grid-cols-3 md:grid-cols-5 gap-2.5 md:gap-5">
           {petNavigationItems.map((item, index) =>
             item.status ? (
               <Link href={item.href} key={index}>
-                <li className="size-full aspect-video rounded-lg p-5 bg-neutral-950/50 text-neutral-400 hover:cursor-pointer flex justify-center items-center">
+                <li className="size-full aspect-video rounded-lg p-2.5 md:p-5 text-xs md:text-sm lg:text-lg bg-neutral-950/50 text-neutral-400 hover:cursor-pointer flex justify-center items-center">
                   {item.name}
                 </li>
               </Link>
@@ -48,9 +48,9 @@ export default function Page() {
         </ul>
       </header>
       <section className="w-full mb-5">
-        <div className="w-full flex flex-col lg:flex-row bg-neutral-950/50 text-neutral-400 rounded-lg p-5 gap-5">
+        <div className="aspect-5/2 w-full flex flex-col lg:flex-row bg-neutral-950/50 text-neutral-400 rounded-lg p-5 gap-5">
           <div className="flex-3/5">
-            <figure className="w-full aspect-video bg-neutral-950/50 rounded-lg">
+            <figure className="h-full w-full bg-neutral-950/50 rounded-lg">
               {dashboardContent.imageUrl && (
                 <img
                   src={dashboardContent.imageUrl}
@@ -60,7 +60,7 @@ export default function Page() {
               )}
             </figure>
           </div>
-          <div className="flex-2/5 flex flex-col justify-between gap-5 p-5">
+          <div className="flex-2/5 flex flex-col justify-between gap-5 md:p-5 lg:overflow-y-scroll no-scrollbar">
             {dashboardContent.id !== 0 && (
               <>
                 <div className="flex flex-col gap-5">

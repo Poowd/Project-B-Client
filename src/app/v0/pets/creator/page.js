@@ -16,6 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
 import { key, url } from "../../../config";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function Page() {
   const router = useRouter();
@@ -107,7 +108,7 @@ export default function Page() {
   };
 
   return (
-    <main id="create" className="w-full p-10 scroll-smooth">
+    <main id="create" className="w-full p-5 md:p-10 scroll-smooth">
       <header className="w-full mb-5 border-b border-neutral-800 flex gap-10 pb-2">
         <div className="flex-1">
           <p className={`mb-2.5`}>Create your own</p>
@@ -118,7 +119,7 @@ export default function Page() {
       <form onSubmit={handleSubmit}>
         <div className="w-full h-fit border border-neutral-900 rounded-2xl">
           <section className="flex flex-col gap-5">
-            <div className="border border-neutral-700 p-5 rounded-lg flex gap-5">
+            <div className="border border-neutral-700 p-5 rounded-lg flex flex-col md:flex-row gap-5">
               <div className="flex-1 flex gap-5">
                 {previewUrl && (
                   <Image
@@ -158,7 +159,7 @@ export default function Page() {
                   name={"In-Game Name"}
                   label={"In-Game Name"}
                   description={
-                    "OPTIONAL: However, if your entry is released you'll receive rewards in-game."
+                    "If your entry is released you'll receive rewards in-game."
                   }
                   value={cuboid.ign}
                   onChange={(e) => {
@@ -172,7 +173,7 @@ export default function Page() {
             </div>
 
             <div className="border border-neutral-700 p-5 rounded-lg flex flex-col gap-5">
-              <div className="flex gap-10">
+              <div className="flex flex-col md:flex-row gap-5 md:gap-10">
                 <div className="flex-1">
                   <BasicInput1
                     name={"Name"}
@@ -216,7 +217,7 @@ export default function Page() {
                   ></BasicInput1>
                 </div>
               </div>
-              <div className="flex gap-10">
+              <div className="flex flex-col md:flex-row gap-5 md:gap-10">
                 <div className="flex-1">
                   <BasicListBox1
                     label={"Specimen"}
@@ -271,8 +272,8 @@ export default function Page() {
             </div>
             <div className="border border-neutral-700 p-5 rounded-lg flex flex-col gap-5">
               <div>
-                <h3 className="text-lg text-neutral-600">{`Pet Skill/s`}</h3>
-                <section className="mb-2.5 flex gap-2.5">
+                <h3 className="text-lg text-neutral-600">{`Pet Trait`}</h3>
+                <section className="mb-2.5 flex flex-col md:flex-row gap-2.5">
                   <div className="flex-1/6">
                     <BasicInput1
                       name={"Trait-Name"}
@@ -336,7 +337,10 @@ export default function Page() {
                     </p>
                   )}
                   {cuboid.skills.map((skill, index) => (
-                    <section key={index} className="mb-2.5 flex gap-2.5">
+                    <section
+                      key={index}
+                      className="mb-5 flex flex-col md:flex-row gap-2.5 border-b border-neutral-800 pb-5"
+                    >
                       <div className="flex-1/6">
                         <BasicInput1
                           name={"Skill-Name"}

@@ -2,6 +2,28 @@
 
 import { ListboxOption } from "@headlessui/react";
 
+export const PetsOptions = (list) => {
+  return (
+    <>
+      <ListboxOption
+        value={"All Pets"}
+        className="data-focus:bg-neutral-900 py-1.5 px-5 min-w-40 rounded-lg"
+      >
+        All Pets
+      </ListboxOption>
+      {list?.map((pet, key) => (
+        <ListboxOption
+          key={key}
+          value={pet?.Name}
+          className="data-focus:bg-neutral-900 py-1.5 px-5 min-w-40 rounded-lg"
+        >
+          {pet?.Name}
+        </ListboxOption>
+      ))}
+    </>
+  );
+};
+
 export const SpecialtyOptions = () => {
   return specialtyList.map((specialty) => (
     <ListboxOption
