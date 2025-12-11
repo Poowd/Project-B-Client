@@ -11,6 +11,7 @@ export async function GET() {
     const { data: result, error } = await supabase
       .from("Archetopia_Builds")
       .select("*, Archetopia_Build_Rewards(*)")
+      .eq("Status", "ACTIVE")
       .order("Created", { ascending: false });
 
     if (error) {

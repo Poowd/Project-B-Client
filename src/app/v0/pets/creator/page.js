@@ -16,7 +16,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
 import { key, url } from "../../../config";
-import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function Page() {
   const router = useRouter();
@@ -97,7 +96,25 @@ export default function Page() {
           const res = await response.json();
           uploadFile();
           console.log(res);
-          window.location.reload();
+          setCuboid({
+            ign: "",
+            name: "",
+            title: "",
+            tag: "",
+            creature: "",
+            specimen: specimenList[0].type,
+            specialty: specialtyList[0],
+            color: "",
+            skills: [],
+            trait: {
+              name: "",
+              level: 0,
+              description: "",
+            },
+            head: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjVkYzg1YjI1MWZhMTYyZTkyMDc1ODc2YWE4YzMwYjY4NThiMjM0NzUxMDM3MmQyYTNiNzc3MWZmYzFjZmEyNSJ9fX0=",
+            image: "",
+            lore: "",
+          });
           return;
         } catch (error) {
           console.log(error);

@@ -48,6 +48,20 @@ export const SpecimenOptions = () => {
   ));
 };
 
+export const RewardTypeOptions = () => {
+  return rewardTypesList.map((rewardType) => (
+    <ListboxOption
+      key={rewardType}
+      value={rewardType}
+      className="data-focus:bg-neutral-900 py-1.5 px-5 min-w-40 rounded-lg"
+    >
+      {rewardType}
+    </ListboxOption>
+  ));
+};
+
+export const rewardTypesList = ["Group", "Individual", "All Participants"];
+
 export const specialtyList = [
   "Nitwit",
   "PvP",

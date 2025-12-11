@@ -15,7 +15,7 @@ export const petNavigationItems = [
 
 export const buildNavigationItems = [
   { name: "Browse All", href: "/v0/builds/browse", status: true },
-  { name: "Build Creator", href: "/v0/builds/creator", status: true },
+  { name: "Build Creator", href: "/v0/builds/building", status: true },
   { name: "Results", href: "/v0/builds/results", status: true },
   { name: "Feedback", href: "/v0/builds/feedback", status: true },
   { name: null, href: "#", status: false },
