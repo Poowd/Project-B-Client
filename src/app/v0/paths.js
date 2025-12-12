@@ -5,18 +5,7 @@ export const sidebarItems = [
   { name: "Server Events", plugin: "events", href: "/v0/" },
 ];
 
-export const petNavigationItems = [
-  { name: "Browse All", href: "/v0/pets/browse", status: true },
-  { name: "Cubiod Creator", href: "/v0/pets/creator", status: true },
-  { name: "Feedback", href: "/v0/pets/feedback", status: true },
-  { name: null, href: "#", status: false },
-  { name: null, href: "#", status: false },
-];
-
-export const buildNavigationItems = [
-  { name: "Browse All", href: "/v0/builds/browse", status: true },
-  { name: "Build Creator", href: "/v0/builds/building", status: true },
-  { name: "Results", href: "/v0/builds/results", status: true },
-  { name: "Feedback", href: "/v0/builds/feedback", status: true },
-  { name: null, href: "#", status: false },
-];
+export const feedbackForms = {
+  pets: "/v0/pets/feedback",
+  builds: "/v0/builds/feedback",
+};

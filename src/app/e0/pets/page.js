@@ -51,6 +51,24 @@ export default function Page() {
 
   return (
     <main className="size-full p-5 md:p-10 flex flex-col gap-10 scroll-smooth">
+      <header className="w-full">
+        <ul className="w-full grid grid-cols-3 md:grid-cols-5 gap-2.5 md:gap-5">
+          {petNavigationItems.map((item, index) =>
+            item.status ? (
+              <Link href={item.href} key={index}>
+                <li className="size-full aspect-video rounded-lg p-2.5 md:p-5 text-xs md:text-sm lg:text-lg bg-neutral-950/50 text-neutral-400 hover:cursor-pointer flex justify-center items-center">
+                  {item.name}
+                </li>
+              </Link>
+            ) : (
+              <li
+                key={index}
+                className="size-full aspect-video rounded-lg p-5 bg-neutral-950/25 text-neutral-800 hover:cursor-pointer flex justify-center items-center"
+              ></li>
+            )
+          )}
+        </ul>
+      </header>
       <section className="w-full">
         <div className="aspect-5/2 w-full flex flex-col lg:flex-row bg-neutral-950/50 text-neutral-400 rounded-lg p-5 gap-5">
           <div className="flex-3/5">
@@ -96,7 +114,7 @@ export default function Page() {
           {!petList || (petList.length === 0 && <div>No pets found.</div>)}
           {!petList && <div>Loading...</div>}
           {petList && (
-            <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-5">
+            <div className="w-full flex flex-col gap-5">
               {petList
                 .sort((a, b) => a.Name.localeCompare(b.Name))
                 .map((item, i) => (
@@ -108,33 +126,27 @@ export default function Page() {
                     }}
                     className="w-full"
                   >
-                    <figure className="w-full flex justify-center items-center aspect-square rounded-2xl bg-neutral-900 hover:scale-105 delay-75 duration-150 ease-in-out mb-2.5">
-                      <img
-                        src={imageUrl.concat(item.Image)}
-                        className="size-[75%]"
-                      ></img>
-                    </figure>
-                    <p className="text-center">{item.Name}</p>
+                    <div className="flex items-center gap-10 bg-neutral-900 text-start border-b border-neutral-800 p-5 hover:bg-neutral-950/50 ease-in-out duration-300">
+                      <figure>
+                        <img
+                          src={imageUrl.concat(item.Image)}
+                          className="size-20"
+                        ></img>
+                      </figure>
+                      <div>
+                        <div className="mb-2.5">
+                          <h1 className="font-semibold">{item.Name}</h1>
+                          <p>{item.Title}</p>
+                        </div>
+                        <div className="text-xs text-neutral-600">
+                          <p>{`Specimen: ${item.Type}`}</p>
+                        </div>
+                      </div>
+                    </div>
                   </Link>
                 ))}
             </div>
           )}
-        </div>
-      </section>
-      <section className="w-full">
-        <div className="w-full flex flex-col bg-neutral-950/50 text-neutral-400 rounded-lg p-10 gap-5">
-          <div className="flex-1">
-            <p className={`mb-1.5`}>We want to hear from you!</p>
-            <h1 className={`text-2xl font-bold mb-2.5`}>Feedback Center</h1>
-            <h3 className="text-xl"></h3>
-          </div>
-          <div className="flex-1 w-fit">
-            <Link href={feedbackForms.pets}>
-              <li className="rounded-lg py-2 px-4 text-xs md:text-sm lg:text-lg bg-neutral-950/50 text-neutral-400 hover:cursor-pointer flex justify-center items-center">
-                Send to us!
-              </li>
-            </Link>
-          </div>
         </div>
       </section>
     </main>

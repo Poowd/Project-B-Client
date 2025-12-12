@@ -4,10 +4,6 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 export default function Layout({ children }) {
   const headerlinks = [
     { name: "Go Back", href: "./", icon: <IoMdArrowRoundBack /> },
-    { name: "|", href: "", icon: null },
-    { name: "Browse Pets", href: "./browse", icon: null },
-    { name: "|", href: "", icon: null },
-    { name: "Create Pets", href: "./creator", icon: null },
   ];
   return (
     <main className="size-full">

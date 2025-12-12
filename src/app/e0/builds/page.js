@@ -1,13 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { feedbackForms, petNavigationItems } from "../paths";
+import {
+  buildNavigationItems,
+  feedbackForms,
+  petNavigationItems,
+} from "../paths";
 import Link from "next/link";
 import { imageUrl } from "../../config";
+import { getFormattedDate } from "../../../hooks/functions/getFormattedDate";
 
 export default function Page() {
   // const [count, setCount] = useState(0);
-  const [petList, setPetList] = useState(null);
+  const [buildList, setBuildList] = useState(null);
   const [dashboardContent, setdashboardContent] = useState(petDashboard[0]);
 
   useEffect(() => {
@@ -31,14 +36,14 @@ export default function Page() {
 
   const loadData = async () => {
     try {
-      const response = await fetch(`../../../api/e0/browsePets`, {
+      const response = await fetch(`../../../api/e0/browseBuilds`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
       const fetchData = await response.json();
-      setPetList(fetchData.data);
+      setBuildList(fetchData.data);
       return;
     } catch (error) {
       console.log(error);
@@ -51,6 +56,24 @@ export default function Page() {
 
   return (
     <main className="size-full p-5 md:p-10 flex flex-col gap-10 scroll-smooth">
+      <header className="w-full">
+        <ul className="w-full grid grid-cols-3 md:grid-cols-5 gap-2.5 md:gap-5">
+          {buildNavigationItems.map((item, index) =>
+            item.status ? (
+              <Link href={item.href} key={index}>
+                <li className="size-full aspect-video rounded-lg p-2.5 md:p-5 text-xs md:text-sm lg:text-lg bg-neutral-950/50 text-neutral-400 hover:cursor-pointer flex justify-center items-center">
+                  {item.name}
+                </li>
+              </Link>
+            ) : (
+              <li
+                key={index}
+                className="size-full aspect-video rounded-lg p-5 bg-neutral-950/25 text-neutral-800 hover:cursor-pointer flex justify-center items-center"
+              ></li>
+            )
+          )}
+        </ul>
+      </header>
       <section className="w-full">
         <div className="aspect-5/2 w-full flex flex-col lg:flex-row bg-neutral-950/50 text-neutral-400 rounded-lg p-5 gap-5">
           <div className="flex-3/5">
@@ -87,54 +110,52 @@ export default function Page() {
       <section className="w-full">
         <div className="w-full mb-5 border-b border-neutral-800 flex gap-10 pb-2 text-center">
           <div className="flex-1">
-            <p className={`mb-2.5`}>Meet the</p>
-            <h1 className={`text-4xl font-bold mb-2.5`}>Cubiods!</h1>
+            <p className={`mb-2.5`}>Showcase your</p>
+            <h1 className={`text-4xl font-bold mb-2.5`}>Builds!</h1>
             <h3 className="text-xl"></h3>
           </div>
         </div>
-        <div className="w-full mb-5">
-          {!petList || (petList.length === 0 && <div>No pets found.</div>)}
-          {!petList && <div>Loading...</div>}
-          {petList && (
-            <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-5">
-              {petList
-                .sort((a, b) => a.Name.localeCompare(b.Name))
+        <div className="w-full">
+          {!buildList ||
+            (buildList.length === 0 && <div>No build competitions found.</div>)}
+          {!buildList && <div>Loading...</div>}
+          {buildList && (
+            <div className="w-full flex flex-col gap-5">
+              {buildList
+                .sort((a, b) => new Date(a.StartDate) + new Date(b.StartDate))
                 .map((item, i) => (
                   <Link
                     key={i}
                     href={{
-                      pathname: `/v0/pets/${item.PETID}`,
+                      pathname: `/v0/builds/${item.BUILDID}`,
                       query: { data: JSON.stringify(item) },
                     }}
                     className="w-full"
                   >
-                    <figure className="w-full flex justify-center items-center aspect-square rounded-2xl bg-neutral-900 hover:scale-105 delay-75 duration-150 ease-in-out mb-2.5">
-                      <img
-                        src={imageUrl.concat(item.Image)}
-                        className="size-[75%]"
-                      ></img>
-                    </figure>
-                    <p className="text-center">{item.Name}</p>
+                    <div className="flex items-center gap-10 bg-neutral-900 text-start border-b border-neutral-800 p-5 hover:bg-neutral-950/50 ease-in-out duration-300">
+                      <figure>
+                        <img
+                          src={imageUrl.concat(item.Image)}
+                          className="h-52 lg:h-60 aspect-video object-cover rounded-2xl"
+                        ></img>
+                      </figure>
+                      <div>
+                        <div className="mb-2.5">
+                          <h1 className="font-semibold">{item.Title}</h1>
+                          <p>{item.Subtitle}</p>
+                        </div>
+                        <div className="text-xs text-neutral-600">
+                          <p>{`Start Date: ${getFormattedDate(
+                            item.StartDate
+                          )}`}</p>
+                          <p>{`End Date: ${getFormattedDate(item.EndDate)}`}</p>
+                        </div>
+                      </div>
+                    </div>
                   </Link>
                 ))}
             </div>
           )}
-        </div>
-      </section>
-      <section className="w-full">
-        <div className="w-full flex flex-col bg-neutral-950/50 text-neutral-400 rounded-lg p-10 gap-5">
-          <div className="flex-1">
-            <p className={`mb-1.5`}>We want to hear from you!</p>
-            <h1 className={`text-2xl font-bold mb-2.5`}>Feedback Center</h1>
-            <h3 className="text-xl"></h3>
-          </div>
-          <div className="flex-1 w-fit">
-            <Link href={feedbackForms.pets}>
-              <li className="rounded-lg py-2 px-4 text-xs md:text-sm lg:text-lg bg-neutral-950/50 text-neutral-400 hover:cursor-pointer flex justify-center items-center">
-                Send to us!
-              </li>
-            </Link>
-          </div>
         </div>
       </section>
     </main>

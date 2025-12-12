@@ -2,6 +2,28 @@
 
 import { ListboxOption } from "@headlessui/react";
 
+export const BuildsOptions = (list) => {
+  return (
+    <>
+      <ListboxOption
+        value={"All Builds"}
+        className="data-focus:bg-neutral-900 py-1.5 px-5 min-w-40 rounded-lg"
+      >
+        All Builds
+      </ListboxOption>
+      {list?.map((build, key) => (
+        <ListboxOption
+          key={key}
+          value={build?.Title}
+          className="data-focus:bg-neutral-900 py-1.5 px-5 min-w-40 rounded-lg"
+        >
+          {build?.Title}
+        </ListboxOption>
+      ))}
+    </>
+  );
+};
+
 export const PetsOptions = (list) => {
   return (
     <>

@@ -1,11 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { buildNavigationItems, petNavigationItems } from "../paths";
+import {
+  buildNavigationItems,
+  feedbackForms,
+  petNavigationItems,
+} from "../paths";
 import Link from "next/link";
+import { imageUrl } from "../../config";
 
 export default function Page() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
+  const [buildList, setBuildList] = useState(null);
   const [dashboardContent, setdashboardContent] = useState(petDashboard[0]);
 
   useEffect(() => {
@@ -18,7 +24,7 @@ export default function Page() {
       } else {
         index = 0; // Reset to start when we reach the end
       }
-      setCount((prevCount) => prevCount + 1);
+      // setCount((prevCount) => prevCount + 1);
     }, 10000); // 1000ms (1 second) interval
 
     // The cleanup function
@@ -27,27 +33,29 @@ export default function Page() {
     };
   }, []);
 
+  const loadData = async () => {
+    try {
+      const response = await fetch(`../../../api/e0/browseBuilds`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const fetchData = await response.json();
+      setBuildList(fetchData.data);
+      return;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
-    <main className="size-full p-5 md:p-10">
-      <header className="w-full mb-5">
-        <ul className="w-full grid grid-cols-3 md:grid-cols-5 gap-2.5 md:gap-5">
-          {buildNavigationItems.map((item, index) =>
-            item.status ? (
-              <Link href={item.href} key={index}>
-                <li className="size-full aspect-video rounded-lg p-2.5 md:p-5 text-xs md:text-sm lg:text-lg bg-neutral-950/50 text-neutral-400 hover:cursor-pointer flex justify-center items-center">
-                  {item.name}
-                </li>
-              </Link>
-            ) : (
-              <li
-                key={index}
-                className="size-full aspect-video rounded-lg p-5 bg-neutral-950/25 text-neutral-800 hover:cursor-pointer flex justify-center items-center"
-              ></li>
-            )
-          )}
-        </ul>
-      </header>
-      <section className="w-full mb-5">
+    <main className="size-full p-5 md:p-10 flex flex-col gap-10 scroll-smooth">
+      <section className="w-full">
         <div className="aspect-5/2 w-full flex flex-col lg:flex-row bg-neutral-950/50 text-neutral-400 rounded-lg p-5 gap-5">
           <div className="flex-3/5">
             <figure className="h-full w-full bg-neutral-950/50 rounded-lg">
@@ -77,6 +85,60 @@ export default function Page() {
                 </div>
               </>
             )}
+          </div>
+        </div>
+      </section>
+      <section className="w-full">
+        <div className="w-full mb-5 border-b border-neutral-800 flex gap-10 pb-2 text-center">
+          <div className="flex-1">
+            <p className={`mb-2.5`}>Showcase your</p>
+            <h1 className={`text-4xl font-bold mb-2.5`}>Builds!</h1>
+            <h3 className="text-xl"></h3>
+          </div>
+        </div>
+        <div className="w-full">
+          {!buildList ||
+            (buildList.length === 0 && <div>No build competitions found.</div>)}
+          {!buildList && <div>Loading...</div>}
+          {buildList && (
+            <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+              {buildList
+                .sort((a, b) => new Date(a.StartDate) + new Date(b.StartDate))
+                .map((item, i) => (
+                  <Link
+                    key={i}
+                    href={{
+                      pathname: `/v0/builds/${item.BUILDID}`,
+                      query: { data: JSON.stringify(item) },
+                    }}
+                    className="w-full"
+                  >
+                    <figure className="w-full flex justify-center items-center aspect-video rounded-2xl bg-neutral-900 hover:scale-105 delay-75 duration-150 ease-in-out mb-2.5">
+                      <img
+                        src={imageUrl.concat(item.Image)}
+                        className="size-[90%] object-cover rounded-2xl"
+                      ></img>
+                    </figure>
+                    <p className="text-center">{item.Title}</p>
+                  </Link>
+                ))}
+            </div>
+          )}
+        </div>
+      </section>
+      <section className="w-full">
+        <div className="w-full flex flex-col bg-neutral-950/50 text-neutral-400 rounded-lg p-10 gap-5">
+          <div className="flex-1">
+            <p className={`mb-1.5`}>We want to hear from you!</p>
+            <h1 className={`text-2xl font-bold mb-2.5`}>Feedback Center</h1>
+            <h3 className="text-xl"></h3>
+          </div>
+          <div className="flex-1 w-fit">
+            <Link href={feedbackForms.builds}>
+              <li className="rounded-lg py-2 px-4 text-xs md:text-sm lg:text-lg bg-neutral-950/50 text-neutral-400 hover:cursor-pointer flex justify-center items-center">
+                Send to us!
+              </li>
+            </Link>
           </div>
         </div>
       </section>

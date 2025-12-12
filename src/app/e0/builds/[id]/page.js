@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { imageUrl } from "../../../../config";
-import { getFormattedDate } from "../../../../../hooks/functions/getFormattedDate";
+import { imageUrl } from "../../../config";
+import { getFormattedDate } from "../../../../hooks/functions/getFormattedDate";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -34,7 +34,7 @@ export default function Page() {
   return (
     <main className="w-full p-10 text-neutral-400">
       <header className="mb-5 flex justify-end">
-        <Link href={"/v0/builds/browse"}>
+        <Link href={"/v0/builds"}>
           <div className="w-fit py-2 px-4 hover:px-10 delay-75 duration-150 ease-in-out bg-neutral-950/25 rounded-full">
             <p className="">Back to Lists</p>
           </div>
@@ -42,11 +42,11 @@ export default function Page() {
       </header>
       <section className="w-full flex flex-col gap-5">
         <div>
-          <div className="flex gap-10 my-10">
+          <div className="flex flex-col md:flex-row gap-10 my-10">
             <figure className="flex-none">
               <img
                 src={imageUrl.concat(data.Image)}
-                className="size-20 lg:size-28"
+                className="w-full md:h-52 lg:h-64 aspect-video rounded-2xl"
               ></img>
             </figure>
             <div className="flex-1">
@@ -59,7 +59,7 @@ export default function Page() {
           </div>
           <hr className="w-full text-neutral-800" />
         </div>
-        <div className="flex gap-10">
+        <div className="flex flex-col md:flex-row gap-10">
           <div className="flex-4/6 flex gap-10">
             <div className="flex-1">
               <h3 className="text-xl mb-5">Description</h3>

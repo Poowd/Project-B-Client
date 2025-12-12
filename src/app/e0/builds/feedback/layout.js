@@ -5,11 +5,9 @@ export default function Layout({ children }) {
   const headerlinks = [
     { name: "Go Back", href: "./", icon: <IoMdArrowRoundBack /> },
     { name: "|", href: "", icon: null },
-    { name: "Create Build Competition", href: "./building", icon: null },
+    { name: "Browse Pets", href: "./browse", icon: null },
     { name: "|", href: "", icon: null },
-    { name: "Results", href: "./results", icon: null },
-    { name: "|", href: "", icon: null },
-    { name: "Feedback", href: "./feedback", icon: null },
+    { name: "Create Pets", href: "./creator", icon: null },
   ];
   return (
     <main className="size-full">

@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
-import {
-  BuildsOptions,
-  PetsOptions,
-} from "../../../../components/listbox/ListBoxOptions";
+import { PetsOptions } from "../../../../components/listbox/ListBoxOptions";
 import { useRouter } from "next/navigation";
 import BasicInput1 from "../../../../components/input/BasicInput1";
 import BasicTextArea1 from "../../../../components/input/BasicTextArea1";
@@ -15,28 +12,28 @@ export default function Page() {
   const [isPending, startTransition] = useTransition();
   const [feedback, setFeedback] = useState({
     ign: "",
-    target_build: "All Builds",
+    target_pet: "All Pets",
     general_feedback: "",
     rating_1: "",
     rating_2: "",
     rating_3: "",
     rating_4: "",
     rating_5: "",
-    notable_build: "",
-    build_state: "",
+    notable_pet: "",
+    pet_state: "",
   });
-  const [buildList, setBuildList] = useState(null);
+  const [petList, setPetList] = useState(null);
 
   const loadData = async () => {
     try {
-      const response = await fetch(`../../../api/e0/optionBuilds`, {
+      const response = await fetch(`../../../api/e0/optionPets`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
       const fetchData = await response.json();
-      setBuildList(fetchData.data);
+      setPetList(fetchData.data);
       return;
     } catch (error) {
       console.log(error);
@@ -59,7 +56,7 @@ export default function Page() {
     startTransition(async () => {
       if (notEmpty(feedback.ign)) {
         try {
-          const response = await fetch("../../../api/e0/feedbackBuild", {
+          const response = await fetch("../../../api/e0/submitFeedback", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(feedback),
@@ -110,18 +107,18 @@ export default function Page() {
                 </div>
                 <div className="flex-1">
                   <BasicListBox1
-                    label={"Targeted Build"}
+                    label={"Targeted Pet"}
                     description={
-                      "Select what build competition are you providing feedback for, you may select all to apply to all existing build competition or the system itself."
+                      "Select what pet are you providing feedback for, you may select all to apply to all existing pets or the system itself."
                     }
-                    value={feedback.target_build}
+                    value={feedback.target_pet}
                     onChange={(e) => {
                       setFeedback((prev) => ({
                         ...prev,
-                        target_build: e,
+                        target_pet: e,
                       }));
                     }}
-                    options={BuildsOptions(buildList)}
+                    options={PetsOptions(petList)}
                   ></BasicListBox1>
                 </div>
               </div>
@@ -130,9 +127,11 @@ export default function Page() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div className="flex-1">
                   <RatingInput1
-                    label={"Build Competition Experience"}
-                    name={"Build Competition Experience"}
-                    description={""}
+                    label={"Pet Experience"}
+                    name={"Pet Experience"}
+                    description={
+                      "How would you rate your overall experience with this pet?"
+                    }
                     value={feedback.rating_1}
                     onChange={(e) => {
                       setFeedback((prev) => ({
@@ -144,9 +143,11 @@ export default function Page() {
                 </div>
                 <div className="flex-1">
                   <RatingInput1
-                    label={"Theme Creativity"}
-                    name={"Theme Creativity"}
-                    description={""}
+                    label={"Pet Creativity"}
+                    name={"Pet Creativity"}
+                    description={
+                      "How would you rate the creativity in each/the pet's design, details, and uniqueness?"
+                    }
                     value={feedback.rating_2}
                     onChange={(e) => {
                       setFeedback((prev) => ({
@@ -158,9 +159,11 @@ export default function Page() {
                 </div>
                 <div className="flex-1">
                   <RatingInput1
-                    label={"Build Competition Mechanics"}
-                    name={"Build Competition Mechanics"}
-                    description={""}
+                    label={"Pet Skill"}
+                    name={"Pet Skill"}
+                    description={
+                      "How would you rate the skill sets of each/the pet?"
+                    }
                     value={feedback.rating_3}
                     onChange={(e) => {
                       setFeedback((prev) => ({
@@ -172,9 +175,11 @@ export default function Page() {
                 </div>
                 <div className="flex-1">
                   <RatingInput1
-                    label={"Time Duration"}
-                    name={"Time Duration"}
-                    description={""}
+                    label={"Pet Trait"}
+                    name={"Pet Trait"}
+                    description={
+                      "How would you rate the trait sets of each/the pet?"
+                    }
                     value={feedback.rating_4}
                     onChange={(e) => {
                       setFeedback((prev) => ({
@@ -186,9 +191,11 @@ export default function Page() {
                 </div>
                 <div className="flex-1">
                   <RatingInput1
-                    label={"Registration and Submission"}
-                    name={"Registration and Submission"}
-                    description={""}
+                    label={"Pet Lore"}
+                    name={"Pet Lore"}
+                    description={
+                      "How would you rate the generated lores of each/the pet?"
+                    }
                     value={feedback.rating_5}
                     onChange={(e) => {
                       setFeedback((prev) => ({
@@ -204,32 +211,32 @@ export default function Page() {
               <div className="flex flex-col md:flex-row gap-5 md:gap-10">
                 <div className="flex-1">
                   <BasicInput1
-                    name={"Build State"}
-                    label={"Build State"}
+                    name={"Pet State"}
+                    label={"Pet State"}
                     description={
-                      "Are build competition still worthy to join? (Short Answer)"
+                      "Are pets really effective in their current state? How do you feel about their performance and functionality? (Short Answer)"
                     }
-                    value={feedback.build_state}
+                    value={feedback.pet_state}
                     onChange={(e) => {
                       setFeedback((prev) => ({
                         ...prev,
-                        build_state: e.target.value,
+                        pet_state: e.target.value,
                       }));
                     }}
                   ></BasicInput1>
                 </div>
                 <div className="flex-1">
                   <BasicInput1
-                    name={"Notable Build"}
-                    label={"Notable Build"}
+                    name={"Notable Pet"}
+                    label={"Notable Pet"}
                     description={
-                      "Which build competition stood out to you the most and why? (Short Answer)"
+                      "Which pet stood out to you the most and why? (Short Answer)"
                     }
-                    value={feedback.notable_build}
+                    value={feedback.notable_pet}
                     onChange={(e) => {
                       setFeedback((prev) => ({
                         ...prev,
-                        notable_build: e.target.value,
+                        notable_pet: e.target.value,
                       }));
                     }}
                   ></BasicInput1>

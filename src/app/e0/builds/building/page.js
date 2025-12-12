@@ -88,18 +88,20 @@ export default function Page() {
           // Parse the response content
           const res = await response.json();
           console.log(res);
-          uploadFile();
-          setCuboid({
-            ign: "",
-            title: "",
-            subtitle: "",
-            startDate: "",
-            endDate: "",
-            code: "",
-            rewards: [],
-            image: "",
-            description: "",
-          });
+          if (res.status) {
+            await uploadFile();
+            setCuboid({
+              ign: "",
+              title: "",
+              subtitle: "",
+              startDate: "",
+              endDate: "",
+              code: "",
+              rewards: [],
+              image: "",
+              description: "",
+            });
+          }
           return;
         } catch (error) {
           console.log(error);

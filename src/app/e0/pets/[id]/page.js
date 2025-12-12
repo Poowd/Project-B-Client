@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { imageUrl } from "../../../../config";
+import { imageUrl } from "../../../config";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <main className="w-full p-10 text-neutral-400">
       <header className="mb-5 flex justify-end">
-        <Link href={"/v0/pets/browse"}>
+        <Link href={"/v0/pets"}>
           <div className="w-fit py-2 px-4 hover:px-10 delay-75 duration-150 ease-in-out bg-neutral-950/25 rounded-full">
             <p className="">Back to Lists</p>
           </div>
